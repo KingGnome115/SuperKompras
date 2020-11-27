@@ -4,7 +4,7 @@ package clases;
  *
  * @author Kevin
  */
-public class Tipo_Usuario
+public class Tipo_Usuario 
 {
     private int id;
     private String usuario;

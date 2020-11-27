@@ -1,12 +1,14 @@
 package Ventanas;
 
+
+
 /**
  *
  * @author Kevin
  */
 public class InicioSesion extends javax.swing.JFrame
 {
-
+ 
     
     /**
      * Creates new form InicioSesion
@@ -131,6 +133,27 @@ public class InicioSesion extends javax.swing.JFrame
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
         // TODO add your handling code here:
+      
+      //Pruebas
+      
+     /*  
+      Consulta
+      Connection con3 = ManipulaBD.conecta();
+        if (con3 != null)
+        {
+            Querys sql = new Querys();
+            ArrayList<Objeto> ap = ManipulaBD.cargarO(sql.Seleccion(con3, "*", "EjemploTabla", "id=" + 1 + ""));
+            ManipulaBD.desconecta(con3);
+            if (ap != null)
+            {
+                System.out.println(ap.get(0).desp());
+      
+            } else
+            {
+                System.out.println("No se encontro el dato");
+            }
+        }
+      */
       
 /**
  * 
