@@ -11,8 +11,8 @@ public class Informes
     private String dia;
     private int producto_Mas; //Estos no serian los nombres de las marcas ?? Por lo tanto serian String?:  No porque guardamos id no nombres
     private int producto_Menos;//
-    private int marca_Mas;//
-    private int marca_Menos;// Esas
+    private String marca_Mas;//
+    private String marca_Menos;// Esas
     private float ganancias;
     private float perdidas;
 
@@ -20,7 +20,7 @@ public class Informes
     {
     }
 
-    public Informes(int folio, int id_Ventas, String dia, int producto_Mas, int producto_Menos, int marca_Mas, int marca_Menos, float ganancias, float perdidas)
+    public Informes(int folio, int id_Ventas, String dia, int producto_Mas, int producto_Menos, String marca_Mas, String marca_Menos, float ganancias, float perdidas)
     {
         this.folio = folio;
         this.id_Ventas = id_Ventas;
@@ -116,7 +116,7 @@ public class Informes
     /**
      * @return the marca_Mas
      */
-    public int getMarca_Mas()
+    public String getMarca_Mas()
     {
         return marca_Mas;
     }
@@ -124,7 +124,7 @@ public class Informes
     /**
      * @param marca_Mas the marca_Mas to set
      */
-    public void setMarca_Mas(int marca_Mas)
+    public void setMarca_Mas(String marca_Mas)
     {
         this.marca_Mas = marca_Mas;
     }
@@ -132,7 +132,7 @@ public class Informes
     /**
      * @return the marca_Menos
      */
-    public int getMarca_Menos()
+    public String getMarca_Menos()
     {
         return marca_Menos;
     }
@@ -140,7 +140,7 @@ public class Informes
     /**
      * @param marca_Menos the marca_Menos to set
      */
-    public void setMarca_Menos(int marca_Menos)
+    public void setMarca_Menos(String marca_Menos)
     {
         this.marca_Menos = marca_Menos;
     }

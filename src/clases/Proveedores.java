@@ -17,16 +17,17 @@ public class Proveedores
     private String direccion;
     private int cp;
     private int telefono;
-    private int email;
+    private String email;
     private boolean estatus;
 
     public Proveedores()
     {
     }
 
-    public Proveedores(int id, String nombre, String apellidoP, String apellidoM, String rfc, String razon_Social, String direccion, int cp, int telefono, int email, boolean estatus)
+    public Proveedores(int id, int id_Municipio, String nombre, String apellidoP, String apellidoM, String rfc, String razon_Social, String direccion, int cp, int telefono, String email, boolean estatus)
     {
         this.id = id;
+        this.id_Municipio = id_Municipio;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -38,6 +39,8 @@ public class Proveedores
         this.email = email;
         this.estatus = estatus;
     }
+
+    
 
     /**
      * @return the id
@@ -202,7 +205,7 @@ public class Proveedores
     /**
      * @return the email
      */
-    public int getEmail()
+    public String getEmail()
     {
         return email;
     }
@@ -210,7 +213,7 @@ public class Proveedores
     /**
      * @param email the email to set
      */
-    public void setEmail(int email)
+    public void setEmail(String email)
     {
         this.email = email;
     }

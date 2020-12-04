@@ -6,21 +6,20 @@ package clases;
  */
 public class Pais
 {
+
     private int id;
     private String nombre;
     private boolean estatus;
-    private int clave;
 
     public Pais()
     {
     }
 
-    public Pais(int id, String nombre, boolean estatus, int clave)
+    public Pais(int id, String nombre, boolean estatus)
     {
         this.id = id;
         this.nombre = nombre;
         this.estatus = estatus;
-        this.clave = clave;
     }
 
     /**
@@ -70,21 +69,4 @@ public class Pais
     {
         this.estatus = estatus;
     }
-
-    /**
-     * @return the clave
-     */
-    public int getClave()
-    {
-        return clave;
-    }
-
-    /**
-     * @param clave the clave to set
-     */
-    public void setClave(int clave)
-    {
-        this.clave = clave;
-    }
-    
 }

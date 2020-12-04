@@ -11,18 +11,16 @@ public class Entidades
     private int id_Pais;
     private String nombre;
     private boolean estatus;
-    private int clave;
 
     public Entidades()
     {
     }
 
-    public Entidades(int clave_Pais, int id, String nombre, boolean estatus, int clave)
+    public Entidades(int clave_Pais, int id, String nombre, boolean estatus)
     {
         this.id = id;
         this.nombre = nombre;
         this.estatus = estatus;
-        this.clave = clave;
     }
 
     /**
@@ -71,22 +69,6 @@ public class Entidades
     public void setEstatus(boolean estatus)
     {
         this.estatus = estatus;
-    }
-
-    /**
-     * @return the clave
-     */
-    public int getClave()
-    {
-        return clave;
-    }
-
-    /**
-     * @param clave the clave to set
-     */
-    public void setClave(int clave)
-    {
-        this.clave = clave;
     }
 
     /**
