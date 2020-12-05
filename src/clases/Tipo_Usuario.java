@@ -4,21 +4,24 @@ package clases;
  *
  * @author Kevin
  */
-public class Tipo_Usuario 
+public class Tipo_Usuario
 {
+
     private int id;
     private String usuario;
     private String contrasenia;
+    private boolean estatus;
 
     public Tipo_Usuario()
     {
     }
 
-    public Tipo_Usuario(int id, String usuario, String contrasenia)
+    public Tipo_Usuario(int id, String usuario, String contrasenia, boolean estatus)
     {
         this.id = id;
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+        this.estatus = estatus;
     }
 
     /**
@@ -68,8 +71,21 @@ public class Tipo_Usuario
     {
         this.contrasenia = contrasenia;
     }
-    
-    
-    
-    
+
+    /**
+     * @return the estatus
+     */
+    public boolean isEstatus()
+    {
+        return estatus;
+    }
+
+    /**
+     * @param estatus the estatus to set
+     */
+    public void setEstatus(boolean estatus)
+    {
+        this.estatus = estatus;
+    }
+
 }

@@ -24,10 +24,11 @@ public class Productos
     {
     }
 
-    public Productos(int id, int codigo, int ventas, String nombre, String descripcion, float precio_Venta, float precio_Compra, boolean perecedero)
+    public Productos(int id, int codigo, int id_Proveedor, int ventas, String nombre, String descripcion, float precio_Venta, float precio_Compra, boolean perecedero)
     {
         this.id = id;
         this.codigo = codigo;
+        this.id_Proveedor = id_Proveedor;
         this.ventas = ventas;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -35,6 +36,8 @@ public class Productos
         this.precio_Compra = precio_Compra;
         this.perecedero = perecedero;
     }
+
+    
 
     /**
      * @return the id
