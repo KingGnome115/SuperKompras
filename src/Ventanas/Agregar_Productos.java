@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Ventanas;
+
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Validaciones;
 
@@ -12,17 +13,18 @@ import cjb.ci.Validaciones;
  * @author Kevin
  */
 public class Agregar_Productos extends javax.swing.JFrame
-{
+  {
 
     /**
      * Creates new form Agregar_Productos
      */
     public Agregar_Productos()
-    {
+      {
         initComponents();
-        CtrlInterfaz.limpia();
-        CtrlInterfaz.habilita();
-    }
+        CtrlInterfaz.limpia(jtNombre, jtCompra, jtFCad, jtFVenta, jtMarca, jtProveedor, jtVenta);
+        CtrlInterfaz.habilita(false, btnAceptar, btnBuscar, jtVenta, jtCompra, jtFCad, jtFVenta, jtMarca, jtProveedor, jcPerec);
+        jcPerec.setEnabled(false);
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +41,7 @@ public class Agregar_Productos extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jcPerec = new javax.swing.JCheckBox();
         jtNombre = new javax.swing.JTextField();
         jtMarca = new javax.swing.JTextField();
         jtCompra = new javax.swing.JTextField();
@@ -66,12 +68,12 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         jLabel5.setText("Proveedor");
 
-        jCheckBox1.setText("Perecedero");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener()
+        jcPerec.setText("Perecedero");
+        jcPerec.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jCheckBox1ActionPerformed(evt);
+                jcPerecActionPerformed(evt);
             }
         });
 
@@ -210,7 +212,7 @@ public class Agregar_Productos extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(jcPerec)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -272,7 +274,7 @@ public class Agregar_Productos extends javax.swing.JFrame
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
+                    .addComponent(jcPerec)
                     .addComponent(jLabel6)
                     .addComponent(jtFCad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -297,146 +299,175 @@ public class Agregar_Productos extends javax.swing.JFrame
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarActionPerformed
     {//GEN-HEADEREND:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+
+        String nombre = jtNombre.getText();
+        String marca = jtMarca.getText();
+        int compra = Integer.parseInt(String.valueOf(jtCompra));
+        int venta = Integer.parseInt(String.valueOf(jtVenta));
+        String proveedor = jtProveedor.getText();
+        String fVenta = jtFVenta.getText();
+
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
 
-      // TODO add your handling code here:
-      this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jtNombreKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtNombreKeyPressed
     {//GEN-HEADEREND:event_jtNombreKeyPressed
-        // TODO add your handling code here:
+        if (jtNombre.getText().isEmpty() != true)
+          {
+            Validaciones.enter(this, evt, jtMarca);
+          }
     }//GEN-LAST:event_jtNombreKeyPressed
 
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtNombreKeyTyped
     {//GEN-HEADEREND:event_jtNombreKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaAlfabeticos(evt);
     }//GEN-LAST:event_jtNombreKeyTyped
 
     private void jtMarcaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtMarcaKeyPressed
     {//GEN-HEADEREND:event_jtMarcaKeyPressed
-        // TODO add your handling code here:
+        if (jtMarca.getText().isEmpty() != true)
+          {
+            Validaciones.enter(this, evt, jtCompra);
+          }
     }//GEN-LAST:event_jtMarcaKeyPressed
 
     private void jtMarcaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtMarcaKeyTyped
     {//GEN-HEADEREND:event_jtMarcaKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaAlfabeticos(evt);
     }//GEN-LAST:event_jtMarcaKeyTyped
 
     private void jtCompraKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtCompraKeyPressed
     {//GEN-HEADEREND:event_jtCompraKeyPressed
-        // TODO add your handling code here:
+        if (jtCompra.getText().isEmpty() != true)
+          {
+            Validaciones.enter(this, evt, jtVenta);
+          }
     }//GEN-LAST:event_jtCompraKeyPressed
 
     private void jtCompraKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtCompraKeyTyped
     {//GEN-HEADEREND:event_jtCompraKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_jtCompraKeyTyped
 
     private void jtVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtVentaKeyPressed
     {//GEN-HEADEREND:event_jtVentaKeyPressed
-        // TODO add your handling code here:
+        if (jtVenta.getText().isEmpty() != true)
+          {
+            Validaciones.enter(this, evt, jtProveedor);
+          }
     }//GEN-LAST:event_jtVentaKeyPressed
 
     private void jtVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtVentaKeyTyped
     {//GEN-HEADEREND:event_jtVentaKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_jtVentaKeyTyped
 
     private void jtProveedorKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtProveedorKeyPressed
     {//GEN-HEADEREND:event_jtProveedorKeyPressed
-        // TODO add your handling code here:
+        if (jtProveedor.getText().isEmpty() != true)
+          {
+            Validaciones.enter(this, evt, jtFVenta);
+            jcPerec.setEnabled(true);
+            CtrlInterfaz.habilita(true, btnBuscar);
+          }
     }//GEN-LAST:event_jtProveedorKeyPressed
 
     private void jtProveedorKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtProveedorKeyTyped
     {//GEN-HEADEREND:event_jtProveedorKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaAlfabeticos(evt);
     }//GEN-LAST:event_jtProveedorKeyTyped
 
     private void jtFVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtFVentaKeyPressed
     {//GEN-HEADEREND:event_jtFVentaKeyPressed
-        // TODO add your handling code here:
+        if (jtFVenta.getText().isEmpty() != true)
+          {
+            Validaciones.enter(this, evt, evt);
+            CtrlInterfaz.habilita(true, btnAceptar);
+          }
     }//GEN-LAST:event_jtFVentaKeyPressed
 
     private void jtFVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtFVentaKeyTyped
     {//GEN-HEADEREND:event_jtFVentaKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_jtFVentaKeyTyped
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBuscarActionPerformed
     {//GEN-HEADEREND:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        /**
+         * Aqui va el metodo para buscar al proveedor
+         */
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jCheckBox1ActionPerformed
-    {//GEN-HEADEREND:event_jCheckBox1ActionPerformed
+    private void jcPerecActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jcPerecActionPerformed
+    {//GEN-HEADEREND:event_jcPerecActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_jcPerecActionPerformed
 
     private void jtFCadKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtFCadKeyPressed
     {//GEN-HEADEREND:event_jtFCadKeyPressed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jtFCadKeyPressed
 
     private void jtFCadKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtFCadKeyTyped
     {//GEN-HEADEREND:event_jtFCadKeyTyped
-        // TODO add your handling code here:
+        Validaciones.validaFlotantes(evt); // Checar que si sea esta la validacion necesaria para la fecha de caducidad
     }//GEN-LAST:event_jtFCadKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
-    {
+      {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-        {
+          {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
+              {
                 if ("Nimbus".equals(info.getName()))
-                {
+                  {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
+                  }
+              }
+          } catch (ClassNotFoundException ex)
+          {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+          } catch (InstantiationException ex)
+          {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+          } catch (IllegalAccessException ex)
+          {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+          } catch (javax.swing.UnsupportedLookAndFeelException ex)
+          {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+          }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-        {
+          {
             public void run()
-            {
+              {
                 new Agregar_Productos().setVisible(true);
-            }
-        });
-    }
+              }
+          });
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -445,6 +476,7 @@ public class Agregar_Productos extends javax.swing.JFrame
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JCheckBox jcPerec;
     private javax.swing.JTextField jtCompra;
     private javax.swing.JTextField jtFCad;
     private javax.swing.JTextField jtFVenta;
