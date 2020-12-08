@@ -3,6 +3,7 @@ package clases;
 import java.sql.Connection;
 import java.util.ArrayList;
 import poo.bd.Conexion;
+import poo.bd.Querys;
 
 /**
  *
@@ -35,7 +36,7 @@ public class ManipulaBD
         ArrayList<Tipo_Usuario> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 3)
+            for (int i = 0; i < reg.size(); i += 4)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -122,6 +123,7 @@ public class ManipulaBD
                 {
                     int id = Integer.parseInt(idS);
                     String descripcion = ((String) reg.get(i + 1)).trim();
+                    descripcion = descripcion.replace(" ", "|");
                     String horaS = ((String) reg.get(i + 2)).trim();
                     int hora = Integer.parseInt(horaS);
                     String minutoS = ((String) reg.get(i + 3)).trim();
@@ -477,7 +479,123 @@ public class ManipulaBD
                 return null;
             }
         }
-
     }
+
+    //Altas Bajas Consultas y Modificaciones de las clases
+    /**
+     * Método para dar de alta a una persona/tipo_Usuario
+     *
+     * @param id tipo int
+     * @param usuario tipo String
+     * @param contrasenia tipo String
+     * @param estatus tipo boolean
+     * @param clasificaciont tipo int
+     * @param sueldo tipo float
+     * @param nombre tipo String
+     * @param apellidoP tipo String
+     * @param apellidoM tipo String
+     * @param sexo tipo String
+     */
+    public static void AltasPersonas(int id, String usuario, String contrasenia, boolean estatus, int clasificacion,
+            float sueldo, String nombre, String apellidoP, String apellidoM, String sexo)
+    {
+        String estatusS = String.valueOf(estatus);
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "tipo_usuario",
+                    "" + id + ",'"
+                    + usuario + "','"
+                    + contrasenia + "','"
+                    + estatusS + "'"
+            );
+            sql.Insertar(con, "personas",
+                    "" + id + ","
+                    + clasificacion + ","
+                    + sueldo + ",'"
+                    + nombre + "','"
+                    + apellidoP + "','"
+                    + apellidoM + "','"
+                    + sexo + "','"
+                    + estatusS + "'"
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato insertado");
+        }
+    }
+
+    /**
+     * Método para eliminar un registro de la bd que permite solo por id para
+     * evitar errores
+     *
+     * @param id tipo int
+     */
+    public static void BajasPersonas(int id)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Delete(con, "tipo_usuario", "id", "" + id + "");
+            sql.Delete(con, "personas", "id", "" + id + "");
+        }
+        ManipulaBD.desconecta(con);
+    }
+
+    /**
+     * Método para traer a las personas de las tablas "personas" y
+     * "Tipo_Usuario"
+     *
+     * @param variable a traves de que variable se va abuscar en la base ejemplo
+     * "id=" es importante poner el igual
+     * @param condicion cual es la condicion por la cual se traera el objeto
+     * ejemplo "1" si es String seria "'1'"
+     * @return un ArrayList de personas que ya tiene como herencia tipo_Usuarios
+     */
+    public static ArrayList<Personas> ConsultasPersonas(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Personas> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ArrayList<Tipo_Usuario> apt = ManipulaBD.CargarTipo_Usuario(sql.Seleccion(con, "*", "tipo_usuario", variable + condicion));
+            if (apt != null)
+            {
+                ap = ManipulaBD.CargarPersonas(sql.Seleccion(con, "*", "personas", variable + condicion), apt);
+                System.out.println("Dato encontrado");
+            } else
+            {
+                System.out.println("No se encontro el dato");
+            }
+        }
+        return ap;
+    }
+
+    /**
+     * Método para modificar datos en la bd de un usuario
+     *
+     * @param id tipo int
+     * @param campos los campos que seran cambiados ejemplo "Nombre,sueldo"
+     * @param datos los datos nuevos que seran replazados en la bd ejemplos:
+     * "'pedro',12.50" los string con comillas simples y los numeros sin ellas
+     */
+    public static void ModificarPersona(int id, String campos, String datos)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ArrayList<Tipo_Usuario> ap = ManipulaBD.CargarTipo_Usuario(sql.Seleccion(con, "*", "tipo_usuario", "id=" + id + ""));
+            if (ap != null)
+            {
+                sql.Modificar(con, "personas", campos, datos, "id='" + id + "'");
+                ManipulaBD.desconecta(con);
+                System.out.println("Modificados");
+            }
+        }
+    }
+
 
 }
