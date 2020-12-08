@@ -11,9 +11,9 @@ import poo.bd.Querys;
  */
 public class ManipulaBD
 {
-
+    
     private static Conexion con = new Conexion();
-
+    
     public static Connection conecta()
     {
         try
@@ -25,12 +25,12 @@ public class ManipulaBD
             return null;
         }
     }
-
+    
     public static void desconecta(Connection conn)
     {
         con.desconectar(conn);
     }
-
+    
     public static ArrayList<Tipo_Usuario> CargarTipo_Usuario(ArrayList<Object> reg)
     {
         ArrayList<Tipo_Usuario> lista = new ArrayList<>();
@@ -52,7 +52,7 @@ public class ManipulaBD
                     lista.add(obj);
                 }
             }
-
+            
             return lista;
         } catch (Exception e)
         {
@@ -66,7 +66,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Personas> CargarPersonas(ArrayList<Object> reg, ArrayList<Tipo_Usuario> he)
     {
         ArrayList<Personas> lista = new ArrayList<>();
@@ -108,7 +108,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Incidentes> CargarIncidentes(ArrayList<Object> reg)
     {
         ArrayList<Incidentes> lista = new ArrayList<>();
@@ -136,7 +136,7 @@ public class ManipulaBD
                     int anio = Integer.parseInt(anioS);
                     Incidentes obj = new Incidentes(id, descripcion, hora, minuto, dia, mes, anio);
                     lista.add(obj);
-
+                    
                 }
             }
             return lista;
@@ -152,7 +152,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Informes> CargarInformes(ArrayList<Object> reg)
     {
         ArrayList<Informes> lista = new ArrayList<>();
@@ -197,7 +197,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Ventas> CargarVentas(ArrayList<Object> reg)
     {
         ArrayList<Ventas> lista = new ArrayList<>();
@@ -224,10 +224,10 @@ public class ManipulaBD
                     int Costos = Integer.parseInt(CostosS);
                     Ventas obj = new Ventas(id, id_DV, producto, fecha, hora, cantidadV, Costos);
                     lista.add(obj);
-
+                    
                 }
             }
-
+            
             return lista;
         } catch (Exception e)
         {
@@ -241,7 +241,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Detalles_Ventas> CargarDetalles_Ventas(ArrayList<Object> reg)
     {
         ArrayList<Detalles_Ventas> lista = new ArrayList<>();
@@ -280,7 +280,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Productos> CargarProductos(ArrayList<Object> reg)
     {
         ArrayList<Productos> lista = new ArrayList<>();
@@ -302,6 +302,7 @@ public class ManipulaBD
                     int ventas = Integer.parseInt(ventasS);
                     String nombre = ((String) reg.get(i + 4)).trim();
                     String descripcion = ((String) reg.get(i + 5)).trim();
+                    descripcion=descripcion.replace("|", " ");
                     String precio_VentasS = ((String) reg.get(i + 6)).trim();
                     float precio_Ventas = Float.parseFloat(precio_VentasS);
                     String precio_CompraS = ((String) reg.get(i + 7)).trim();
@@ -326,7 +327,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Proveedores> CargarProveedores(ArrayList<Object> reg)
     {
         ArrayList<Proveedores> lista = new ArrayList<>();
@@ -373,7 +374,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Municipio> CargarMunicipio(ArrayList<Object> reg)
     {
         ArrayList<Municipio> lista = new ArrayList<>();
@@ -409,7 +410,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Entidades> CargarEntidades(ArrayList<Object> reg)
     {
         ArrayList<Entidades> lista = new ArrayList<>();
@@ -432,7 +433,7 @@ public class ManipulaBD
                     lista.add(obj);
                 }
             }
-
+            
             return lista;
         } catch (Exception e)
         {
@@ -446,7 +447,7 @@ public class ManipulaBD
             }
         }
     }
-
+    
     public static ArrayList<Pais> CargarPais(ArrayList<Object> reg)
     {
         ArrayList<Pais> lista = new ArrayList<>();
@@ -671,7 +672,7 @@ public class ManipulaBD
         }
         return ap;
     }
-
+    
     public static void AltasInformes(int folio, int id_Ventas, String dia, int producto_Mas, int producto_Menos,
             String marca_Mas, String marca_Menos, float ganancias, float perdidas)
     {
@@ -723,7 +724,15 @@ public class ManipulaBD
         }
         return ap;
     }
-
+    
+    /**
+     * Método para dar de alta los detalles_Ventas
+     * @param id tipo int
+     * @param id_Productos tipo int
+     * @param id_Personas tipo int
+     * @param id_CantidadV tipo int
+     * @param precio_Total  tipo float
+     */
     public static void AltasDetalles_Ventas(int id, int id_Productos, int id_Personas, int id_CantidadV, float precio_Total)
     {
         Connection con = ManipulaBD.conecta();
@@ -741,7 +750,7 @@ public class ManipulaBD
             System.out.println("Dato insertado");
         }
     }
-
+    
     public static ArrayList<Detalles_Ventas> ConsultasDetalles_Ventas(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
@@ -761,7 +770,17 @@ public class ManipulaBD
         }
         return ap;
     }
-
+    
+    /**
+     * Método que da de alta las ventas
+     * @param id tipo int
+     * @param id_DV tipo int
+     * @param producto tipo int
+     * @param fecha tipo String
+     * @param hora tipo int
+     * @param cantidadV tipo int
+     * @param Costos tipo float
+     */
     public static void AltasVentas(int id, int id_DV, int producto, String fecha, int hora, int cantidadV, float Costos)
     {
         Connection con = ManipulaBD.conecta();
@@ -779,7 +798,7 @@ public class ManipulaBD
             );
         }
     }
-
+    
     public static ArrayList<Ventas> ConsultasVentas(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
@@ -799,12 +818,25 @@ public class ManipulaBD
         }
         return ap;
     }
-
+    
+    /**
+     * Método para dar de altas productos
+     * @param id tipo int
+     * @param codigo tipo int
+     * @param id_Proveedor tipo int
+     * @param ventas tipo int
+     * @param nombre String nombre
+     * @param descripcion String descripcion
+     * @param precio_Venta tipo float
+     * @param precio_Compra tipo float
+     * @param perecedero tipo boolean
+     */
     public static void AltasProductos(int id, int codigo, int id_Proveedor, int ventas, String nombre, String descripcion,
             float precio_Venta, float precio_Compra, boolean perecedero)
     {
         Connection con = ManipulaBD.conecta();
         String perecederoS = String.valueOf(perecedero);
+        descripcion = descripcion.replace(" ", "|");
         if (con != null)
         {
             Querys sql = new Querys();
@@ -828,12 +860,12 @@ public class ManipulaBD
     {
         Connection con = ManipulaBD.conecta();
         ArrayList<Productos> ap = null;
-        if (con!=null)
+        if (con != null)
         {
             Querys sql = new Querys();
-            ap = ManipulaBD.CargarProductos(sql.Seleccion(con, "*", "productos", variable+condicion));
+            ap = ManipulaBD.CargarProductos(sql.Seleccion(con, "*", "productos", variable + condicion));
             ManipulaBD.desconecta(con);
-            if (ap!=null)
+            if (ap != null)
             {
                 System.out.println("Datos Encontrados");
             } else
@@ -842,5 +874,125 @@ public class ManipulaBD
             }
         }
         return ap;
+    }
+    
+    /**
+     * Método para dar de altas proveedores
+     * @param id tipo int
+     * @param id_Municipio tipo int
+     * @param nombre tipo String
+     * @param apellidoP tipo String
+     * @param apellidoM tipo String
+     * @param rfc tipo String
+     * @param razon_Social tipo String
+     * @param direccion tipo String
+     * @param cp tipo int
+     * @param telefono tipo int
+     * @param email tipo String
+     * @param estatus tipo boolean
+     */
+    public static void AltasProveedores(int id, int id_Municipio, String nombre, String apellidoP, String apellidoM,
+            String rfc, String razon_Social, String direccion, int cp, int telefono, String email, boolean estatus)
+    {
+        Connection con = ManipulaBD.conecta();
+        String estatusS = String.valueOf(estatus);
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "proveedores",
+                    "" + id + ","
+                    + id_Municipio + ",'"
+                    + nombre + "','"
+                    + apellidoP + "','"
+                    + apellidoM + "','"
+                    + rfc + "','"
+                    + razon_Social + "','"
+                    + direccion + "',"
+                    + cp + ","
+                    + telefono + ",'"
+                    + email + "','"
+                    + estatusS + "'"
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato Insertado");
+        }
+    }
+    
+    /**
+     * Se debe enviar el id ya que es unico e impide la eliminacion de un dato
+     * erroneo así como se recomienda hacer uso del metodo
+     * ConsultasCalificaciones el cual sera usado para encontrar cual es dato
+     * que se quiere eliminar
+     *
+     * @param id tipo int es el identificador unico del objeto en la bd
+     */
+    public static void BajasProveedore(int id)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Delete(con, "proveedores", "id", "" + id + "");
+        }
+        ManipulaBD.desconecta(con);
+    }
+    
+    /**
+     * Método para colsutar en la bd en la tabla de Materias1 y retorna el
+     * objeto o los objetos en un arraylist esto con la intencion de traer lo
+     * que se requiera en el momento
+     *
+     * "id!=" "-1"
+     *
+     * @param variable que variable va a buscar en la base ejemplo "Nombre=" es
+     * importante poner el igual
+     * @param condicion cual es la condicion por la cual se extraera el objeto
+     * ejemplo "'Firulais'" Nota: los números van sin comillas y los String
+     * entre comillas simples
+     * @return ArrayList de Materias1 dada la condicion enviada
+     */
+    public static ArrayList<Proveedores> ConsultasProveedores(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Proveedores> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ap = ManipulaBD.CargarProveedores(sql.Seleccion(con, "*", "proveedores", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap != null)
+            {
+                System.out.println("Datos Encontrados");
+            } else
+            {
+                System.out.println("Datos No Encontrados");
+            }
+        }
+        return ap;
+    }
+    
+    /**
+     * Método para modificar datos en la bd de un objeto Materias1
+     *
+     * @param id el id de la persona que se modificara sus datos
+     * @param campos los campos que seran cambiados ejemplo: "Nombre,Telefono"
+     * @param datos los datos nuevos que seran remplazados en la bd ejemplo:
+     * "'Pancho',1234" los datos tipos String deben ser puestos entre comillas
+     * simples
+     */
+    public static void ModificarProveedores(int id, String campos, String datos)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ArrayList<Proveedores> ap = ManipulaBD.CargarProveedores(sql.Seleccion(con, "*", "proveedores", "id=" + id + ""));
+            if (ap != null)
+            {
+                sql.Modificar(con, "proveedores", campos, datos, "id=" + id + "");
+                ManipulaBD.desconecta(con);
+                System.out.println("Modificados");
+            }
+        }
     }
 }
