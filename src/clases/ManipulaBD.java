@@ -787,14 +787,58 @@ public class ManipulaBD
         if (con != null)
         {
             Querys sql = new Querys();
-            ap=ManipulaBD.CargarVentas(sql.Seleccion(con, "*", "ventas", variable+condicion));
+            ap = ManipulaBD.CargarVentas(sql.Seleccion(con, "*", "ventas", variable + condicion));
             ManipulaBD.desconecta(con);
-            if (ap!=null)
+            if (ap != null)
             {
                 System.out.println("Datos encontrados");
             } else
             {
                 System.out.println("Datos no encontrados");
+            }
+        }
+        return ap;
+    }
+
+    public static void AltasProductos(int id, int codigo, int id_Proveedor, int ventas, String nombre, String descripcion,
+            float precio_Venta, float precio_Compra, boolean perecedero)
+    {
+        Connection con = ManipulaBD.conecta();
+        String perecederoS = String.valueOf(perecedero);
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "productos",
+                    "" + id + ","
+                    + codigo + ","
+                    + id_Proveedor + ","
+                    + ventas + ",'"
+                    + nombre + "','"
+                    + descripcion + "',"
+                    + precio_Venta + ","
+                    + precio_Compra + ",'"
+                    + perecederoS + "'"
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato insertado");
+        }
+    }
+    
+    public static ArrayList<Productos> ConsultasMaterias(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Productos> ap = null;
+        if (con!=null)
+        {
+            Querys sql = new Querys();
+            ap = ManipulaBD.CargarProductos(sql.Seleccion(con, "*", "productos", variable+condicion));
+            ManipulaBD.desconecta(con);
+            if (ap!=null)
+            {
+                System.out.println("Datos Encontrados");
+            } else
+            {
+                System.out.println("Datos no Encontrados");
             }
         }
         return ap;
