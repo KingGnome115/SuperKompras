@@ -1174,7 +1174,7 @@ public class ManipulaBD
             System.out.println("Dato Insertado");
         }
     }
-    
+
     public static void BajasEntidades(int id)
     {
         Connection con = ManipulaBD.conecta();
@@ -1186,7 +1186,7 @@ public class ManipulaBD
         }
         ManipulaBD.desconecta(con);
     }
-    
+
     public static ArrayList<Entidades> ConsultasEntidades(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
@@ -1206,7 +1206,58 @@ public class ManipulaBD
         }
         return ap;
     }
+
+    public static void AltasPais(int id, String nombre, boolean estatus)
+    {
+        Connection con = ManipulaBD.conecta();
+        String estatusS = String.valueOf(estatus);
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "pais",
+                    "" + id + ",'"
+                    + nombre + "','"
+                    + estatusS + "'"
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato Insertado");
+        }
+    }
+
+    public static void BajasPais(int id)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Delete(con, "pais", "id", "" + id + "");
+            ArrayList<Entidades> ap = ConsultasEntidades("id_pais", "" + id + "");
+            for (int i = 0; i < ap.size(); i++)
+            {
+                BajasEntidades(ap.get(i).getId());
+            }
+        }
+        ManipulaBD.desconecta(con);
+    }
     
-    
+    public static ArrayList<Pais> ConsultasPais(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Pais> ap = null;
+        if (con != null)
+        {
+            poo.bd.Querys sql = new poo.bd.Querys();
+            ap = ManipulaBD.CargarPais(sql.Seleccion(con, "*", "pais", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap != null)
+            {
+                System.out.println("Datos encontrados");
+            } else
+            {
+                System.out.println("no se encontro nada");
+            }
+        }
+        return ap;
+    }
 
 }
