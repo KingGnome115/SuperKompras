@@ -643,6 +643,15 @@ public class ManipulaBD
         ManipulaBD.desconecta(con);
     }
 
+    /**
+     * Métodos para la consulta en la base de datos de la tabla incidentes y
+     * retorna el o los objetos enforma de arraylist
+     *
+     * @param variable a traves de la cual se buscara el objeto ejemplo "id="
+     * @param condicion con el cual se comparara el dato ejemplo "0" Si quiere
+     * traer todos los datos variable debe ser "id!=" y la condicion "-1"
+     * @return ArrayList de incidentes
+     */
     public static ArrayList<Incidentes> ConsultasIncidentes(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
@@ -652,7 +661,7 @@ public class ManipulaBD
             Querys sql = new Querys();
             ap = ManipulaBD.CargarIncidentes(sql.Seleccion(con, "*", "incidentes", variable + condicion));
             ManipulaBD.desconecta(con);
-            if (ap!=null)
+            if (ap != null)
             {
                 System.out.println("Dato encontrado");
             } else
@@ -662,5 +671,58 @@ public class ManipulaBD
         }
         return ap;
     }
+
+    public static void AltasInformes(int folio, int id_Ventas, String dia, int producto_Mas, int producto_Menos,
+            String marca_Mas, String marca_Menos, float ganancias, float perdidas)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "informes",
+                    "" + folio + ","
+                    + id_Ventas + ",'"
+                    + dia + "',"
+                    + producto_Mas + ","
+                    + producto_Menos + ",'"
+                    + marca_Mas + "','"
+                    + marca_Menos + "',"
+                    + ganancias + ","
+                    + perdidas + ""
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato insertado");
+        }
+    }
+
+    /**
+     * Métodos para la consulta en la base de datos de la tabla incidentes y
+     * retorna el o los objetos enforma de arraylist
+     *
+     * @param variable a traves de la cual se buscara el objeto ejemplo "id="
+     * @param condicion con el cual se comparara el dato ejemplo "0" Si quiere
+     * traer todos los datos variable debe ser "id!=" y la condicion "-1"
+     * @return ArrayList de incidentes
+     */
+    public static ArrayList<Informes> ConsultasInformes(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Informes> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ap = ManipulaBD.CargarInformes(sql.Seleccion(con, "*", "incidentes", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap != null)
+            {
+                System.out.println("Dato encontrado");
+            } else
+            {
+                System.out.println("Dato no encontrado");
+            }
+        }
+        return ap;
+    }
+
 
 }
