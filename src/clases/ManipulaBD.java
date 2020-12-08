@@ -861,9 +861,8 @@ public class ManipulaBD
 
     /**
      * Se debe enviar el id ya que es unico e impide la eliminacion de un dato
-     * erroneo así como se recomienda hacer uso del metodo
-     * ConsultasProductos el cual sera usado para encontrar cual es dato
-     * que se quiere eliminar
+     * erroneo así como se recomienda hacer uso del metodo ConsultasProductos el
+     * cual sera usado para encontrar cual es dato que se quiere eliminar
      *
      * @param id tipo int es el identificador unico del objeto en la bd
      */
@@ -982,9 +981,8 @@ public class ManipulaBD
 
     /**
      * Se debe enviar el id ya que es unico e impide la eliminacion de un dato
-     * erroneo así como se recomienda hacer uso del metodo
-     * ConsultasProveedores el cual sera usado para encontrar cual es dato
-     * que se quiere eliminar
+     * erroneo así como se recomienda hacer uso del metodo ConsultasProveedores
+     * el cual sera usado para encontrar cual es dato que se quiere eliminar
      *
      * @param id tipo int es el identificador unico del objeto en la bd
      */
@@ -1060,6 +1058,7 @@ public class ManipulaBD
 
     /**
      * Altas de municipios
+     *
      * @param id tipo int
      * @param id_Entidad tipo int
      * @param estatus tipo boolean
@@ -1083,9 +1082,8 @@ public class ManipulaBD
 
     /**
      * Se debe enviar el id ya que es unico e impide la eliminacion de un dato
-     * erroneo así como se recomienda hacer uso del metodo
-     * ConsultasMunicipios el cual sera usado para encontrar cual es dato
-     * que se quiere eliminar
+     * erroneo así como se recomienda hacer uso del metodo ConsultasMunicipios
+     * el cual sera usado para encontrar cual es dato que se quiere eliminar
      *
      * @param id tipo int es el identificador unico del objeto en la bd
      */
@@ -1133,7 +1131,7 @@ public class ManipulaBD
         }
         return ap;
     }
-    
+
     /**
      * Método para modificar datos en la bd de un objeto Municipio
      *
@@ -1148,7 +1146,7 @@ public class ManipulaBD
         Connection con = ManipulaBD.conecta();
         if (con != null)
         {
-            poo.bd.Querys sql = new poo.bd.Querys();
+            Querys sql = new Querys();
             ArrayList<Municipio> ap = ManipulaBD.CargarMunicipio(sql.Seleccion(con, "*", "municipio", "id=" + id + ""));
             if (ap != null)
             {
@@ -1158,5 +1156,57 @@ public class ManipulaBD
             }
         }
     }
+
+    public static void AltasEntidades(int clave_Pais, int id, String nombre, boolean estatus)
+    {
+        Connection con = ManipulaBD.conecta();
+        String estatusS = String.valueOf(estatus);
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "entidades",
+                    "" + id + ","
+                    + clave_Pais + ",'"
+                    + nombre + "','"
+                    + estatusS + "'"
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato Insertado");
+        }
+    }
+    
+    public static void BajasEntidades(int id)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Delete(con, "entidades", "id", "" + id + "");
+            sql.Delete(con, "municipio", "id_Entidad", "" + id + "");
+        }
+        ManipulaBD.desconecta(con);
+    }
+    
+    public static ArrayList<Entidades> ConsultasEntidades(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Entidades> ap = null;
+        if (con != null)
+        {
+            poo.bd.Querys sql = new poo.bd.Querys();
+            ap = ManipulaBD.CargarEntidades(sql.Seleccion(con, "*", "entidades", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap != null)
+            {
+                System.out.println("Datos encontrados");
+            } else
+            {
+                System.out.println("no se encontro nada");
+            }
+        }
+        return ap;
+    }
+    
+    
 
 }
