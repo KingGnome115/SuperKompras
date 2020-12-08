@@ -723,8 +723,7 @@ public class ManipulaBD
         }
         return ap;
     }
-    
-    
+
     public static void AltasDetalles_Ventas(int id, int id_Productos, int id_Personas, int id_CantidadV, float precio_Total)
     {
         Connection con = ManipulaBD.conecta();
@@ -752,15 +751,52 @@ public class ManipulaBD
             Querys sql = new Querys();
             ap = ManipulaBD.CargarDetalles_Ventas(sql.Seleccion(con, "*", "detalles_ventas", variable + condicion));
             ManipulaBD.desconecta(con);
-            if (ap!=null)
+            if (ap != null)
             {
                 System.out.println("Datos encontrados");
-            }else{
+            } else
+            {
                 System.out.println("Datos no encontrados");
             }
         }
         return ap;
     }
 
+    public static void AltasVentas(int id, int id_DV, int producto, String fecha, int hora, int cantidadV, float Costos)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "ventas",
+                    "" + id + ","
+                    + id_DV + ","
+                    + producto + ",'"
+                    + fecha + "',"
+                    + hora + ","
+                    + cantidadV + ","
+                    + Costos + ""
+            );
+        }
+    }
 
+    public static ArrayList<Ventas> ConsultasVentas(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Ventas> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ap=ManipulaBD.CargarVentas(sql.Seleccion(con, "*", "ventas", variable+condicion));
+            ManipulaBD.desconecta(con);
+            if (ap!=null)
+            {
+                System.out.println("Datos encontrados");
+            } else
+            {
+                System.out.println("Datos no encontrados");
+            }
+        }
+        return ap;
+    }
 }
