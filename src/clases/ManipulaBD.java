@@ -723,6 +723,44 @@ public class ManipulaBD
         }
         return ap;
     }
+    
+    
+    public static void AltasDetalles_Ventas(int id, int id_Productos, int id_Personas, int id_CantidadV, float precio_Total)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "detalles_ventas",
+                    "" + id + ","
+                    + id_Productos + ","
+                    + id_Personas + ","
+                    + id_CantidadV + ","
+                    + precio_Total + ""
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato insertado");
+        }
+    }
+
+    public static ArrayList<Detalles_Ventas> ConsultasDetalles_Ventas(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Detalles_Ventas> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ap = ManipulaBD.CargarDetalles_Ventas(sql.Seleccion(con, "*", "detalles_ventas", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap!=null)
+            {
+                System.out.println("Datos encontrados");
+            }else{
+                System.out.println("Datos no encontrados");
+            }
+        }
+        return ap;
+    }
 
 
 }
