@@ -856,7 +856,40 @@ public class ManipulaBD
         }
     }
     
-    public static ArrayList<Productos> ConsultasMaterias(String variable, String condicion)
+    /**
+     * Se debe enviar el id ya que es unico e impide la eliminacion de un dato
+     * erroneo así como se recomienda hacer uso del metodo
+     * ConsultasCalificaciones el cual sera usado para encontrar cual es dato
+     * que se quiere eliminar
+     *
+     * @param id tipo int es el identificador unico del objeto en la bd
+     */
+    public static void BajasProductos(int id)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Delete(con, "productos", "id", "" + id + "");
+        }
+        ManipulaBD.desconecta(con);
+    }
+    
+    /**
+     * Método para colsutar en la bd en la tabla de Materias1 y retorna el
+     * objeto o los objetos en un arraylist esto con la intencion de traer lo
+     * que se requiera en el momento
+     *
+     * "id!=" "-1"
+     *
+     * @param variable que variable va a buscar en la base ejemplo "Nombre=" es
+     * importante poner el igual
+     * @param condicion cual es la condicion por la cual se extraera el objeto
+     * ejemplo "'Firulais'" Nota: los números van sin comillas y los String
+     * entre comillas simples
+     * @return ArrayList de Materias1 dada la condicion enviada
+     */
+    public static ArrayList<Productos> ConsultasProductos(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
         ArrayList<Productos> ap = null;
@@ -874,6 +907,31 @@ public class ManipulaBD
             }
         }
         return ap;
+    }
+    
+    /**
+     * Método para modificar datos en la bd de un objeto productos
+     *
+     * @param id el id de la persona que se modificara sus datos
+     * @param campos los campos que seran cambiados ejemplo: "Nombre,Telefono"
+     * @param datos los datos nuevos que seran remplazados en la bd ejemplo:
+     * "'Pancho',1234" los datos tipos String deben ser puestos entre comillas
+     * simples
+     */
+    public static void ModificarProductos(int id, String campos, String datos)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ArrayList<Productos> ap = ManipulaBD.CargarProductos(sql.Seleccion(con, "*", "productos", "id=" + id + ""));
+            if (ap != null)
+            {
+                sql.Modificar(con, "productos", campos, datos, "id=" + id + "");
+                ManipulaBD.desconecta(con);
+                System.out.println("Modificados");
+            }
+        }
     }
     
     /**
@@ -938,7 +996,7 @@ public class ManipulaBD
     }
     
     /**
-     * Método para colsutar en la bd en la tabla de Materias1 y retorna el
+     * Método para colsutar en la bd en la tabla de proveedores y retorna el
      * objeto o los objetos en un arraylist esto con la intencion de traer lo
      * que se requiera en el momento
      *
@@ -972,7 +1030,7 @@ public class ManipulaBD
     }
     
     /**
-     * Método para modificar datos en la bd de un objeto Materias1
+     * Método para modificar datos en la bd de un objeto proveedores
      *
      * @param id el id de la persona que se modificara sus datos
      * @param campos los campos que seran cambiados ejemplo: "Nombre,Telefono"
@@ -995,4 +1053,6 @@ public class ManipulaBD
             }
         }
     }
+    
+    
 }
