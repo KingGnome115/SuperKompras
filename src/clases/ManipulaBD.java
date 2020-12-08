@@ -123,7 +123,7 @@ public class ManipulaBD
                 {
                     int id = Integer.parseInt(idS);
                     String descripcion = ((String) reg.get(i + 1)).trim();
-                    descripcion = descripcion.replace(" ", "|");
+                    descripcion = descripcion.replace("|", " ");
                     String horaS = ((String) reg.get(i + 2)).trim();
                     int hora = Integer.parseInt(horaS);
                     String minutoS = ((String) reg.get(i + 3)).trim();
@@ -597,5 +597,70 @@ public class ManipulaBD
         }
     }
 
+    /**
+     * Métodos que registra incidentes en la tabla
+     *
+     * @param id tipo int
+     * @param descipcion tipo descripcion
+     * @param hora tipo int
+     * @param minuto tipo int
+     * @param dia tipo int
+     * @param mes tipo int
+     * @param anio tipo int
+     */
+    public static void AltasIncidentes(int id, String descipcion, int hora, int minuto, int dia, int mes, int anio)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            descipcion = descipcion.replace(" ", "|");
+            sql.Insertar(con, "incidentes",
+                    "" + id + ",'"
+                    + descipcion + "',"
+                    + hora + ","
+                    + minuto + ","
+                    + dia + ","
+                    + mes + ","
+                    + anio + ""
+            );
+        }
+    }
+
+    /**
+     * Se debe enviar el id del inicidente para dar de baja el incidente
+     *
+     * @param id tipo int
+     */
+    public static void BajasIncidentes(int id)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Delete(con, "incidentes", "id", "" + id + "");
+        }
+        ManipulaBD.desconecta(con);
+    }
+
+    public static ArrayList<Incidentes> ConsultasIncidentes(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Incidentes> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ap = ManipulaBD.CargarIncidentes(sql.Seleccion(con, "*", "incidentes", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap!=null)
+            {
+                System.out.println("Dato encontrado");
+            } else
+            {
+                System.out.println("Dato no encontrado");
+            }
+        }
+        return ap;
+    }
 
 }
