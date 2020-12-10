@@ -60,8 +60,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         TNombre = new javax.swing.JTextField();
@@ -90,110 +89,87 @@ public class Agregar_Proveedor extends javax.swing.JFrame
 
         jLabel1.setText("Nombre");
 
-        TNombre.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        TNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TNombreActionPerformed(evt);
             }
         });
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TNombreKeyTyped(evt);
             }
         });
 
         jLabel2.setText("Apellido Paterno");
 
-        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TApellidoPKeyTyped(evt);
             }
         });
 
         jLabel3.setText("Apellido Materno");
 
-        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TApellidoMKeyTyped(evt);
             }
         });
 
         jLabel4.setText("RFC");
 
-        TRFC.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        TRFC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TRFCActionPerformed(evt);
             }
         });
-        TRFC.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TRFCKeyTyped(evt);
             }
         });
 
         jLabel5.setText("Código Postal");
 
-        TCP.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TCP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TCPKeyTyped(evt);
             }
         });
 
         jLabel6.setText("Teléfono");
 
-        TTelefono.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
+        TTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 TTelefonoKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TTelefonoKeyTyped(evt);
             }
         });
 
         jLabel7.setText("Email");
 
-        TEmail.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
+        TEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 TEmailKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TEmailKeyTyped(evt);
             }
         });
 
         BAceptar.setText("Aceptar");
-        BAceptar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BAceptar.setEnabled(false);
+        BAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
             }
         });
 
         jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -202,7 +178,19 @@ public class Agregar_Proveedor extends javax.swing.JFrame
 
         jLabel11.setText("Razón Social");
 
+        TRazon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TRazonKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Direccion");
+
+        TDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TDireccionKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -440,6 +428,26 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         JOptionPane.showMessageDialog(null, "Proveedor agregado");
 
     }//GEN-LAST:event_BAceptarActionPerformed
+
+    private void TRazonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TRazonKeyTyped
+        if (TRazon.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TRazonKeyTyped
+
+    private void TDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDireccionKeyTyped
+        if (TDireccion.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TDireccionKeyTyped
 
     /**
      * @param args the command line arguments

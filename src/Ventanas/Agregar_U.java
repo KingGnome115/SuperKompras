@@ -366,7 +366,7 @@ public class Agregar_U extends javax.swing.JFrame
             evt.consume();
         } else
         {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
+            cjb.ci.Validaciones.validaAlfanumerico(evt);
         }
     }//GEN-LAST:event_TUsuarioKeyTyped
 
