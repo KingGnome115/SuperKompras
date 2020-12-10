@@ -175,7 +175,6 @@ public class InicioSesion extends javax.swing.JFrame
                 }
             }
         }
-
     }//GEN-LAST:event_BAceptarActionPerformed
 
     /**

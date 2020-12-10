@@ -68,8 +68,6 @@ public class Consultas_Productos extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         TProd = new javax.swing.JTable();
         Bregresar = new javax.swing.JButton();
-        TNombre = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         BModifica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,16 +122,6 @@ public class Consultas_Productos extends javax.swing.JFrame
             }
         });
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                TNombreKeyTyped(evt);
-            }
-        });
-
-        jButton3.setText("Buscar");
-
         BModifica.setText("Modificar");
         BModifica.addActionListener(new java.awt.event.ActionListener()
         {
@@ -152,11 +140,6 @@ public class Consultas_Productos extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1666, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 1396, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(Bregresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BModifica)))
@@ -165,17 +148,13 @@ public class Consultas_Productos extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Bregresar)
                     .addComponent(BModifica))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,16 +177,6 @@ public class Consultas_Productos extends javax.swing.JFrame
         }
         this.setVisible(false);
     }//GEN-LAST:event_BregresarActionPerformed
-
-    private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
-        if (TNombre.getText().length() == 30)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TNombreKeyTyped
 
     private void BModificaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificaActionPerformed
     {//GEN-HEADEREND:event_BModificaActionPerformed
@@ -288,9 +257,7 @@ public class Consultas_Productos extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BModifica;
     private javax.swing.JButton Bregresar;
-    private javax.swing.JTextField TNombre;
     private javax.swing.JTable TProd;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
