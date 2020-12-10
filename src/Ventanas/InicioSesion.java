@@ -2,6 +2,7 @@ package Ventanas;
 
 import clases.ManipulaBD;
 import clases.Personas;
+import clases.Tipo_Usuario;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,7 @@ public class InicioSesion extends javax.swing.JFrame
 {
 
     public static ArrayList<Personas> usuario = null;
+    public static ArrayList<Tipo_Usuario> tmp = null;
 
     /**
      * Creates new form InicioSesion
@@ -136,13 +138,15 @@ public class InicioSesion extends javax.swing.JFrame
 
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
-
-        usuario = ManipulaBD.ConsultasPersonas("nombre=", "'" + TUsuario.getText() + "'");
-        if (usuario != null)
+        String variable = "";
+        variable = "usuario=";
+        tmp = ManipulaBD.ConsultasTipo_Usuario(variable, "'" + TUsuario.getText() + "'");
+        if (!tmp.isEmpty())
         {
-            if (usuario.get(0).getContrasenia().compareTo(TPass.getText()) == 0)
+            if (tmp.get(0).getContrasenia().compareTo(TPass.getText()) == 0)
             {
-                System.out.println("Simon");
+                variable = "id=";
+                usuario = ManipulaBD.ConsultasPersonas(variable, "" + tmp.get(0).getId() + "");
             }
         }
 
