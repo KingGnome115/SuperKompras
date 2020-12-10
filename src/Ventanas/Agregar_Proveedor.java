@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import cjb.ci.Validaciones;
+import clases.ManipulaBD;
+import clases.Proveedores;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -14,13 +12,36 @@ import javax.swing.JOptionPane;
  *
  * @author Kevin
  */
-public class Agregar_Proveedor extends javax.swing.JFrame {
+public class Agregar_Proveedor extends javax.swing.JFrame
+{
+
+    int total;
 
     /**
      * Creates new form Agregar_Proveedor
      */
-    public Agregar_Proveedor() {
+    public Agregar_Proveedor()
+    {
         initComponents();
+
+        ArrayList<Proveedores> tmp = null;
+        tmp = ManipulaBD.ConsultasProveedores("id!=", "-1");
+        try
+        {
+            System.out.println(tmp.isEmpty());
+            if (!tmp.isEmpty())
+            {
+                total = tmp.get(tmp.size() - 1).getId() + 1;
+                System.out.println(total);
+            } else
+            {
+                total = 0;
+            }
+        } catch (java.lang.NullPointerException e)
+        {
+            total = 0;
+        }
+
     }
 
     /**
@@ -279,17 +300,21 @@ public class Agregar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
-        if (TNombre.getText().length() == 30) {
+        if (TNombre.getText().length() == 30)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TNombreKeyTyped
 
     private void TApellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TApellidoPKeyTyped
-        if (TApellidoP.getText().length() == 30) {
+        if (TApellidoP.getText().length() == 30)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TApellidoPKeyTyped
@@ -299,45 +324,55 @@ public class Agregar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_TNombreActionPerformed
 
     private void TApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TApellidoMKeyTyped
-        if (TApellidoM.getText().length() == 30) {
+        if (TApellidoM.getText().length() == 30)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TApellidoMKeyTyped
 
     private void TRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TRFCKeyTyped
-        if (TRFC.getText().length() == 12) {
+        if (TRFC.getText().length() == 12)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfanumerico(evt);
         }// TODO add your handling code here:
     }//GEN-LAST:event_TRFCKeyTyped
 
     private void TCPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCPKeyTyped
-        if (TCP.getText().length() == 5) {
+        if (TCP.getText().length() == 5)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaEntero(evt);
         }
     }//GEN-LAST:event_TCPKeyTyped
 
     private void TTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TTelefonoKeyTyped
-        if (TTelefono.getText().length() == 10) {
+        if (TTelefono.getText().length() == 10)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             Validaciones.validaEntero(evt);
         }
     }//GEN-LAST:event_TTelefonoKeyTyped
 
     private void TTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TTelefonoKeyPressed
-        if (!((TTelefono.getText().isEmpty()) || (!(validaNumero(TTelefono.getText(), 10))))) {
+        if (!((TTelefono.getText().isEmpty()) || (!(validaNumero(TTelefono.getText(), 10)))))
+        {
             Validaciones.enter(this, evt, TEmail);
         }
     }//GEN-LAST:event_TTelefonoKeyPressed
 
     private void TEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEmailKeyPressed
-        if (!((TEmail.getText().isEmpty()) || (!(validaEmail(TEmail.getText()))))) {
+        if (!((TEmail.getText().isEmpty()) || (!(validaEmail(TEmail.getText())))))
+        {
             Validaciones.enter(this, evt, TPais);
         }
     }//GEN-LAST:event_TEmailKeyPressed
@@ -350,25 +385,31 @@ public class Agregar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_TEmailKeyTyped
 
     private void TPaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPaisKeyTyped
-        if (TPais.getText().length() == 30) {
+        if (TPais.getText().length() == 30)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TPaisKeyTyped
 
     private void TMunicipioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TMunicipioKeyTyped
-       if (TMunicipio.getText().length() == 30) {
+        if (TMunicipio.getText().length() == 30)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TMunicipioKeyTyped
 
     private void TEntidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEntidadKeyTyped
-       if (TEntidad.getText().length() == 30) {
+        if (TEntidad.getText().length() == 30)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TEntidadKeyTyped
@@ -383,22 +424,26 @@ public class Agregar_Proveedor extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     //VALIDACION PARA CORREO
-    public boolean validaEmail(String cad) {
+    public boolean validaEmail(String cad)
+    {
         Pattern expReg = null;
         Matcher val = null;
 
         expReg = Pattern.compile("^[\\w\\-\\_\\+]+(\\.[\\w\\-\\_]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$");
         val = expReg.matcher(cad);
 
-        if (val.find()) {
+        if (val.find())
+        {
             return true;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
     //VALIDACION PARA NUMERO TELEFONICO
-    public static boolean validaNumero(String cad, int nums) {
+    public static boolean validaNumero(String cad, int nums)
+    {
         String n = String.valueOf(nums);
         Pattern expReg = null;
         Matcher val = null;
@@ -406,40 +451,52 @@ public class Agregar_Proveedor extends javax.swing.JFrame {
         expReg = Pattern.compile("^[\\d]{" + n + "}$");
         val = expReg.matcher(cad);
 
-        if (val.find()) {
+        if (val.find())
+        {
             return true;
-        } else {
+        } else
+        {
             return false;
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new Agregar_Proveedor().setVisible(true);
             }
         });

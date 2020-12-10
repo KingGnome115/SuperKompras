@@ -418,7 +418,7 @@ public class ManipulaBD
         ArrayList<Entidades> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 5)
+            for (int i = 0; i < reg.size(); i += 4)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
