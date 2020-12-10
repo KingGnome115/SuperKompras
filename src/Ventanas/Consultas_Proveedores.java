@@ -55,12 +55,11 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TProveedores = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Bregresar = new javax.swing.JButton();
+        BOrdena = new javax.swing.JButton();
         TNombre = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BModifica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,18 +89,16 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         });
         jScrollPane1.setViewportView(TProveedores);
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        Bregresar.setText("Regresar");
+        Bregresar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                BregresarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Deshabilitar");
-
-        jButton3.setText("Ordenar Alafabeticamente");
+        BOrdena.setText("Ordenar Alafabeticamente");
 
         TNombre.addKeyListener(new java.awt.event.KeyAdapter()
         {
@@ -113,12 +110,12 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
         jButton4.setText("Buscar");
 
-        jButton5.setText("Modificar");
-        jButton5.addActionListener(new java.awt.event.ActionListener()
+        BModifica.setText("Modificar");
+        BModifica.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton5ActionPerformed(evt);
+                BModificaActionPerformed(evt);
             }
         });
 
@@ -129,15 +126,13 @@ public class Consultas_Proveedores extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(100, 100, 100)
-                        .addComponent(jButton2)
+                        .addComponent(Bregresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)
+                        .addComponent(BModifica)
                         .addGap(97, 97, 97)
-                        .addComponent(jButton3))
+                        .addComponent(BOrdena))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,10 +151,9 @@ public class Consultas_Proveedores extends javax.swing.JFrame
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(Bregresar)
+                    .addComponent(BOrdena)
+                    .addComponent(BModifica))
                 .addContainerGap())
         );
 
@@ -167,16 +161,33 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void BregresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BregresarActionPerformed
+    {//GEN-HEADEREND:event_BregresarActionPerformed
 
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BregresarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
-    {//GEN-HEADEREND:event_jButton5ActionPerformed
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void BModificaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificaActionPerformed
+    {//GEN-HEADEREND:event_BModificaActionPerformed
+
+        for (int i = 0; i < provedor.size(); i++)
+          {
+
+            boolean estatus = (boolean) TProveedores.getValueAt(i, 9);
+            String estatusS = String.valueOf(estatus);
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "nombre", "'" + TProveedores.getValueAt(i, 0) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "apellidoP", "'" + TProveedores.getValueAt(i, 1) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "apellidoM", "'" + TProveedores.getValueAt(i, 2) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "rfc", "'" + TProveedores.getValueAt(i, 3) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "razon_Social", "'" + TProveedores.getValueAt(i, 4) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "direccion", "'" + TProveedores.getValueAt(i, 5) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "cp", "'" + TProveedores.getValueAt(i, 6) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "telefono", "'" + TProveedores.getValueAt(i, 7) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "email", "'" + TProveedores.getValueAt(i, 8) + "'");
+            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "estatus", "'" + estatusS + "'");
+
+          }
+    }//GEN-LAST:event_BModificaActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
         if (TNombre.getText().length() == 30)
@@ -234,13 +245,12 @@ public class Consultas_Proveedores extends javax.swing.JFrame
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BModifica;
+    private javax.swing.JButton BOrdena;
+    private javax.swing.JButton Bregresar;
     private javax.swing.JTextField TNombre;
     private javax.swing.JTable TProveedores;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
