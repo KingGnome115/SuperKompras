@@ -5,6 +5,8 @@
  */
 package Ventanas;
 
+import cjb.ci.Validaciones;
+
 /**
  *
  * @author Kevin
@@ -27,14 +29,13 @@ public class Incidentes extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TIncidentes = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -46,17 +47,20 @@ public class Incidentes extends javax.swing.JFrame
 
         jLabel3.setText("HH:MM");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        TIncidentes.setColumns(20);
+        TIncidentes.setRows(5);
+        TIncidentes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TIncidentesKeyTyped(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TIncidentes);
 
         jButton1.setText("Enviar");
 
         jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -107,6 +111,14 @@ public class Incidentes extends javax.swing.JFrame
       this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void TIncidentesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TIncidentesKeyTyped
+        if (TIncidentes.getText().length() == 150) {
+            evt.consume();
+        } else {
+            Validaciones.validaAlfanumerico(evt);
+        }
+    }//GEN-LAST:event_TIncidentesKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -153,12 +165,12 @@ public class Incidentes extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TIncidentes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

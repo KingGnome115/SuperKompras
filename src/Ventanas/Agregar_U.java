@@ -37,8 +37,7 @@ public class Agregar_U extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -68,19 +67,21 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel3.setText("Apellido Materno");
 
-        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TApellidoPKeyTyped(evt);
             }
         });
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 TNombreKeyTyped(evt);
+            }
+        });
+
+        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TApellidoMKeyTyped(evt);
             }
         });
 
@@ -88,20 +89,28 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel5.setText("Sueldo");
 
+        TSexo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TSexoKeyTyped(evt);
+            }
+        });
+
+        TSueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TSueldoKeyTyped(evt);
+            }
+        });
+
         BAceptar.setText("Agregar");
-        BAceptar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
             }
         });
 
         BRegresar.setText("Regresar");
-        BRegresar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BRegresarActionPerformed(evt);
             }
         });
@@ -110,7 +119,19 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel7.setText("Contraseña");
 
+        TContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TContraseniaKeyTyped(evt);
+            }
+        });
+
         jLabel9.setText("Usuario");
+
+        TUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TUsuarioKeyTyped(evt);
+            }
+        });
 
         JCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Gerente", "SubGerente" }));
 
@@ -273,6 +294,56 @@ public class Agregar_U extends javax.swing.JFrame
                 apellidoP, apellidoM, sexo);
 
     }//GEN-LAST:event_BAceptarActionPerformed
+
+    private void TApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TApellidoMKeyTyped
+        if (TApellidoM.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TApellidoMKeyTyped
+
+    private void TSexoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSexoKeyTyped
+       if (TSexo.getText().length() == 10)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TSexoKeyTyped
+
+    private void TSueldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSueldoKeyTyped
+        if (TSueldo.getText().length() == 5)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaFlotantes(evt);
+        }
+    }//GEN-LAST:event_TSueldoKeyTyped
+
+    private void TUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TUsuarioKeyTyped
+        if (TUsuario.getText().length() == 15)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TUsuarioKeyTyped
+
+    private void TContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TContraseniaKeyTyped
+         if (TContrasenia.getText().length() == 16)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfanumerico(evt);
+        }
+    }//GEN-LAST:event_TContraseniaKeyTyped
 
     /**
      * @param args the command line arguments
