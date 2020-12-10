@@ -1,32 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import clases.Entidades;
 import clases.ManipulaBD;
-import clases.Pais;
+import clases.Municipio;
 import java.util.ArrayList;
 
 /**
  *
  * @author Kevin
  */
-public class Agregar_Entidades extends javax.swing.JFrame
+public class Agregar_Municipio extends javax.swing.JFrame
 {
+
     int total;
-    ArrayList<Pais> nombres = null;
+    ArrayList<Entidades> nombres = null;
 
     /**
-     * Creates new form Agregar_Entidades
+     * Creates new form Agregar_Municipio
      */
-    public Agregar_Entidades()
+    public Agregar_Municipio()
     {
         initComponents();
-        ArrayList<Entidades> tmp = null;
-        tmp = ManipulaBD.ConsultasEntidades("id!=", "-1");
+
+        ArrayList<Municipio> tmp = null;
+        tmp = ManipulaBD.ConsultasMunicipio("id!=", "-1");
         try
         {
             System.out.println(tmp.isEmpty());
@@ -43,10 +40,11 @@ public class Agregar_Entidades extends javax.swing.JFrame
             total = 0;
         }
 
-        nombres = ManipulaBD.ConsultasPais("id!=", "-1");
+        nombres = ManipulaBD.ConsultasEntidades("id!=", "-1");
+        System.out.println(nombres.size());
         for (int i = 0; i < nombres.size(); i++)
         {
-            JCPais.addItem(nombres.get(i).getNombre());
+            JCEntidad.addItem(nombres.get(i).getNombre());
         }
 
     }
@@ -61,18 +59,18 @@ public class Agregar_Entidades extends javax.swing.JFrame
     private void initComponents()
     {
 
-        Pais = new javax.swing.JLabel();
-        JCPais = new javax.swing.JComboBox<>();
         Entidad = new javax.swing.JLabel();
-        TEntidad = new javax.swing.JTextField();
+        JCEntidad = new javax.swing.JComboBox<>();
+        Municipio = new javax.swing.JLabel();
+        TNombre = new javax.swing.JTextField();
         BRegresar = new javax.swing.JButton();
         BAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Pais.setText("Pais");
-
         Entidad.setText("Entidad");
+
+        Municipio.setText("Municipio");
 
         BRegresar.setText("Regresar");
 
@@ -89,39 +87,39 @@ public class Agregar_Entidades extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Pais)
-                            .addComponent(Entidad))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JCPais, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TEntidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BRegresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(BAceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Entidad)
+                            .addComponent(Municipio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BAceptar)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JCEntidad, 0, 130, Short.MAX_VALUE)
+                            .addComponent(TNombre))))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pais)
-                    .addComponent(JCPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Entidad)
-                    .addComponent(TEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(JCEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Municipio)
+                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BRegresar)
                     .addComponent(BAceptar))
-                .addContainerGap())
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,18 +129,18 @@ public class Agregar_Entidades extends javax.swing.JFrame
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
         int id = total++;
-        int id_Pais = 0;
-        String item = (String) JCPais.getSelectedItem();
+        int id_Entidad=0;
+        String item = (String) JCEntidad.getSelectedItem();
         for (int i = 0; i < nombres.size(); i++)
         {
             if (item.compareTo(nombres.get(i).getNombre()) == 0)
             {
-                id_Pais = nombres.get(i).getId();
+                id_Entidad = nombres.get(i).getId();
             }
         }
-        String nombres = TEntidad.getText();
         boolean estatus = true;
-        ManipulaBD.AltasEntidades(id_Pais, id, nombres, estatus);
+        String nombre = TNombre.getText();
+        ManipulaBD.AltasMunicipio(id, id_Entidad, estatus, nombre);
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -168,16 +166,16 @@ public class Agregar_Entidades extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Agregar_Entidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar_Municipio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Agregar_Entidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar_Municipio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Agregar_Entidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar_Municipio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Agregar_Entidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar_Municipio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -186,7 +184,7 @@ public class Agregar_Entidades extends javax.swing.JFrame
         {
             public void run()
             {
-                new Agregar_Entidades().setVisible(true);
+                new Agregar_Municipio().setVisible(true);
             }
         });
     }
@@ -195,8 +193,8 @@ public class Agregar_Entidades extends javax.swing.JFrame
     private javax.swing.JButton BAceptar;
     private javax.swing.JButton BRegresar;
     private javax.swing.JLabel Entidad;
-    private javax.swing.JComboBox<String> JCPais;
-    private javax.swing.JLabel Pais;
-    private javax.swing.JTextField TEntidad;
+    private javax.swing.JComboBox<String> JCEntidad;
+    private javax.swing.JLabel Municipio;
+    private javax.swing.JTextField TNombre;
     // End of variables declaration//GEN-END:variables
 }
