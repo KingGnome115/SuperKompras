@@ -10,29 +10,29 @@ import javax.swing.JOptionPane;
  * @author REYNO21
  */
 public class Consultas_Usuarios extends javax.swing.JFrame
-{
+  {
 
-    public static ArrayList<Personas> us;
+    public static ArrayList<Personas> personases;
     //public static ArrayList<Personas> usid;
 
     /**
      * Creates new form Consultas
      */
     public Consultas_Usuarios()
-    {
+      {
         initComponents();
 
         String condicion = "-1";
-        us = ManipulaBD.ConsultasPersonas("id!=", condicion);
-        for (int i = 0; i < us.size(); i++)
+        personases = ManipulaBD.ConsultasPersonas("id!=", condicion);
+        for (int i = 0; i < personases.size(); i++)
           {
-            TUsuarios.setValueAt(us.get(i).getId(), i, 0);
-            TUsuarios.setValueAt(us.get(i).getClasificacion(), i, 1);
-            TUsuarios.setValueAt(us.get(i).getSueldo(), i, 2);
-            TUsuarios.setValueAt(us.get(i).getNombre(), i, 3);
-            TUsuarios.setValueAt(us.get(i).getApellidoP(), i, 4);
-            TUsuarios.setValueAt(us.get(i).getApellidoM(), i, 5);
-            TUsuarios.setValueAt(us.get(i).getSexo(), i, 6);
+            TUsuarios.setValueAt(personases.get(i).getId(), i, 0);
+            TUsuarios.setValueAt(personases.get(i).getClasificacion(), i, 1);
+            TUsuarios.setValueAt(personases.get(i).getSueldo(), i, 2);
+            TUsuarios.setValueAt(personases.get(i).getNombre(), i, 3);
+            TUsuarios.setValueAt(personases.get(i).getApellidoP(), i, 4);
+            TUsuarios.setValueAt(personases.get(i).getApellidoM(), i, 5);
+            TUsuarios.setValueAt(personases.get(i).getSexo(), i, 6);
 
           }
       }
@@ -87,7 +87,18 @@ public class Consultas_Usuarios extends javax.swing.JFrame
             {
                 "Id", "Clasificacion", "Sueldo", "Nombre", "ApellidoP", "ApellidoM", "Sexo", "Estado"
             }
-        ));
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,30 +145,34 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
     private void BModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificarActionPerformed
     {//GEN-HEADEREND:event_BModificarActionPerformed
-        
-
-        for (int i = 0; i < us.size(); i++)
+      
+        for (int i = 0; i < personases.size(); i++)
           {
+//            boolean status;
+//              if (TUsuarios.getCellRect(i, 7, false) )
+//          {
+//            
+//            
+//          } else
+//          {
+//          }
             
-            int sueldo = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 2)));
-            int nombre = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 3)));
-            int apellidop = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 4)));
-            int apellidom = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 5)));
-            int sexo = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 6)));
-           
-            ManipulaBD.ModificarPersona(us.get(i).getId(), "id", "" + TUsuarios.getValueAt(i, 0) + "");
-            ManipulaBD.ModificarPersona(us.get(i).getClasificacion(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
-              ManipulaBD.ModificarPersona(sueldo, "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
-             ManipulaBD.ModificarPersona(nombre, "nombre", "" + TUsuarios.getValueAt(i, 3) + "");
-            ManipulaBD.ModificarPersona(apellidop, "apellidoP", "" + TUsuarios.getValueAt(i, 4) + "");
-            ManipulaBD.ModificarPersona(apellidom, "apellidoM", "" + TUsuarios.getValueAt(i, 5) + "");
-            ManipulaBD.ModificarPersona(sexo, "sexo", "" + TUsuarios.getValueAt(i, 6) + "");
+            float sueldo = Float.parseFloat(String.valueOf(TUsuarios.getValueAt(i, 2)));
+
+            String nombre = String.valueOf(TUsuarios.getValueAt(i, 3));
+            String apellidop = String.valueOf(TUsuarios.getValueAt(i, 4));
+            String apellidom = String.valueOf(TUsuarios.getValueAt(i, 5));
+            String sexo = String.valueOf(TUsuarios.getValueAt(i, 6));
+
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "nombre", "'" + TUsuarios.getValueAt(i, 3) + "'");
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoP", "'" + TUsuarios.getValueAt(i, 4) + "'");
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoM", "'" + TUsuarios.getValueAt(i, 5) + "'");
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sexo", "'" +"'"+ TUsuarios.getValueAt(i, 6) + "'");
+            //ManipulaBD.ModificarPersona(personases.get(i).getId(), "estatus", +);
 
           }
-//for (int i = 0; i < cal.size(); i++)
-//          {
-//            ManipulaBD.ModificarCalificaciones(cal.get(i).getId(), "Calificacion", "" + TaCali.getValueAt(i, 1) + "");
-//          }
 
     }//GEN-LAST:event_BModificarActionPerformed
 
@@ -165,47 +180,47 @@ public class Consultas_Usuarios extends javax.swing.JFrame
      * @param args the command line arguments
      */
     public static void main(String args[])
-    {
+      {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-        {
+          {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
+              {
                 if ("Nimbus".equals(info.getName()))
-                {
+                  {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
+                  }
+              }
+          } catch (ClassNotFoundException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+          } catch (InstantiationException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+          } catch (IllegalAccessException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+          } catch (javax.swing.UnsupportedLookAndFeelException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+          }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-        {
+          {
             public void run()
-            {
+              {
                 new Consultas_Usuarios().setVisible(true);
-            }
-        });
-    }
+              }
+          });
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BDeshabilitar;
