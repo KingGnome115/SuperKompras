@@ -19,7 +19,15 @@ public class Consultas_Proveedores extends javax.swing.JFrame
     public Consultas_Proveedores()
       {
         initComponents();
-
+        
+        if (InicioSesion.usuario.get(0).getClasificacion()==3)
+          {
+              BModifica.setEnabled(false);
+          } else
+          {
+              BModifica.setEnabled(true);
+          }
+        
         String condicion = "-1";
         provedor = ManipulaBD.ConsultasProveedores("id!=", condicion);
         for (int i = 0; i < provedor.size(); i++)
