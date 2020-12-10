@@ -1,18 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import cjb.ci.Validaciones;
+import clases.Incidentes1;
+import clases.ManipulaBD;
+import clases.Personas;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Kevin
  */
-public class Incidentes extends javax.swing.JFrame
+public class Incidentes extends javax.swing.JFrame implements Runnable
 {
+    
+    String hora, minuto;
+    Thread hilo;
+    int total;
 
     /**
      * Creates new form Incidentes
@@ -20,6 +26,58 @@ public class Incidentes extends javax.swing.JFrame
     public Incidentes()
     {
         initComponents();
+        TFecha.setText(Fecha());
+        hilo = new Thread(this);
+        hilo.start();
+        setVisible(true);
+        
+        ArrayList<Incidentes1> tmp = null;
+        tmp = ManipulaBD.ConsultasIncidentes("id!=", "-1");
+        try
+        {
+            System.out.println(tmp.isEmpty());
+            if (!tmp.isEmpty())
+            {
+                total = tmp.get(tmp.size() - 1).getId() + 1;
+                System.out.println(total);
+            } else
+            {
+                total = 0;
+            }
+        } catch (java.lang.NullPointerException e)
+        {
+            total = 0;
+        }
+        
+    }
+    
+    public void hora()
+    {
+        Calendar calendario = new GregorianCalendar();
+        Date horaactual = new Date();
+        calendario.setTime(horaactual);
+        hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
+        minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+    }
+    
+    @Override
+    public void run()
+    {
+        Thread current = Thread.currentThread();
+        
+        while (current == hilo)
+        {            
+            hora();
+            THora.setText(hora + ":" + minuto);
+        }
+        
+    }
+    
+    public static String Fecha()
+    {
+        Date Fecha = new Date();
+        SimpleDateFormat fomatofecha = new SimpleDateFormat("dd/MM/yyyy");
+        return fomatofecha.format(Fecha);
     }
 
     /**
@@ -29,11 +87,12 @@ public class Incidentes extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        TFecha = new javax.swing.JLabel();
+        THora = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TIncidentes = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -43,24 +102,35 @@ public class Incidentes extends javax.swing.JFrame
 
         jLabel1.setText("Descripción");
 
-        jLabel2.setText("DD/MM/AAAA");
+        TFecha.setText("DD/MM/AAAA");
 
-        jLabel3.setText("HH:MM");
+        THora.setText("HH:MM");
 
         TIncidentes.setColumns(20);
         TIncidentes.setRows(5);
-        TIncidentes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TIncidentes.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TIncidentesKeyTyped(evt);
             }
         });
         jScrollPane1.setViewportView(TIncidentes);
 
         jButton1.setText("Enviar");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -80,9 +150,10 @@ public class Incidentes extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel3)))
+                        .addComponent(TFecha)
+                        .addGap(45, 45, 45)
+                        .addComponent(THora)
+                        .addGap(24, 24, 24)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,8 +162,8 @@ public class Incidentes extends javax.swing.JFrame
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(TFecha)
+                    .addComponent(THora))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -109,16 +180,32 @@ public class Incidentes extends javax.swing.JFrame
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
         // TODO add your handling code here:
-      this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void TIncidentesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TIncidentesKeyTyped
-        if (TIncidentes.getText().length() == 150) {
+        if (TIncidentes.getText().length() == 150)
+        {
             evt.consume();
-        } else {
+        } else
+        {
             Validaciones.validaAlfanumerico(evt);
         }
     }//GEN-LAST:event_TIncidentesKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        
+        int id = total++;
+        String descripcion = TIncidentes.getText();
+        int hora = Integer.parseInt(this.hora);
+        int minuto = Integer.parseInt(this.minuto);
+        String fecha = TFecha.getText();
+        ManipulaBD.AltasIncidentes(id, descripcion, hora, minuto, fecha);
+        JOptionPane.showMessageDialog(null, "Incidente enviado Agragado");
+        TIncidentes.setText("");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,12 +253,14 @@ public class Incidentes extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TFecha;
+    private javax.swing.JLabel THora;
     private javax.swing.JTextArea TIncidentes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -188,7 +188,6 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         });
 
         BAceptar.setText("Aceptar");
-        BAceptar.setEnabled(false);
         BAceptar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
