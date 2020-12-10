@@ -1,6 +1,8 @@
 package Ventanas;
 
-
+import clases.ManipulaBD;
+import clases.Personas;
+import java.util.ArrayList;
 
 /**
  *
@@ -8,8 +10,9 @@ package Ventanas;
  */
 public class InicioSesion extends javax.swing.JFrame
 {
- 
-    
+
+    public static ArrayList<Personas> usuario = null;
+
     /**
      * Creates new form InicioSesion
      */
@@ -75,25 +78,26 @@ public class InicioSesion extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TUsuario)
-                                .addComponent(TPass, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TUsuario)
+                            .addComponent(TPass, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                         .addComponent(BAceptar)))
                 .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,11 +112,11 @@ public class InicioSesion extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BAceptar)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(BAceptar))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -127,43 +131,21 @@ public class InicioSesion extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
-        // TODO add your handling code here:
-      
-      //Pruebas
-      
-     /*  
-      Consulta
-      Connection con3 = ManipulaBD.conecta();
-        if (con3 != null)
+
+        usuario = ManipulaBD.ConsultasPersonas("nombre=", "'" + TUsuario.getText() + "'");
+        if (usuario != null)
         {
-            Querys sql = new Querys();
-            ArrayList<Objeto> ap = ManipulaBD.cargarO(sql.Seleccion(con3, "*", "EjemploTabla", "id=" + 1 + ""));
-            ManipulaBD.desconecta(con3);
-            if (ap != null)
+            if (usuario.get(0).getContrasenia().compareTo(TPass.getText()) == 0)
             {
-                System.out.println(ap.get(0).desp());
-      
-            } else
-            {
-                System.out.println("No se encontro el dato");
+                System.out.println("Simon");
             }
         }
-      */
-      
-/**
- * 
- * Verificar que exista el usuario
- * verificar que tipo de usuario
- * Acer la coneccion
- * Deacuerdo al tipo de usuario lo manda a la venta
- */
-      
-      
+
     }//GEN-LAST:event_BAceptarActionPerformed
 
     /**

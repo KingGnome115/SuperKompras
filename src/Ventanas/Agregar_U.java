@@ -1,23 +1,34 @@
-/*
-        Aqui tengo una duda, tambien agregamos lo qu seria la foto del empleado y no se si es que la infrmacion 
-            de direccion y cosas asi tambien las agregamos aqui??
-*/
 package Ventanas;
+
+import clases.ManipulaBD;
+import clases.Personas;
+import java.util.ArrayList;
 
 /**
  *
  * @author REYNO21
  */
 public class Agregar_U extends javax.swing.JFrame
-  {
+{
+
+    int total;
 
     /**
      * Creates new form Agregar_U
      */
     public Agregar_U()
-      {
+    {
         initComponents();
-      }
+        ArrayList<Personas> tmp = ManipulaBD.ConsultasPersonas("id!=", "-1");
+        System.out.println(tmp.isEmpty());
+        if (!tmp.isEmpty())
+        {
+            total = tmp.get(tmp.size() - 1).getId();
+        } else
+        {
+            total = 0;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,23 +44,21 @@ public class Agregar_U extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        TApellidoP = new javax.swing.JTextField();
+        TNombre = new javax.swing.JTextField();
+        TApellidoM = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        TSexo = new javax.swing.JTextField();
+        TSueldo = new javax.swing.JTextField();
+        BAceptar = new javax.swing.JButton();
+        BRegresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
+        TContrasenia = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        TUsuario = new javax.swing.JTextField();
+        JCTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,18 +68,41 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel3.setText("Apellido Materno");
 
+        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                TApellidoPKeyTyped(evt);
+            }
+        });
+
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                TNombreKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Sexo");
 
         jLabel5.setText("Sueldo");
 
-        jButton1.setText("Agregar");
-
-        jButton2.setText("Regresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
+        BAceptar.setText("Agregar");
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton2ActionPerformed(evt);
+                BAceptarActionPerformed(evt);
+            }
+        });
+
+        BRegresar.setText("Regresar");
+        BRegresar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BRegresarActionPerformed(evt);
             }
         });
 
@@ -78,9 +110,9 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel7.setText("Contraseña");
 
-        jLabel8.setText("Repetir Contraseña");
-
         jLabel9.setText("Usuario");
+
+        JCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Gerente", "SubGerente" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,8 +129,18 @@ public class Agregar_U extends javax.swing.JFrame
                                     .addComponent(jLabel1))
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)))
+                                    .addComponent(TApellidoP)
+                                    .addComponent(TNombre)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel9))
+                                    .addGap(22, 22, 22)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(TContrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                        .addComponent(TUsuario)))
+                                .addComponent(jLabel7))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -106,27 +148,15 @@ public class Agregar_U extends javax.swing.JFrame
                                     .addComponent(jLabel5))
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField5)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                                        .addComponent(jTextField6)
-                                        .addComponent(jPasswordField1)
-                                        .addComponent(jTextField7)))
-                                .addComponent(jLabel7)))
+                                    .addComponent(TSexo)
+                                    .addComponent(TApellidoM)
+                                    .addComponent(TSueldo)
+                                    .addComponent(JCTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(117, 117, 117))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(BRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(BAceptar)
                         .addGap(136, 136, 136))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,43 +165,39 @@ public class Agregar_U extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(TContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BAceptar)
+                    .addComponent(BRegresar))
                 .addGap(14, 14, 14))
         );
 
@@ -187,62 +213,123 @@ public class Agregar_U extends javax.swing.JFrame
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
-    {//GEN-HEADEREND:event_jButton2ActionPerformed
+    private void BRegresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BRegresarActionPerformed
+    {//GEN-HEADEREND:event_BRegresarActionPerformed
         // TODO add your handling code here:
-      this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_BRegresarActionPerformed
+
+    private void TNombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TNombreKeyTyped
+    {//GEN-HEADEREND:event_TNombreKeyTyped
+        if (TNombre.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TNombreKeyTyped
+
+    private void TApellidoPKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TApellidoPKeyTyped
+    {//GEN-HEADEREND:event_TApellidoPKeyTyped
+        if (TApellidoP.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TApellidoPKeyTyped
+
+    private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
+    {//GEN-HEADEREND:event_BAceptarActionPerformed
+        int id = total++;
+        String usuario = TUsuario.getText();
+        String contrasenia = TContrasenia.getText();
+        boolean estatus = true;
+        int clasificacion = 0;
+        String item = (String) JCTipo.getSelectedItem();
+        switch (item)
+        {
+            case "Empleado": //3
+                clasificacion = 3;
+                break;
+            case "Gerente": //1
+                clasificacion = 1;
+                break;
+            case "SubGerente": //2
+                clasificacion = 2;
+                break;
+        }
+        float sueldo = Float.parseFloat(TSueldo.getText());
+        String nombre = TNombre.getText();
+        String apellidoP = TApellidoP.getText();
+        String apellidoM = TApellidoM.getText();
+        String sexo = TSexo.getText();
+        ManipulaBD.AltasPersonas(id, usuario, contrasenia, estatus, clasificacion, sueldo, nombre,
+                apellidoP, apellidoM, sexo);
+
+    }//GEN-LAST:event_BAceptarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_U.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_U.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_U.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_U.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Agregar_U().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton BAceptar;
+    private javax.swing.JButton BRegresar;
+    private javax.swing.JComboBox<String> JCTipo;
+    private javax.swing.JTextField TApellidoM;
+    private javax.swing.JTextField TApellidoP;
+    private javax.swing.JPasswordField TContrasenia;
+    private javax.swing.JTextField TNombre;
+    private javax.swing.JTextField TSexo;
+    private javax.swing.JTextField TSueldo;
+    private javax.swing.JTextField TUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -250,17 +337,7 @@ public class Agregar_U extends javax.swing.JFrame
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
-  }
+}
