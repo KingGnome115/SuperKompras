@@ -5,18 +5,43 @@
  */
 package Ventanas;
 
+import clases.ManipulaBD;
+import clases.Proveedores;
+import java.util.ArrayList;
+
 /**
  *
  * @author Kevin
  */
-public class Consultas_Proveedores extends javax.swing.JFrame {
+public class Consultas_Proveedores extends javax.swing.JFrame
+  {
+
+    public static ArrayList<Proveedores> provedor;
 
     /**
      * Creates new form Consultas_Proveedores
      */
-    public Consultas_Proveedores() {
+    public Consultas_Proveedores()
+      {
         initComponents();
-    }
+
+        String condicion = "-1";
+        provedor = ManipulaBD.ConsultasProveedores("id!=", condicion);
+        for (int i = 0; i < provedor.size(); i++)
+          {
+            TProveedores.setValueAt(provedor.get(i).getNombre(), i, 0);
+            TProveedores.setValueAt(provedor.get(i).getApellidoP(), i, 1);
+            TProveedores.setValueAt(provedor.get(i).getApellidoM(), i, 2);
+            TProveedores.setValueAt(provedor.get(i).getRfc(), i, 3);
+            TProveedores.setValueAt(provedor.get(i).getRazon_Social(), i, 4);
+            TProveedores.setValueAt(provedor.get(i).getDireccion(), i, 5);
+            TProveedores.setValueAt(provedor.get(i).getCp(), i, 6);
+            TProveedores.setValueAt(provedor.get(i).getTelefono(), i, 7);
+            TProveedores.setValueAt(provedor.get(i).getEmail(), i, 8);
+
+          }
+
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -25,10 +50,11 @@ public class Consultas_Proveedores extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TProveedores = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -38,30 +64,37 @@ public class Consultas_Proveedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        TProveedores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Nombre", "Apellido P", "Apellido M", "RFC", "Razón Social", "Direccion", "Codigo Postal", "Telefono", "Email", "Estatus"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TProveedores);
 
         jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -70,8 +103,10 @@ public class Consultas_Proveedores extends javax.swing.JFrame {
 
         jButton3.setText("Ordenar Alafabeticamente");
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyTyped(evt);
             }
         });
@@ -79,8 +114,10 @@ public class Consultas_Proveedores extends javax.swing.JFrame {
         jButton4.setText("Buscar");
 
         jButton5.setText("Modificar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton5ActionPerformed(evt);
             }
         });
@@ -144,56 +181,68 @@ public class Consultas_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
-        if (TNombre.getText().length() == 30) {
+        if (TNombre.getText().length() == 30)
+          {
             evt.consume();
-        } else {
+          } else
+          {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
+          }
     }//GEN-LAST:event_TNombreKeyTyped
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+      {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+          {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+              {
+                if ("Nimbus".equals(info.getName()))
+                  {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
+                  }
+              }
+          } catch (ClassNotFoundException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+          } catch (InstantiationException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+          } catch (IllegalAccessException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+          } catch (javax.swing.UnsupportedLookAndFeelException ex)
+          {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+          }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+          {
+            public void run()
+              {
                 new Consultas_Proveedores().setVisible(true);
-            }
-        });
-    }
+              }
+          });
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TNombre;
+    private javax.swing.JTable TProveedores;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
