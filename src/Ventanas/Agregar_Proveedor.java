@@ -343,7 +343,18 @@ public class Agregar_Proveedor extends javax.swing.JFrame
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -421,7 +432,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
     private void TEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEmailKeyPressed
         if (!((TEmail.getText().isEmpty()) || (!(validaEmail(TEmail.getText())))))
         {
-            Validaciones.enter(this, evt,BAceptar);
+            Validaciones.enter(this, evt, BAceptar);
         }
     }//GEN-LAST:event_TEmailKeyPressed
 
@@ -459,10 +470,9 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         ManipulaBD.AltasProveedores(id, id_Municio, nombre, apellidoP, apellidoM, rfc, razon_Social,
                 direccion, cp, telefono, email, estatus);
         cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail,TDireccion,TRazon);
+        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail, TDireccion, TRazon);
         JOptionPane.showMessageDialog(null, "Proveedor agregado");
-        
-                
+
 
     }//GEN-LAST:event_BAceptarActionPerformed
 

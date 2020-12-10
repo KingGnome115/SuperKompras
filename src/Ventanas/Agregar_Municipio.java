@@ -57,7 +57,8 @@ public class Agregar_Municipio extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         Entidad = new javax.swing.JLabel();
         JCEntidad = new javax.swing.JComboBox<>();
@@ -72,18 +73,29 @@ public class Agregar_Municipio extends javax.swing.JFrame
 
         Municipio.setText("Municipio");
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyTyped(evt);
             }
         });
 
         BRegresar.setText("Regresar");
+        BRegresar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BRegresarActionPerformed(evt);
+            }
+        });
 
         BAceptar.setText("Aceptar");
         BAceptar.setEnabled(false);
-        BAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BAceptarActionPerformed(evt);
             }
         });
@@ -161,6 +173,23 @@ public class Agregar_Municipio extends javax.swing.JFrame
             cjb.ci.Validaciones.validaAlfabeticos(evt);
         }
     }//GEN-LAST:event_TNombreKeyTyped
+
+    private void BRegresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BRegresarActionPerformed
+    {//GEN-HEADEREND:event_BRegresarActionPerformed
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_BRegresarActionPerformed
 
     /**
      * @param args the command line arguments

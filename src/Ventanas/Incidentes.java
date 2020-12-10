@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Incidentes extends javax.swing.JFrame implements Runnable
 {
-    
+
     String hora, minuto;
     Thread hilo;
     int total;
@@ -30,7 +30,7 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
         hilo = new Thread(this);
         hilo.start();
         setVisible(true);
-        
+
         ArrayList<Incidentes1> tmp = null;
         tmp = ManipulaBD.ConsultasIncidentes("id!=", "-1");
         try
@@ -48,9 +48,9 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
         {
             total = 0;
         }
-        
+
     }
-    
+
     public void hora()
     {
         Calendar calendario = new GregorianCalendar();
@@ -59,20 +59,20 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
         hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
     }
-    
+
     @Override
     public void run()
     {
         Thread current = Thread.currentThread();
-        
+
         while (current == hilo)
-        {            
+        {
             hora();
             THora.setText(hora + ":" + minuto);
         }
-        
+
     }
-    
+
     public static String Fecha()
     {
         Date Fecha = new Date();
@@ -179,7 +179,18 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -195,7 +206,7 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        
+
         int id = total++;
         String descripcion = TIncidentes.getText();
         int hora = Integer.parseInt(this.hora);
@@ -204,7 +215,7 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
         ManipulaBD.AltasIncidentes(id, descripcion, hora, minuto, fecha);
         JOptionPane.showMessageDialog(null, "Incidente enviado Agragado");
         TIncidentes.setText("");
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -262,5 +273,4 @@ public class Incidentes extends javax.swing.JFrame implements Runnable
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    
 }
