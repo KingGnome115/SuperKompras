@@ -323,7 +323,11 @@ public class Agregar_U extends javax.swing.JFrame
         String sexo = TSexo.getText();
         ManipulaBD.AltasPersonas(id, usuario, contrasenia, estatus, clasificacion, sueldo, nombre,
                 apellidoP, apellidoM, sexo);
+        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre,TApellidoP,TApellidoM,TSexo,TSueldo,TUsuario,TContrasenia);
         JOptionPane.showMessageDialog(null, "Usuario Agragado");
+        
+        
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
