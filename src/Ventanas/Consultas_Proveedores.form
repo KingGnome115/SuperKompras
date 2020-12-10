@@ -34,12 +34,6 @@
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Component id="BOrdena" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="TNombre" min="-2" pref="223" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -49,12 +43,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="436" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="480" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Bregresar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -77,7 +66,7 @@
         <Component class="javax.swing.JTable" name="TProveedores">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="4">
+              <Table columnCount="10" rowCount="10">
                 <Column editable="true" title="Nombre" type="java.lang.String"/>
                 <Column editable="true" title="Apellido P" type="java.lang.String"/>
                 <Column editable="true" title="Apellido M" type="java.lang.String"/>
@@ -162,16 +151,6 @@
     <Component class="javax.swing.JButton" name="BOrdena">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ordenar Alafabeticamente"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="TNombre">
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TNombreKeyTyped"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BModifica">

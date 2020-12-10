@@ -52,8 +52,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         TProveedores = new javax.swing.JTable();
         Bregresar = new javax.swing.JButton();
         BOrdena = new javax.swing.JButton();
-        TNombre = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
         BModifica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,6 +59,12 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         TProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -95,16 +99,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
         BOrdena.setText("Ordenar Alafabeticamente");
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                TNombreKeyTyped(evt);
-            }
-        });
-
-        jButton4.setText("Buscar");
-
         BModifica.setText("Modificar");
         BModifica.addActionListener(new java.awt.event.ActionListener()
         {
@@ -127,23 +121,14 @@ public class Consultas_Proveedores extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BModifica)
                         .addGap(97, 97, 97)
-                        .addComponent(BOrdena))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(BOrdena)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Bregresar)
@@ -183,16 +168,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
           }
     }//GEN-LAST:event_BModificaActionPerformed
-
-    private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
-        if (TNombre.getText().length() == 30)
-          {
-            evt.consume();
-          } else
-          {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-          }
-    }//GEN-LAST:event_TNombreKeyTyped
 
     /**
      * @param args the command line arguments
@@ -243,9 +218,7 @@ public class Consultas_Proveedores extends javax.swing.JFrame
     private javax.swing.JButton BModifica;
     private javax.swing.JButton BOrdena;
     private javax.swing.JButton Bregresar;
-    private javax.swing.JTextField TNombre;
     private javax.swing.JTable TProveedores;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -57,8 +57,6 @@ public class Consultas_Productos extends javax.swing.JFrame
         Bregresar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        TNombre = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         BModifica = new javax.swing.JButton();
 
@@ -67,6 +65,12 @@ public class Consultas_Productos extends javax.swing.JFrame
         TProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -113,16 +117,6 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perecederos", "Marca", "Cantidad", "Peso" }));
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                TNombreKeyTyped(evt);
-            }
-        });
-
-        jButton3.setText("Buscar");
-
         jButton4.setText("Deshabilitar");
 
         BModifica.setText("Modificar");
@@ -143,11 +137,6 @@ public class Consultas_Productos extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 468, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(Bregresar)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,11 +151,7 @@ public class Consultas_Productos extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +160,7 @@ public class Consultas_Productos extends javax.swing.JFrame
                     .addComponent(jButton2)
                     .addComponent(jButton4)
                     .addComponent(BModifica))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,16 +173,6 @@ public class Consultas_Productos extends javax.swing.JFrame
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_BregresarActionPerformed
-
-    private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
-        if (TNombre.getText().length() == 30)
-          {
-            evt.consume();
-          } else
-          {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-          }
-    }//GEN-LAST:event_TNombreKeyTyped
 
     private void BModificaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificaActionPerformed
     {//GEN-HEADEREND:event_BModificaActionPerformed
@@ -272,10 +247,8 @@ public class Consultas_Productos extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BModifica;
     private javax.swing.JButton Bregresar;
-    private javax.swing.JTextField TNombre;
     private javax.swing.JTable TProd;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
