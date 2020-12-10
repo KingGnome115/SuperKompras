@@ -7,6 +7,7 @@ package Ventanas;
 
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Validaciones;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,8 +22,8 @@ public class Agregar_Productos extends javax.swing.JFrame
     public Agregar_Productos()
       {
         initComponents();
-        CtrlInterfaz.limpia(jtNombre, jtCompra, jtFCad, jtFVenta, jtMarca, jtProveedor, jtVenta);
-        CtrlInterfaz.habilita(false, btnAceptar, btnBuscar, jtVenta, jtCompra, jtFCad, jtFVenta, jtMarca, jtProveedor, jcPerec);
+        CtrlInterfaz.limpia(TNombre, TCompra, jtFCad, TFVenta, TMarca, TProveedor, TVenta);
+        CtrlInterfaz.habilita(false, BAceptar, btnBuscar, TVenta, TCompra, jtFCad, TFVenta, TMarca, TProveedor, jcPerec);
         jcPerec.setEnabled(false);
       }
 
@@ -33,8 +34,7 @@ public class Agregar_Productos extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,18 +42,18 @@ public class Agregar_Productos extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jcPerec = new javax.swing.JCheckBox();
-        jtNombre = new javax.swing.JTextField();
-        jtMarca = new javax.swing.JTextField();
-        jtCompra = new javax.swing.JTextField();
-        jtVenta = new javax.swing.JTextField();
-        jtProveedor = new javax.swing.JTextField();
+        TNombre = new javax.swing.JTextField();
+        TMarca = new javax.swing.JTextField();
+        TCompra = new javax.swing.JTextField();
+        TVenta = new javax.swing.JTextField();
+        TProveedor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jtFCad = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jtFVenta = new javax.swing.JTextField();
+        TFVenta = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        btnAceptar = new javax.swing.JButton();
+        BAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,71 +69,54 @@ public class Agregar_Productos extends javax.swing.JFrame
         jLabel5.setText("Proveedor");
 
         jcPerec.setText("Perecedero");
-        jcPerec.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jcPerec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcPerecActionPerformed(evt);
             }
         });
 
-        jtNombre.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                jtNombreKeyPressed(evt);
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TNombreKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                jtNombreKeyTyped(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TNombreKeyTyped(evt);
             }
         });
 
-        jtMarca.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                jtMarcaKeyPressed(evt);
+        TMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TMarcaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                jtMarcaKeyTyped(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TMarcaKeyTyped(evt);
             }
         });
 
-        jtCompra.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                jtCompraKeyPressed(evt);
+        TCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCompraKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                jtCompraKeyTyped(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TCompraKeyTyped(evt);
             }
         });
 
-        jtVenta.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                jtVentaKeyPressed(evt);
+        TVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TVentaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                jtVentaKeyTyped(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TVentaKeyTyped(evt);
             }
         });
 
-        jtProveedor.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                jtProveedorKeyPressed(evt);
+        TProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TProveedorKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                jtProveedorKeyTyped(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TProveedorKeyTyped(evt);
             }
         });
 
@@ -142,21 +125,16 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         jtFCad.setText("DD/MM/AAAA");
         jtFCad.setEnabled(false);
-        jtFCad.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jtFCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtFCadActionPerformed(evt);
             }
         });
-        jtFCad.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
+        jtFCad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtFCadKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtFCadKeyTyped(evt);
             }
         });
@@ -165,41 +143,33 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         jLabel7.setText("Forma de venta");
 
-        jtFVenta.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                jtFVentaKeyPressed(evt);
+        TFVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TFVentaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                jtFVentaKeyTyped(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TFVentaKeyTyped(evt);
             }
         });
 
         btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
 
-        btnAceptar.setText("Aceptar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnAceptarActionPerformed(evt);
+        BAceptar.setText("Aceptar");
+        BAceptar.setEnabled(false);
+        BAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAceptarActionPerformed(evt);
             }
         });
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
@@ -227,12 +197,12 @@ public class Agregar_Productos extends javax.swing.JFrame
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                .addComponent(jtNombre)
-                                .addComponent(jtMarca)
-                                .addComponent(jtCompra))
+                                .addComponent(TVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                .addComponent(TNombre)
+                                .addComponent(TMarca)
+                                .addComponent(TCompra))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtProveedor)
+                                .addComponent(TProveedor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBuscar))))
                     .addGroup(layout.createSequentialGroup()
@@ -240,9 +210,9 @@ public class Agregar_Productos extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jtFVenta))
+                        .addComponent(TFVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAceptar)
+                        .addComponent(BAceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)))
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -255,21 +225,21 @@ public class Agregar_Productos extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(29, 29, 29)
                         .addComponent(jLabel3))
-                    .addComponent(jtCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
@@ -281,10 +251,10 @@ public class Agregar_Productos extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jtFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
+                    .addComponent(BAceptar)
                     .addComponent(btnCancelar))
                 .addGap(21, 21, 21))
         );
@@ -298,18 +268,22 @@ public class Agregar_Productos extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jtFCadActionPerformed
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarActionPerformed
-    {//GEN-HEADEREND:event_btnAceptarActionPerformed
+    private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
+    {//GEN-HEADEREND:event_BAceptarActionPerformed
 
-        String nombre = jtNombre.getText();
-        String marca = jtMarca.getText();
-        int compra = Integer.parseInt(String.valueOf(jtCompra));
-        int venta = Integer.parseInt(String.valueOf(jtVenta));
-        String proveedor = jtProveedor.getText();
-        String fVenta = jtFVenta.getText();
+        String nombre = TNombre.getText();
+        String marca = TMarca.getText();
+        int compra = Integer.parseInt(String.valueOf(TCompra));
+        int venta = Integer.parseInt(String.valueOf(TVenta));
+        String proveedor = TProveedor.getText();
+        String fVenta = TFVenta.getText();
+        
+        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre,TMarca,TCompra,TVenta,TProveedor,TFVenta);
+        JOptionPane.showMessageDialog(null, "Producto agregado");
 
 
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }//GEN-LAST:event_BAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
@@ -317,86 +291,86 @@ public class Agregar_Productos extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jtNombreKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtNombreKeyPressed
-    {//GEN-HEADEREND:event_jtNombreKeyPressed
-        if (jtNombre.getText().isEmpty() != true)
+    private void TNombreKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TNombreKeyPressed
+    {//GEN-HEADEREND:event_TNombreKeyPressed
+        if (TNombre.getText().isEmpty() != true)
           {
-            Validaciones.enter(this, evt, jtMarca);
+            Validaciones.enter(this, evt, TMarca);
           }
-    }//GEN-LAST:event_jtNombreKeyPressed
+    }//GEN-LAST:event_TNombreKeyPressed
 
-    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtNombreKeyTyped
-    {//GEN-HEADEREND:event_jtNombreKeyTyped
+    private void TNombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TNombreKeyTyped
+    {//GEN-HEADEREND:event_TNombreKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_jtNombreKeyTyped
+    }//GEN-LAST:event_TNombreKeyTyped
 
-    private void jtMarcaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtMarcaKeyPressed
-    {//GEN-HEADEREND:event_jtMarcaKeyPressed
-        if (jtMarca.getText().isEmpty() != true)
+    private void TMarcaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TMarcaKeyPressed
+    {//GEN-HEADEREND:event_TMarcaKeyPressed
+        if (TMarca.getText().isEmpty() != true)
           {
-            Validaciones.enter(this, evt, jtCompra);
+            Validaciones.enter(this, evt, TCompra);
           }
-    }//GEN-LAST:event_jtMarcaKeyPressed
+    }//GEN-LAST:event_TMarcaKeyPressed
 
-    private void jtMarcaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtMarcaKeyTyped
-    {//GEN-HEADEREND:event_jtMarcaKeyTyped
+    private void TMarcaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TMarcaKeyTyped
+    {//GEN-HEADEREND:event_TMarcaKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_jtMarcaKeyTyped
+    }//GEN-LAST:event_TMarcaKeyTyped
 
-    private void jtCompraKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtCompraKeyPressed
-    {//GEN-HEADEREND:event_jtCompraKeyPressed
-        if (jtCompra.getText().isEmpty() != true)
+    private void TCompraKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCompraKeyPressed
+    {//GEN-HEADEREND:event_TCompraKeyPressed
+        if (TCompra.getText().isEmpty() != true)
           {
-            Validaciones.enter(this, evt, jtVenta);
+            Validaciones.enter(this, evt, TVenta);
           }
-    }//GEN-LAST:event_jtCompraKeyPressed
+    }//GEN-LAST:event_TCompraKeyPressed
 
-    private void jtCompraKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtCompraKeyTyped
-    {//GEN-HEADEREND:event_jtCompraKeyTyped
+    private void TCompraKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCompraKeyTyped
+    {//GEN-HEADEREND:event_TCompraKeyTyped
         Validaciones.validaFlotantes(evt);
-    }//GEN-LAST:event_jtCompraKeyTyped
+    }//GEN-LAST:event_TCompraKeyTyped
 
-    private void jtVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtVentaKeyPressed
-    {//GEN-HEADEREND:event_jtVentaKeyPressed
-        if (jtVenta.getText().isEmpty() != true)
+    private void TVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TVentaKeyPressed
+    {//GEN-HEADEREND:event_TVentaKeyPressed
+        if (TVenta.getText().isEmpty() != true)
           {
-            Validaciones.enter(this, evt, jtProveedor);
+            Validaciones.enter(this, evt, TProveedor);
           }
-    }//GEN-LAST:event_jtVentaKeyPressed
+    }//GEN-LAST:event_TVentaKeyPressed
 
-    private void jtVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtVentaKeyTyped
-    {//GEN-HEADEREND:event_jtVentaKeyTyped
+    private void TVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TVentaKeyTyped
+    {//GEN-HEADEREND:event_TVentaKeyTyped
         Validaciones.validaFlotantes(evt);
-    }//GEN-LAST:event_jtVentaKeyTyped
+    }//GEN-LAST:event_TVentaKeyTyped
 
-    private void jtProveedorKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtProveedorKeyPressed
-    {//GEN-HEADEREND:event_jtProveedorKeyPressed
-        if (jtProveedor.getText().isEmpty() != true)
+    private void TProveedorKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TProveedorKeyPressed
+    {//GEN-HEADEREND:event_TProveedorKeyPressed
+        if (TProveedor.getText().isEmpty() != true)
           {
-            Validaciones.enter(this, evt, jtFVenta);
+            Validaciones.enter(this, evt, TFVenta);
             jcPerec.setEnabled(true);
             CtrlInterfaz.habilita(true, btnBuscar);
           }
-    }//GEN-LAST:event_jtProveedorKeyPressed
+    }//GEN-LAST:event_TProveedorKeyPressed
 
-    private void jtProveedorKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtProveedorKeyTyped
-    {//GEN-HEADEREND:event_jtProveedorKeyTyped
+    private void TProveedorKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TProveedorKeyTyped
+    {//GEN-HEADEREND:event_TProveedorKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_jtProveedorKeyTyped
+    }//GEN-LAST:event_TProveedorKeyTyped
 
-    private void jtFVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtFVentaKeyPressed
-    {//GEN-HEADEREND:event_jtFVentaKeyPressed
-        if (jtFVenta.getText().isEmpty() != true)
+    private void TFVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TFVentaKeyPressed
+    {//GEN-HEADEREND:event_TFVentaKeyPressed
+        if (TFVenta.getText().isEmpty() != true)
           {
             Validaciones.enter(this, evt, evt);
-            CtrlInterfaz.habilita(true, btnAceptar);
+            CtrlInterfaz.habilita(true, BAceptar);
           }
-    }//GEN-LAST:event_jtFVentaKeyPressed
+    }//GEN-LAST:event_TFVentaKeyPressed
 
-    private void jtFVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jtFVentaKeyTyped
-    {//GEN-HEADEREND:event_jtFVentaKeyTyped
+    private void TFVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TFVentaKeyTyped
+    {//GEN-HEADEREND:event_TFVentaKeyTyped
         Validaciones.validaFlotantes(evt);
-    }//GEN-LAST:event_jtFVentaKeyTyped
+    }//GEN-LAST:event_TFVentaKeyTyped
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBuscarActionPerformed
     {//GEN-HEADEREND:event_btnBuscarActionPerformed
@@ -466,7 +440,13 @@ public class Agregar_Productos extends javax.swing.JFrame
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton BAceptar;
+    private javax.swing.JTextField TCompra;
+    private javax.swing.JTextField TFVenta;
+    private javax.swing.JTextField TMarca;
+    private javax.swing.JTextField TNombre;
+    private javax.swing.JTextField TProveedor;
+    private javax.swing.JTextField TVenta;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -478,12 +458,6 @@ public class Agregar_Productos extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JCheckBox jcPerec;
-    private javax.swing.JTextField jtCompra;
     private javax.swing.JTextField jtFCad;
-    private javax.swing.JTextField jtFVenta;
-    private javax.swing.JTextField jtMarca;
-    private javax.swing.JTextField jtNombre;
-    private javax.swing.JTextField jtProveedor;
-    private javax.swing.JTextField jtVenta;
     // End of variables declaration//GEN-END:variables
 }

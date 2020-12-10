@@ -6,6 +6,7 @@ import clases.Proveedores;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,7 +67,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         TTelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BAceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TPais = new javax.swing.JTextField();
@@ -149,7 +150,13 @@ public class Agregar_Proveedor extends javax.swing.JFrame
             }
         });
 
-        jButton1.setText("Aceptar");
+        BAceptar.setText("Aceptar");
+        BAceptar.setEnabled(false);
+        BAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAceptarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +197,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
+                        .addComponent(BAceptar)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -272,7 +279,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
                     .addComponent(TEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(BAceptar)
                     .addComponent(jButton2))
                 .addGap(14, 14, 14))
         );
@@ -407,6 +414,12 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         }
     }//GEN-LAST:event_TEntidadKeyTyped
 
+    private void BAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAceptarActionPerformed
+        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre,TApellidoP,TApellidoM,TRFC,TCP,TTelefono,TEmail, TPais,TEntidad,TMunicipio);
+        JOptionPane.showMessageDialog(null, "Proveedor agregado");
+    }//GEN-LAST:event_BAceptarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -490,6 +503,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BAceptar;
     private javax.swing.JTextField TApellidoM;
     private javax.swing.JTextField TApellidoP;
     private javax.swing.JTextField TCP;
@@ -500,7 +514,6 @@ public class Agregar_Proveedor extends javax.swing.JFrame
     private javax.swing.JTextField TPais;
     private javax.swing.JTextField TRFC;
     private javax.swing.JTextField TTelefono;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
