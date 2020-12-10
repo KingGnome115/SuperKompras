@@ -34,7 +34,8 @@ public class Agregar_Productos extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,13 +47,11 @@ public class Agregar_Productos extends javax.swing.JFrame
         TMarca = new javax.swing.JTextField();
         TCompra = new javax.swing.JTextField();
         TVenta = new javax.swing.JTextField();
-        TProveedor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         TCad = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         TFVenta = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         BAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jcExis = new javax.swing.JCheckBox();
@@ -73,54 +72,59 @@ public class Agregar_Productos extends javax.swing.JFrame
         jLabel5.setText("Proveedor");
 
         jcPerec.setText("Perecedero");
-        jcPerec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jcPerec.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jcPerecActionPerformed(evt);
             }
         });
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyTyped(evt);
             }
         });
 
-        TMarca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TMarca.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TMarcaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TMarcaKeyTyped(evt);
             }
         });
 
-        TCompra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TCompra.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TCompraKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TCompraKeyTyped(evt);
             }
         });
 
-        TVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TVenta.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TVentaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TVentaKeyTyped(evt);
-            }
-        });
-
-        TProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TProveedorKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TProveedorKeyTyped(evt);
             }
         });
 
@@ -147,36 +151,38 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         jLabel7.setText("Forma de venta");
 
-        TFVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TFVenta.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TFVentaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TFVentaKeyTyped(evt);
-            }
-        });
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
             }
         });
 
         BAceptar.setText("Aceptar");
         BAceptar.setEnabled(false);
-        BAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BAceptarActionPerformed(evt);
             }
         });
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelarActionPerformed(evt);
             }
         });
+
+        Descripcion.setText("Descripcion");
 
         jcExis.setText("Existencias");
         jcExis.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +292,7 @@ public class Agregar_Productos extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(TProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,21 +402,6 @@ public class Agregar_Productos extends javax.swing.JFrame
         Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_TVentaKeyTyped
 
-    private void TProveedorKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TProveedorKeyPressed
-    {//GEN-HEADEREND:event_TProveedorKeyPressed
-        if (TProveedor.getText().isEmpty() != true)
-          {
-            Validaciones.enter(this, evt, TFVenta);
-            jcPerec.setEnabled(true);
-            CtrlInterfaz.habilita(true, btnBuscar);
-          }
-    }//GEN-LAST:event_TProveedorKeyPressed
-
-    private void TProveedorKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TProveedorKeyTyped
-    {//GEN-HEADEREND:event_TProveedorKeyTyped
-        Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_TProveedorKeyTyped
-
     private void TFVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TFVentaKeyPressed
     {//GEN-HEADEREND:event_TFVentaKeyPressed
         if (TFVenta.getText().isEmpty() != true)
@@ -424,13 +415,6 @@ public class Agregar_Productos extends javax.swing.JFrame
     {//GEN-HEADEREND:event_TFVentaKeyTyped
         Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_TFVentaKeyTyped
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBuscarActionPerformed
-    {//GEN-HEADEREND:event_btnBuscarActionPerformed
-        /**
-         * Aqui va el metodo para buscar al proveedor
-         */
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void jcPerecActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jcPerecActionPerformed
     {//GEN-HEADEREND:event_jcPerecActionPerformed
@@ -528,11 +512,10 @@ public class Agregar_Productos extends javax.swing.JFrame
     private javax.swing.JTextField TFVenta;
     private javax.swing.JTextField TMarca;
     private javax.swing.JTextField TNombre;
-    private javax.swing.JTextField TProveedor;
     private javax.swing.JTextField TVenta;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
