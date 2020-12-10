@@ -2,6 +2,7 @@ package Ventanas;
 
 import cjb.ci.Validaciones;
 import clases.ManipulaBD;
+import clases.Municipio;
 import clases.Proveedores;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -16,6 +17,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
 {
 
     int total;
+    ArrayList<Municipio> nombres = null;
 
     /**
      * Creates new form Agregar_Proveedor
@@ -41,6 +43,13 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         {
             total = 0;
         }
+        
+        nombres = ManipulaBD.ConsultasMunicipio("id!=", "-1");
+        System.out.println(nombres.size());
+        for (int i = 0; i < nombres.size(); i++)
+        {
+            JCMunicipio.addItem(nombres.get(i).getNombre());
+        }
 
     }
 
@@ -51,7 +60,8 @@ public class Agregar_Proveedor extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         TNombre = new javax.swing.JTextField();
@@ -69,125 +79,131 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         TEmail = new javax.swing.JTextField();
         BAceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        TPais = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        TMunicipio = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        TEntidad = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        TRazon = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        TDireccion = new javax.swing.JTextField();
+        JCMunicipio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre");
 
-        TNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        TNombre.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 TNombreActionPerformed(evt);
             }
         });
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyTyped(evt);
             }
         });
 
         jLabel2.setText("Apellido Paterno");
 
-        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TApellidoPKeyTyped(evt);
             }
         });
 
         jLabel3.setText("Apellido Materno");
 
-        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TApellidoMKeyTyped(evt);
             }
         });
 
         jLabel4.setText("RFC");
 
-        TRFC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        TRFC.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 TRFCActionPerformed(evt);
             }
         });
-        TRFC.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TRFC.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TRFCKeyTyped(evt);
             }
         });
 
         jLabel5.setText("Código Postal");
 
-        TCP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TCP.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TCPKeyTyped(evt);
             }
         });
 
         jLabel6.setText("Teléfono");
 
-        TTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TTelefono.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TTelefonoKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TTelefonoKeyTyped(evt);
             }
         });
 
         jLabel7.setText("Email");
 
-        TEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TEmail.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TEmailKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TEmailKeyTyped(evt);
             }
         });
 
         BAceptar.setText("Aceptar");
         BAceptar.setEnabled(false);
-        BAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BAceptarActionPerformed(evt);
             }
         });
 
         jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Pais");
-
-        TPais.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TPaisKeyTyped(evt);
             }
         });
 
         jLabel9.setText("Municipio");
 
-        TMunicipio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TMunicipioKeyTyped(evt);
-            }
-        });
+        jLabel11.setText("Razón Social");
 
-        jLabel10.setText("Entidad");
-
-        TEntidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TEntidadKeyTyped(evt);
-            }
-        });
+        jLabel8.setText("Direccion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,42 +212,52 @@ public class Agregar_Proveedor extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(BAceptar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BAceptar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)))
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TNombre)
-                            .addComponent(TApellidoP)
-                            .addComponent(TApellidoM)
-                            .addComponent(TRFC)
-                            .addComponent(TCP)
-                            .addComponent(TTelefono)
-                            .addComponent(TEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TPais, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(TApellidoP)
+                                    .addComponent(TApellidoM)
+                                    .addComponent(TRFC))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(37, 37, 37))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TRazon)
+                                    .addComponent(TDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                                .addComponent(TCP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(JCMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -253,31 +279,31 @@ public class Agregar_Proveedor extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(TRazon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(TDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(TCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(TEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(TPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(TEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(JCMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BAceptar)
                     .addComponent(jButton2))
@@ -373,7 +399,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
     private void TEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEmailKeyPressed
         if (!((TEmail.getText().isEmpty()) || (!(validaEmail(TEmail.getText())))))
         {
-            Validaciones.enter(this, evt, TPais);
+//            Validaciones.enter(this, evt);
         }
     }//GEN-LAST:event_TEmailKeyPressed
 
@@ -384,39 +410,9 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         }
     }//GEN-LAST:event_TEmailKeyTyped
 
-    private void TPaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPaisKeyTyped
-        if (TPais.getText().length() == 30)
-        {
-            evt.consume();
-        } else
-        {
-            Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TPaisKeyTyped
-
-    private void TMunicipioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TMunicipioKeyTyped
-        if (TMunicipio.getText().length() == 30)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TMunicipioKeyTyped
-
-    private void TEntidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEntidadKeyTyped
-        if (TEntidad.getText().length() == 30)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TEntidadKeyTyped
-
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAceptarActionPerformed
         cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre,TApellidoP,TApellidoM,TRFC,TCP,TTelefono,TEmail, TPais,TEntidad,TMunicipio);
+        cjb.ci.CtrlInterfaz.limpia(TNombre,TApellidoP,TApellidoM,TRFC,TCP,TTelefono,TEmail);
         JOptionPane.showMessageDialog(null, "Proveedor agregado");
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -504,19 +500,19 @@ public class Agregar_Proveedor extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAceptar;
+    private javax.swing.JComboBox<String> JCMunicipio;
     private javax.swing.JTextField TApellidoM;
     private javax.swing.JTextField TApellidoP;
     private javax.swing.JTextField TCP;
+    private javax.swing.JTextField TDireccion;
     private javax.swing.JTextField TEmail;
-    private javax.swing.JTextField TEntidad;
-    private javax.swing.JTextField TMunicipio;
     private javax.swing.JTextField TNombre;
-    private javax.swing.JTextField TPais;
     private javax.swing.JTextField TRFC;
+    private javax.swing.JTextField TRazon;
     private javax.swing.JTextField TTelefono;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
