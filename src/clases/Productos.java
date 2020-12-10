@@ -11,25 +11,30 @@ public class Productos
 {
 
     private int id;
-    private int id_Proveedor;
     private int codigo;
+    private int id_Proveedor;
+    private int ventas;
+    private String nombre;
     private String descripcion;
     private float precio_Venta;
     private float precio_Compra;
     private boolean perecedero;
-    
-    
-    private String marca;
-    
-    private int ventas;
-    private String nombre;
-    
-    
-    
-    
 
     public Productos()
     {
+    }
+
+    public Productos(int id, int codigo, int id_Proveedor, int ventas, String nombre, String descripcion, float precio_Venta, float precio_Compra, boolean perecedero)
+    {
+        this.id = id;
+        this.codigo = codigo;
+        this.id_Proveedor = id_Proveedor;
+        this.ventas = ventas;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio_Venta = precio_Venta;
+        this.precio_Compra = precio_Compra;
+        this.perecedero = perecedero;
     }
 
     
@@ -186,22 +191,6 @@ public class Productos
     public void BuscarPro(String nombre)
     {
 
-    }
-
-    /**
-     * @return the marca
-     */
-    public String getMarca()
-    {
-        return marca;
-    }
-
-    /**
-     * @param marca the marca to set
-     */
-    public void setMarca(String marca)
-    {
-        this.marca = marca;
     }
 
 }
