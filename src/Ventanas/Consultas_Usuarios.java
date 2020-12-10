@@ -29,8 +29,7 @@ public class Consultas_Usuarios extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         TNombre = new javax.swing.JTextField();
@@ -52,19 +51,47 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
         jLabel1.setText("Nombre");
 
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TNombreKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Sexo");
+
+        TSex.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TSexKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Sueldo");
 
+        TSueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TSueldoKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Tipo de Empleado");
+
+        TTUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TTUsuarioKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Usuario");
 
+        TUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TUsuarioKeyTyped(evt);
+            }
+        });
+
         jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -74,10 +101,8 @@ public class Consultas_Usuarios extends javax.swing.JFrame
         jButton3.setText("Siguiente");
 
         jButton4.setText("Modificar");
-        jButton4.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
@@ -174,6 +199,56 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
+        if (TNombre.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TNombreKeyTyped
+
+    private void TSexKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSexKeyTyped
+        if (TSex.getText().length() == 10)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TSexKeyTyped
+
+    private void TSueldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSueldoKeyTyped
+        if (TSueldo.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaFlotantes(evt);
+        }
+    }//GEN-LAST:event_TSueldoKeyTyped
+
+    private void TTUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TTUsuarioKeyTyped
+        if (TTUsuario.getText().length() == 12)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TTUsuarioKeyTyped
+
+    private void TUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TUsuarioKeyTyped
+        if (TUsuario.getText().length() == 15)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TUsuarioKeyTyped
 
 
 
