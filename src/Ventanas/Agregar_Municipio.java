@@ -4,6 +4,7 @@ import clases.Entidades;
 import clases.ManipulaBD;
 import clases.Municipio;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,6 +81,7 @@ public class Agregar_Municipio extends javax.swing.JFrame
         BRegresar.setText("Regresar");
 
         BAceptar.setText("Aceptar");
+        BAceptar.setEnabled(false);
         BAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
@@ -144,6 +146,9 @@ public class Agregar_Municipio extends javax.swing.JFrame
         boolean estatus = true;
         String nombre = TNombre.getText();
         ManipulaBD.AltasMunicipio(id, id_Entidad, estatus, nombre);
+        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre);
+        JOptionPane.showMessageDialog(null, "Municipio agregado");
 
     }//GEN-LAST:event_BAceptarActionPerformed
 

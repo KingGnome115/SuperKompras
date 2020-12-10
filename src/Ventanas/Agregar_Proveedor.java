@@ -460,8 +460,10 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         ManipulaBD.AltasProveedores(id, id_Municio, nombre, apellidoP, apellidoM, rfc, razon_Social,
                 direccion, cp, telefono, email, estatus);
         cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail);
+        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail,TDireccion,TRazon);
         JOptionPane.showMessageDialog(null, "Proveedor agregado");
+        
+                
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
