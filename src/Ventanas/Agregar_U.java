@@ -123,7 +123,6 @@ public class Agregar_U extends javax.swing.JFrame
         });
 
         BAceptar.setText("Agregar");
-        BAceptar.setEnabled(false);
         BAceptar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
