@@ -54,37 +54,37 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TProd = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        Bregresar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         TNombre = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BModifica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         TProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Nombre", "Marca", "Precio Compra", "Precio Venta", "Proveedor", "Forma de venta", "Cantidad/Peso", "Seleccionar"
+                "Codigo", "Proveedor", "Nombre", "Precio Venta", "Precio Compra", "Perecedero", "Seleccionar"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean []
             {
-                true, true, true, false, true, true, true, true
+                true, true, true, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -99,12 +99,12 @@ public class Consultas_Productos extends javax.swing.JFrame
         });
         jScrollPane1.setViewportView(TProd);
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        Bregresar.setText("Regresar");
+        Bregresar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                BregresarActionPerformed(evt);
             }
         });
 
@@ -125,12 +125,12 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         jButton4.setText("Deshabilitar");
 
-        jButton5.setText("Modificar");
-        jButton5.addActionListener(new java.awt.event.ActionListener()
+        BModifica.setText("Modificar");
+        BModifica.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton5ActionPerformed(evt);
+                BModificaActionPerformed(evt);
             }
         });
 
@@ -148,7 +148,7 @@ public class Consultas_Productos extends javax.swing.JFrame
                         .addComponent(jButton3)
                         .addGap(0, 468, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(Bregresar)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,7 +156,7 @@ public class Consultas_Productos extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
+                        .addComponent(BModifica)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -170,11 +170,11 @@ public class Consultas_Productos extends javax.swing.JFrame
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(Bregresar)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(BModifica))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -182,12 +182,12 @@ public class Consultas_Productos extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void BregresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BregresarActionPerformed
+    {//GEN-HEADEREND:event_BregresarActionPerformed
 
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BregresarActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
         if (TNombre.getText().length() == 30)
@@ -199,12 +199,30 @@ public class Consultas_Productos extends javax.swing.JFrame
           }
     }//GEN-LAST:event_TNombreKeyTyped
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
-    {//GEN-HEADEREND:event_jButton5ActionPerformed
-        
-      
-      
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void BModificaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificaActionPerformed
+    {//GEN-HEADEREND:event_BModificaActionPerformed
+
+        for (int i = 0; i < prod.size(); i++)
+          {
+
+            boolean cad = (boolean) TProd.getValueAt(i, 5);
+            boolean estatus = (boolean) TProd.getValueAt(i, 6);
+            String estatusC = String.valueOf(cad);
+            String estatusS = String.valueOf(estatus);
+
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 0) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 1) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 3) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 4) + "");
+
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusC + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
+
+          }
+
+
+    }//GEN-LAST:event_BModificaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,13 +270,13 @@ public class Consultas_Productos extends javax.swing.JFrame
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BModifica;
+    private javax.swing.JButton Bregresar;
     private javax.swing.JTextField TNombre;
     private javax.swing.JTable TProd;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
