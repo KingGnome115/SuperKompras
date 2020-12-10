@@ -112,12 +112,12 @@ public class ManipulaBD
         }
     }
 
-    public static ArrayList<Incidentes> CargarIncidentes(ArrayList<Object> reg)
+    public static ArrayList<Incidentes1> CargarIncidentes(ArrayList<Object> reg)
     {
-        ArrayList<Incidentes> lista = new ArrayList<>();
+        ArrayList<Incidentes1> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 7)
+            for (int i = 0; i < reg.size(); i += 5)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -131,13 +131,8 @@ public class ManipulaBD
                     int hora = Integer.parseInt(horaS);
                     String minutoS = ((String) reg.get(i + 3)).trim();
                     int minuto = Integer.parseInt(minutoS);
-                    String diaS = ((String) reg.get(i + 4)).trim();
-                    int dia = Integer.parseInt(diaS);
-                    String mesS = ((String) reg.get(i + 5)).trim();
-                    int mes = Integer.parseInt(mesS);
-                    String anioS = ((String) reg.get(i + 6)).trim();
-                    int anio = Integer.parseInt(anioS);
-                    Incidentes obj = new Incidentes(id, descripcion, hora, minuto, dia, mes, anio);
+                    String fecha = ((String) reg.get(i + 4)).trim();
+                    Incidentes1 obj = new Incidentes1(id, descripcion, hora, minuto, fecha);
                     lista.add(obj);
 
                 }
@@ -650,13 +645,12 @@ public class ManipulaBD
      * @param descipcion tipo descripcion
      * @param hora tipo int
      * @param minuto tipo int
-     * @param dia tipo int
-     * @param mes tipo int
-     * @param anio tipo int
+     * @param fecha tipo String
      */
-    public static void AltasIncidentes(int id, String descipcion, int hora, int minuto, int dia, int mes, int anio)
+    public static void AltasIncidentes(int id, String descipcion, int hora, int minuto, String fecha)
     {
         Connection con = ManipulaBD.conecta();
+        descipcion.replace(" ", "|");
         if (con != null)
         {
             Querys sql = new Querys();
@@ -665,10 +659,8 @@ public class ManipulaBD
                     "" + id + ",'"
                     + descipcion + "',"
                     + hora + ","
-                    + minuto + ","
-                    + dia + ","
-                    + mes + ","
-                    + anio + ""
+                    + minuto + ",'"
+                    + fecha + "'"
             );
         }
     }
@@ -698,10 +690,10 @@ public class ManipulaBD
      * traer todos los datos variable debe ser "id!=" y la condicion "-1"
      * @return ArrayList de incidentes
      */
-    public static ArrayList<Incidentes> ConsultasIncidentes(String variable, String condicion)
+    public static ArrayList<Incidentes1> ConsultasIncidentes(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
-        ArrayList<Incidentes> ap = null;
+        ArrayList<Incidentes1> ap = null;
         if (con != null)
         {
             Querys sql = new Querys();
