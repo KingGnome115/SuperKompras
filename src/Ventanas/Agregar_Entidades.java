@@ -9,6 +9,7 @@ import clases.Entidades;
 import clases.ManipulaBD;
 import clases.Pais;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -82,6 +83,7 @@ public class Agregar_Entidades extends javax.swing.JFrame
         BRegresar.setText("Regresar");
 
         BAceptar.setText("Aceptar");
+        BAceptar.setEnabled(false);
         BAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
@@ -146,6 +148,9 @@ public class Agregar_Entidades extends javax.swing.JFrame
         String nombres = TEntidad.getText();
         boolean estatus = true;
         ManipulaBD.AltasEntidades(id_Pais, id, nombres, estatus);
+        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TEntidad);
+        JOptionPane.showMessageDialog(null, "Entidad agregada");
 
     }//GEN-LAST:event_BAceptarActionPerformed
 

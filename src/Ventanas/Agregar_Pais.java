@@ -4,6 +4,7 @@ import clases.ManipulaBD;
 import clases.Pais;
 import clases.Personas;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,6 +68,7 @@ public class Agregar_Pais extends javax.swing.JFrame
         });
 
         BAceptar.setText("Aceptar");
+        BAceptar.setEnabled(false);
         BAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
@@ -117,6 +119,9 @@ public class Agregar_Pais extends javax.swing.JFrame
         String nombre = TNombre.getText();
         boolean estatus = true;
         ManipulaBD.AltasPais(id, nombre, estatus);
+        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre);
+        JOptionPane.showMessageDialog(null, "Pais agregado");
         
         
         
