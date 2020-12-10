@@ -116,7 +116,7 @@ public class Menu_Empleado extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       new Ventas().setVisible(true);
+       new Ventas1().setVisible(true);
        this.setVisible(false);
       
     }//GEN-LAST:event_jButton1ActionPerformed
