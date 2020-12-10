@@ -260,6 +260,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TRazon">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TRazonKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -267,6 +270,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TDireccion">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TDireccionKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="JCMunicipio">
       <Properties>
