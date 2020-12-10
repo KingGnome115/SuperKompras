@@ -58,8 +58,7 @@ public class Agregar_Entidades extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         Pais = new javax.swing.JLabel();
         JCPais = new javax.swing.JComboBox<>();
@@ -74,13 +73,17 @@ public class Agregar_Entidades extends javax.swing.JFrame
 
         Entidad.setText("Entidad");
 
+        TEntidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TEntidadKeyTyped(evt);
+            }
+        });
+
         BRegresar.setText("Regresar");
 
         BAceptar.setText("Aceptar");
-        BAceptar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
             }
         });
@@ -145,6 +148,16 @@ public class Agregar_Entidades extends javax.swing.JFrame
         ManipulaBD.AltasEntidades(id_Pais, id, nombres, estatus);
 
     }//GEN-LAST:event_BAceptarActionPerformed
+
+    private void TEntidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEntidadKeyTyped
+        if (TEntidad.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TEntidadKeyTyped
 
     /**
      * @param args the command line arguments
