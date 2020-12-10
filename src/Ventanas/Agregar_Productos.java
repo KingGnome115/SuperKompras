@@ -367,7 +367,18 @@ public class Agregar_Productos extends javax.swing.JFrame
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
-
+switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -463,7 +474,19 @@ public class Agregar_Productos extends javax.swing.JFrame
     }//GEN-LAST:event_TCadKeyTyped
 
     private void jcExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcExisActionPerformed
-        
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
+        this.setVisible(false);
     }//GEN-LAST:event_jcExisActionPerformed
 
     private void TDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDescripcionKeyPressed

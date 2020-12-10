@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Kevin
  */
 public class Consultas_Proveedores extends javax.swing.JFrame
-  {
+{
 
     public static ArrayList<Proveedores> provedor;
 
@@ -17,21 +17,21 @@ public class Consultas_Proveedores extends javax.swing.JFrame
      * Creates new form Consultas_Proveedores
      */
     public Consultas_Proveedores()
-      {
+    {
         initComponents();
-        
-        if (InicioSesion.usuario.get(0).getClasificacion()==3)
-          {
-              BModifica.setEnabled(false);
-          } else
-          {
-              BModifica.setEnabled(true);
-          }
-        
+
+        if (InicioSesion.usuario.get(0).getClasificacion() == 3)
+        {
+            BModifica.setEnabled(false);
+        } else
+        {
+            BModifica.setEnabled(true);
+        }
+
         String condicion = "-1";
         provedor = ManipulaBD.ConsultasProveedores("id!=", condicion);
         for (int i = 0; i < provedor.size(); i++)
-          {
+        {
             TProveedores.setValueAt(provedor.get(i).getNombre(), i, 0);
             TProveedores.setValueAt(provedor.get(i).getApellidoP(), i, 1);
             TProveedores.setValueAt(provedor.get(i).getApellidoM(), i, 2);
@@ -42,9 +42,9 @@ public class Consultas_Proveedores extends javax.swing.JFrame
             TProveedores.setValueAt(provedor.get(i).getTelefono(), i, 7);
             TProveedores.setValueAt(provedor.get(i).getEmail(), i, 8);
 
-          }
+        }
 
-      }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,7 +166,18 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
     private void BregresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BregresarActionPerformed
     {//GEN-HEADEREND:event_BregresarActionPerformed
-
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
         this.setVisible(false);
     }//GEN-LAST:event_BregresarActionPerformed
 
@@ -174,7 +185,7 @@ public class Consultas_Proveedores extends javax.swing.JFrame
     {//GEN-HEADEREND:event_BModificaActionPerformed
 
         for (int i = 0; i < provedor.size(); i++)
-          {
+        {
 
             boolean estatus = (boolean) TProveedores.getValueAt(i, 9);
             String estatusS = String.valueOf(estatus);
@@ -189,63 +200,63 @@ public class Consultas_Proveedores extends javax.swing.JFrame
             ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "email", "'" + TProveedores.getValueAt(i, 8) + "'");
             ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "estatus", "'" + estatusS + "'");
 
-          }
+        }
     }//GEN-LAST:event_BModificaActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
         if (TNombre.getText().length() == 30)
-          {
+        {
             evt.consume();
-          } else
-          {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
-          }
+        }
     }//GEN-LAST:event_TNombreKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Consultas_Proveedores().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BModifica;

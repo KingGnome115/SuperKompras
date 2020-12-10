@@ -140,7 +140,18 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
     private void BRegresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BRegresarActionPerformed
     {//GEN-HEADEREND:event_BRegresarActionPerformed
-        // TODO add your handling code here:
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
         this.setVisible(false);
 
     }//GEN-LAST:event_BRegresarActionPerformed

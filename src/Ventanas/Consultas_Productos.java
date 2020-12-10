@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Kevin
  */
 public class Consultas_Productos extends javax.swing.JFrame
-  {
+{
 
     public static ArrayList<Productos> prod;
 
@@ -22,22 +22,22 @@ public class Consultas_Productos extends javax.swing.JFrame
      * Creates new form Consultas_Productos
      */
     public Consultas_Productos()
-      {
+    {
         initComponents();
 
-          if (InicioSesion.usuario.get(0).getClasificacion()==3)
-          {
-              BModifica.setEnabled(false);
-          } else
-          {
-              BModifica.setEnabled(true);
-          }
-        
+        if (InicioSesion.usuario.get(0).getClasificacion() == 3)
+        {
+            BModifica.setEnabled(false);
+        } else
+        {
+            BModifica.setEnabled(true);
+        }
+
         String condicion = "-1";
         prod = ManipulaBD.ConsultasProductos("id!=", condicion);
 
         for (int i = 0; i < prod.size(); i++)
-          {
+        {
             TProd.setValueAt(prod.get(i).getId_Proveedor(), i, 0);
             TProd.setValueAt(prod.get(i).getCodigo(), i, 1);
             TProd.setValueAt(prod.get(i).getNombre(), i, 2);
@@ -49,11 +49,11 @@ public class Consultas_Productos extends javax.swing.JFrame
             TProd.setValueAt(prod.get(i).getPeso(), i, 8);
             TProd.setValueAt(prod.get(i).getCaducidad(), i, 9);
             TProd.setValueAt(prod.get(i).getMarca(), i, 10);
-            
+
             TProd.setValueAt(prod.get(i).isEstatus(), i, 11);
             TProd.setValueAt(prod.get(i).isExistencias(), i, 12);
-          }
-      }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,49 +178,58 @@ public class Consultas_Productos extends javax.swing.JFrame
 
     private void BregresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BregresarActionPerformed
     {//GEN-HEADEREND:event_BregresarActionPerformed
-
-        // TODO add your handling code here:
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
         this.setVisible(false);
     }//GEN-LAST:event_BregresarActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
         if (TNombre.getText().length() == 30)
-          {
+        {
             evt.consume();
-          } else
-          {
+        } else
+        {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
-          }
+        }
     }//GEN-LAST:event_TNombreKeyTyped
 
     private void BModificaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificaActionPerformed
     {//GEN-HEADEREND:event_BModificaActionPerformed
 
         for (int i = 0; i < prod.size(); i++)
-          {
+        {
 
             boolean perecedero = (boolean) TProd.getValueAt(i, 6);
             boolean estatus = (boolean) TProd.getValueAt(i, 11);
             boolean existecias = (boolean) TProd.getValueAt(i, 12);
             String estatusP = String.valueOf(perecedero);
             String estatusS = String.valueOf(estatus);
-            String estatusE = String.valueOf(existecias);                    
+            String estatusE = String.valueOf(existecias);
             ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 0) + "");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo",""+TProd.getValueAt(i, 1)+"");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre","'"+TProd.getValueAt(i, 2)+"'");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion","'"+TProd.getValueAt(i, 3)+"'");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta",""+TProd.getValueAt(i, 4)+"");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra",""+TProd.getValueAt(i, 5)+"");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad",""+TProd.getValueAt(i, 7)+"");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso",""+TProd.getValueAt(i, 8)+"");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad","'"+TProd.getValueAt(i, 9)+"'");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca","'"+TProd.getValueAt(i, 10)+"'");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
-             ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
-                     
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 1) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion", "'" + TProd.getValueAt(i, 3) + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 4) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 5) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad", "" + TProd.getValueAt(i, 7) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso", "" + TProd.getValueAt(i, 8) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad", "'" + TProd.getValueAt(i, 9) + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca", "'" + TProd.getValueAt(i, 10) + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
 
-          }
+        }
 
 
     }//GEN-LAST:event_BModificaActionPerformed
@@ -229,46 +238,46 @@ public class Consultas_Productos extends javax.swing.JFrame
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Consultas_Productos().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BModifica;
