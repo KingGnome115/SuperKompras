@@ -56,8 +56,7 @@ public class Agregar_Municipio extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         Entidad = new javax.swing.JLabel();
         JCEntidad = new javax.swing.JComboBox<>();
@@ -72,13 +71,17 @@ public class Agregar_Municipio extends javax.swing.JFrame
 
         Municipio.setText("Municipio");
 
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TNombreKeyTyped(evt);
+            }
+        });
+
         BRegresar.setText("Regresar");
 
         BAceptar.setText("Aceptar");
-        BAceptar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAceptarActionPerformed(evt);
             }
         });
@@ -143,6 +146,16 @@ public class Agregar_Municipio extends javax.swing.JFrame
         ManipulaBD.AltasMunicipio(id, id_Entidad, estatus, nombre);
 
     }//GEN-LAST:event_BAceptarActionPerformed
+
+    private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
+        if (TNombre.getText().length() == 30)
+        {
+            evt.consume();
+        } else
+        {
+            cjb.ci.Validaciones.validaAlfabeticos(evt);
+        }
+    }//GEN-LAST:event_TNombreKeyTyped
 
     /**
      * @param args the command line arguments
