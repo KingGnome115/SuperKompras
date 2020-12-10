@@ -175,9 +175,7 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
     {//GEN-HEADEREND:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        new Modificar_Proveedores().setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped

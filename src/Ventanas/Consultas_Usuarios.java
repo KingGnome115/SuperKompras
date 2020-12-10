@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author REYNO21
  */
 public class Consultas_Usuarios extends javax.swing.JFrame
-  {
+{
 
     public static ArrayList<Personas> personases;
     //public static ArrayList<Personas> usid;
@@ -19,13 +19,13 @@ public class Consultas_Usuarios extends javax.swing.JFrame
      * Creates new form Consultas
      */
     public Consultas_Usuarios()
-      {
+    {
         initComponents();
 
         String condicion = "-1";
         personases = ManipulaBD.ConsultasPersonas("id!=", condicion);
         for (int i = 0; i < personases.size(); i++)
-          {
+        {
             TUsuarios.setValueAt(personases.get(i).getId(), i, 0);
             TUsuarios.setValueAt(personases.get(i).getClasificacion(), i, 1);
             TUsuarios.setValueAt(personases.get(i).getSueldo(), i, 2);
@@ -33,9 +33,10 @@ public class Consultas_Usuarios extends javax.swing.JFrame
             TUsuarios.setValueAt(personases.get(i).getApellidoP(), i, 4);
             TUsuarios.setValueAt(personases.get(i).getApellidoM(), i, 5);
             TUsuarios.setValueAt(personases.get(i).getSexo(), i, 6);
+            TUsuarios.setValueAt(personases.get(i).isEstatus(), i, 7);
 
-          }
-      }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +50,6 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
         BRegresar = new javax.swing.JButton();
         BModificar = new javax.swing.JButton();
-        BDeshabilitar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TUsuarios = new javax.swing.JTable();
 
@@ -73,8 +73,6 @@ public class Consultas_Usuarios extends javax.swing.JFrame
             }
         });
 
-        BDeshabilitar.setText("Deshabilitar");
-
         TUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -93,10 +91,19 @@ public class Consultas_Usuarios extends javax.swing.JFrame
             {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean []
+            {
+                false, true, true, true, true, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex)
             {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(TUsuarios);
@@ -108,16 +115,12 @@ public class Consultas_Usuarios extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BModificar)
-                        .addGap(98, 98, 98)
-                        .addComponent(BDeshabilitar)
-                        .addGap(14, 14, 14))))
+                        .addComponent(BModificar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,8 +130,7 @@ public class Consultas_Usuarios extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BRegresar)
-                    .addComponent(BModificar)
-                    .addComponent(BDeshabilitar))
+                    .addComponent(BModificar))
                 .addGap(17, 17, 17))
         );
 
@@ -145,34 +147,22 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
     private void BModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificarActionPerformed
     {//GEN-HEADEREND:event_BModificarActionPerformed
-      
-        for (int i = 0; i < personases.size(); i++)
-          {
-//            boolean status;
-//              if (TUsuarios.getCellRect(i, 7, false) )
-//          {
-//            
-//            
-//          } else
-//          {
-//          }
-            
-            float sueldo = Float.parseFloat(String.valueOf(TUsuarios.getValueAt(i, 2)));
 
-            String nombre = String.valueOf(TUsuarios.getValueAt(i, 3));
-            String apellidop = String.valueOf(TUsuarios.getValueAt(i, 4));
-            String apellidom = String.valueOf(TUsuarios.getValueAt(i, 5));
-            String sexo = String.valueOf(TUsuarios.getValueAt(i, 6));
+        for (int i = 0; i < personases.size(); i++)
+        {
+
+            boolean estatus = (boolean) TUsuarios.getValueAt(i, 7);
+            String estatusS = String.valueOf(estatus);
 
             ManipulaBD.ModificarPersona(personases.get(i).getId(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
             ManipulaBD.ModificarPersona(personases.get(i).getId(), "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
             ManipulaBD.ModificarPersona(personases.get(i).getId(), "nombre", "'" + TUsuarios.getValueAt(i, 3) + "'");
             ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoP", "'" + TUsuarios.getValueAt(i, 4) + "'");
             ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoM", "'" + TUsuarios.getValueAt(i, 5) + "'");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sexo", "'" +"'"+ TUsuarios.getValueAt(i, 6) + "'");
-            //ManipulaBD.ModificarPersona(personases.get(i).getId(), "estatus", +);
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sexo", "'" + "'" + TUsuarios.getValueAt(i, 6) + "'");
+            ManipulaBD.ModificarPersona(personases.get(i).getId(), "estatus", "'" + estatusS + "'");
 
-          }
+        }
 
     }//GEN-LAST:event_BModificarActionPerformed
 
@@ -180,50 +170,49 @@ public class Consultas_Usuarios extends javax.swing.JFrame
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Consultas_Usuarios().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BDeshabilitar;
     private javax.swing.JButton BModificar;
     private javax.swing.JButton BRegresar;
     private javax.swing.JTable TUsuarios;
