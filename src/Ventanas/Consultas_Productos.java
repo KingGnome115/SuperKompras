@@ -30,16 +30,21 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         for (int i = 0; i < prod.size(); i++)
           {
-            TProd.setValueAt(prod.get(i).getNombre(), i, 0);
-            TProd.setValueAt(prod.get(i).getMarca(), i, 1);
-            TProd.setValueAt(prod.get(i).getPrecio_Compra(), i, 2);
-            TProd.setValueAt(prod.get(i).getPrecio_Venta(), i, 3);
-            TProd.setValueAt(prod.get(i).getId_Proveedor(), i, 4);
-            TProd.setValueAt(prod.get(i).getVentas(), i, 5);
-            TProd.setValueAt(prod.get(i).getCantidad(), i, 6);
-
+            TProd.setValueAt(prod.get(i).getId_Proveedor(), i, 0);
+            TProd.setValueAt(prod.get(i).getCodigo(), i, 1);
+            TProd.setValueAt(prod.get(i).getNombre(), i, 2);
+            TProd.setValueAt(prod.get(i).getDescripcion(), i, 3);
+            TProd.setValueAt(prod.get(i).getPrecio_Venta(), i, 4);
+            TProd.setValueAt(prod.get(i).getPrecio_Compra(), i, 5);
+            TProd.setValueAt(prod.get(i).isPerecedero(), i, 6);
+            TProd.setValueAt(prod.get(i).getCantidad(), i, 7);
+            TProd.setValueAt(prod.get(i).getPeso(), i, 8);
+            TProd.setValueAt(prod.get(i).getCaducidad(), i, 9);
+            TProd.setValueAt(prod.get(i).getMarca(), i, 10);
+            
+            TProd.setValueAt(prod.get(i).isEstatus(), i, 11);
+            TProd.setValueAt(prod.get(i).isExistencias(), i, 12);
           }
-
       }
 
     /**
@@ -67,24 +72,24 @@ public class Consultas_Productos extends javax.swing.JFrame
         TProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Codigo", "Proveedor", "Nombre", "Precio Venta", "Precio Compra", "Perecedero", "Seleccionar"
+                "Provedor", "Codigo", "Nombre", "Descripcion", "Precio Venta", "Precio Compra", "Perecedero", "Cantidad", "Peso", "Caducidad", "Marca", "Estatus", "Existencias"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean []
             {
-                true, true, true, false, true, true, true
+                false, true, true, true, false, true, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -141,12 +146,12 @@ public class Consultas_Productos extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1666, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
-                        .addGap(0, 468, Short.MAX_VALUE))
+                        .addGap(0, 1396, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Bregresar)
                         .addGap(18, 18, 18)
@@ -205,19 +210,26 @@ public class Consultas_Productos extends javax.swing.JFrame
         for (int i = 0; i < prod.size(); i++)
           {
 
-            boolean cad = (boolean) TProd.getValueAt(i, 5);
-            boolean estatus = (boolean) TProd.getValueAt(i, 6);
-            String estatusC = String.valueOf(cad);
+            boolean perecedero = (boolean) TProd.getValueAt(i, 6);
+            boolean estatus = (boolean) TProd.getValueAt(i, 11);
+            boolean existecias = (boolean) TProd.getValueAt(i, 12);
+            String estatusP = String.valueOf(perecedero);
             String estatusS = String.valueOf(estatus);
-
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 0) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 1) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 3) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 4) + "");
-
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusC + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
+            String estatusE = String.valueOf(existecias);                    
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 0) + "");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo",""+TProd.getValueAt(i, 1)+"");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre","'"+TProd.getValueAt(i, 2)+"'");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion","'"+TProd.getValueAt(i, 3)+"'");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta",""+TProd.getValueAt(i, 4)+"");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra",""+TProd.getValueAt(i, 5)+"");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad",""+TProd.getValueAt(i, 7)+"");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso",""+TProd.getValueAt(i, 8)+"");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad","'"+TProd.getValueAt(i, 9)+"'");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca","'"+TProd.getValueAt(i, 10)+"'");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
+             ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
+                     
 
           }
 
