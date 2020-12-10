@@ -112,8 +112,8 @@ public class Menu_Empleado extends javax.swing.JFrame
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton8ActionPerformed
     {//GEN-HEADEREND:event_jButton8ActionPerformed
       
-     new InicioSesion().setVisible(false);
-     this.setVisible(true);
+     new InicioSesion().setVisible(true);
+     this.setVisible(false);
             
     }//GEN-LAST:event_jButton8ActionPerformed
 

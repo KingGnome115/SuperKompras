@@ -163,15 +163,15 @@ public class Menu_SubGerente extends javax.swing.JFrame
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton8ActionPerformed
     {//GEN-HEADEREND:event_jButton8ActionPerformed
         // TODO add your handling code here:
-      new InicioSesion().setVisible(false);
-      this.setVisible(true);
+      new InicioSesion().setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
 
         // TODO add your handling code here:
-        new Agregar_Proveedor().setVisible(true);
+        new Consultas_Proveedores().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
