@@ -72,6 +72,7 @@ public class ManipulaBD
         ArrayList<Personas> lista = new ArrayList<>();
         try
         {
+            int con = 0;
             for (int i = 0; i < reg.size(); i += 8)
             {
                 String idS = "";
@@ -90,16 +91,16 @@ public class ManipulaBD
                     String sexo = ((String) reg.get(i + 6)).trim();
                     String es = ((String) reg.get(i + 7)).trim();
                     boolean estatus = Boolean.parseBoolean(es);
-                    Personas obj = new Personas(he.get(id).getId(), he.get(id).getUsuario(), he.get(id).getContrasenia(), id,
+                    Personas obj = new Personas(he.get(con).getId(), he.get(con).getUsuario(), he.get(con).getContrasenia(), id,
                             clasificacion, sueldo, nombre, apellidoP, apellidoM, sexo, estatus);
                     lista.add(obj);
+                    con++;
                 }
             }
             return lista;
         } catch (Exception e)
         {
-            System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -565,10 +566,39 @@ public class ManipulaBD
             if (apt != null)
             {
                 ap = ManipulaBD.CargarPersonas(sql.Seleccion(con, "*", "personas", variable + condicion), apt);
-                System.out.println("Dato encontrado");
             } else
             {
                 System.out.println("No se encontro el dato");
+            }
+        }
+        return ap;
+    }
+
+    /**
+     * Método para traer a las personas de las tablas "personas" y
+     * "Tipo_Usuario"
+     *
+     * @param variable a traves de que variable se va abuscar en la base ejemplo
+     * "id=" es importante poner el igual
+     * @param condicion cual es la condicion por la cual se traera el objeto
+     * ejemplo "1" si es String seria "'1'"
+     * @return un ArrayList de personas que ya tiene como herencia tipo_Usuarios
+     */
+    public static ArrayList<Tipo_Usuario> ConsultasTipo_Usuario(String variable, String condicion)
+    {
+        Connection con = ManipulaBD.conecta();
+        ArrayList<Tipo_Usuario> ap = null;
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ap = ManipulaBD.CargarTipo_Usuario(sql.Seleccion(con, "*", "tipo_usuario", variable + condicion));
+            ManipulaBD.desconecta(con);
+            if (ap != null)
+            {
+                System.out.println("Dato encontrado");
+            } else
+            {
+                System.out.println("Dato no encontrado");
             }
         }
         return ap;
@@ -1239,7 +1269,7 @@ public class ManipulaBD
         }
         ManipulaBD.desconecta(con);
     }
-    
+
     public static ArrayList<Pais> ConsultasPais(String variable, String condicion)
     {
         Connection con = ManipulaBD.conecta();
