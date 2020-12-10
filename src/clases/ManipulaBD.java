@@ -78,7 +78,7 @@ public class ManipulaBD
                 String idS = "";
                 idS = (String) reg.get(i);
                 idS = idS.trim();
-                if (idS != "" && idS != " " && idS!=null)
+                if (idS != "" && idS != " " && idS != null)
                 {
                     System.out.println("Inicie creacion de objetos");
                     int id = Integer.parseInt(idS);
@@ -351,6 +351,7 @@ public class ManipulaBD
                     String rfc = ((String) reg.get(i + 5)).trim();
                     String razon_Social = ((String) reg.get(i + 6)).trim();
                     String direccion = ((String) reg.get(i + 7)).trim();
+                    direccion = direccion.replace("|", " ");
                     String cpS = ((String) reg.get(i + 8)).trim();
                     int cp = Integer.parseInt(cpS);
                     String telefonoS = ((String) reg.get(i + 9)).trim();
@@ -988,6 +989,7 @@ public class ManipulaBD
     {
         Connection con = ManipulaBD.conecta();
         String estatusS = String.valueOf(estatus);
+        direccion = direccion.replace(" ", "|");
         if (con != null)
         {
             Querys sql = new Querys();

@@ -43,7 +43,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         {
             total = 0;
         }
-        
+
         nombres = ManipulaBD.ConsultasMunicipio("id!=", "-1");
         System.out.println(nombres.size());
         for (int i = 0; i < nombres.size(); i++)
@@ -411,9 +411,35 @@ public class Agregar_Proveedor extends javax.swing.JFrame
     }//GEN-LAST:event_TEmailKeyTyped
 
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAceptarActionPerformed
+
+        int id = total++;
+        String item = (String) JCMunicipio.getSelectedItem();
+        int id_Municio = 0;
+        for (int i = 0; i < nombres.size(); i++)
+        {
+            if (item.compareTo(nombres.get(i).getNombre()) == 0)
+            {
+                id_Municio = nombres.get(i).getId();
+            }
+        }
+
+        String nombre = TNombre.getText();
+        String apellidoP = TApellidoP.getText();
+        String apellidoM = TApellidoM.getText();
+        String rfc = TRFC.getText();
+        String razon_Social = TRazon.getText();
+        String direccion = TDireccion.getText();
+        int cp = Integer.parseInt(TCP.getText());
+        int telefono = Integer.parseInt(TTelefono.getText());
+        String email = TEmail.getText();
+        boolean estatus = true;
+
+        ManipulaBD.AltasProveedores(id, id_Municio, nombre, apellidoP, apellidoM, rfc, razon_Social,
+                direccion, cp, telefono, email, estatus);
         cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre,TApellidoP,TApellidoM,TRFC,TCP,TTelefono,TEmail);
+        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail);
         JOptionPane.showMessageDialog(null, "Proveedor agregado");
+
     }//GEN-LAST:event_BAceptarActionPerformed
 
     /**
