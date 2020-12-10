@@ -3,6 +3,7 @@ package Ventanas;
 import clases.ManipulaBD;
 import clases.Personas;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Agregar_U extends javax.swing.JFrame
 {
-
+    
     int total;
 
     /**
@@ -26,7 +27,8 @@ public class Agregar_U extends javax.swing.JFrame
             System.out.println(tmp.isEmpty());
             if (!tmp.isEmpty())
             {
-                total = tmp.get(tmp.size() - 1).getId();
+                total = tmp.get(tmp.size() - 1).getId() + 1;
+                System.out.println(total);
             } else
             {
                 total = 0;
@@ -35,7 +37,7 @@ public class Agregar_U extends javax.swing.JFrame
         {
             total = 0;
         }
-
+        
     }
 
     /**
@@ -45,7 +47,8 @@ public class Agregar_U extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -75,20 +78,26 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel3.setText("Apellido Materno");
 
-        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TApellidoP.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TApellidoPKeyTyped(evt);
             }
         });
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyTyped(evt);
             }
         });
 
-        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TApellidoM.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TApellidoMKeyTyped(evt);
             }
         });
@@ -97,28 +106,37 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel5.setText("Sueldo");
 
-        TSexo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TSexo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TSexoKeyTyped(evt);
             }
         });
 
-        TSueldo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TSueldo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TSueldoKeyTyped(evt);
             }
         });
 
         BAceptar.setText("Agregar");
-        BAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BAceptar.setEnabled(false);
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BAceptarActionPerformed(evt);
             }
         });
 
         BRegresar.setText("Regresar");
-        BRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BRegresar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BRegresarActionPerformed(evt);
             }
         });
@@ -127,16 +145,20 @@ public class Agregar_U extends javax.swing.JFrame
 
         jLabel7.setText("Contraseña");
 
-        TContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TContrasenia.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TContraseniaKeyTyped(evt);
             }
         });
 
         jLabel9.setText("Usuario");
 
-        TUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        TUsuario.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TUsuarioKeyTyped(evt);
             }
         });
@@ -276,6 +298,7 @@ public class Agregar_U extends javax.swing.JFrame
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
         int id = total++;
+        System.out.println(id);
         String usuario = TUsuario.getText();
         String contrasenia = TContrasenia.getText();
         boolean estatus = true;
@@ -300,6 +323,7 @@ public class Agregar_U extends javax.swing.JFrame
         String sexo = TSexo.getText();
         ManipulaBD.AltasPersonas(id, usuario, contrasenia, estatus, clasificacion, sueldo, nombre,
                 apellidoP, apellidoM, sexo);
+        JOptionPane.showMessageDialog(null, "Usuario Agragado");
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -314,7 +338,7 @@ public class Agregar_U extends javax.swing.JFrame
     }//GEN-LAST:event_TApellidoMKeyTyped
 
     private void TSexoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSexoKeyTyped
-       if (TSexo.getText().length() == 10)
+        if (TSexo.getText().length() == 10)
         {
             evt.consume();
         } else
@@ -344,7 +368,7 @@ public class Agregar_U extends javax.swing.JFrame
     }//GEN-LAST:event_TUsuarioKeyTyped
 
     private void TContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TContraseniaKeyTyped
-         if (TContrasenia.getText().length() == 16)
+        if (TContrasenia.getText().length() == 16)
         {
             evt.consume();
         } else
