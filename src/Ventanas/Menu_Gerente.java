@@ -229,7 +229,7 @@ public class Menu_Gerente extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButton2ActionPerformed
 
         // TODO add your handling code here:
-        new Agregar_Proveedor().setVisible(true);
+        new Consultas_Proveedores().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -238,7 +238,7 @@ public class Menu_Gerente extends javax.swing.JFrame
 
         // TODO add your handling code here:
         this.setVisible(false);
-        new Agregar_Productos().setVisible(true);
+        new Consultas_Productos().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
