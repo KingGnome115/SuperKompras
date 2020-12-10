@@ -89,7 +89,7 @@
                 <Column editable="true" title="Nombre" type="java.lang.String"/>
                 <Column editable="false" title="Precio Venta" type="java.lang.Float"/>
                 <Column editable="true" title="Precio Compra" type="java.lang.Float"/>
-                <Column editable="true" title="Cantidad/Peso" type="java.lang.Integer"/>
+                <Column editable="true" title="Perecedero" type="java.lang.Boolean"/>
                 <Column editable="true" title="Seleccionar" type="java.lang.Boolean"/>
               </Table>
             </Property>

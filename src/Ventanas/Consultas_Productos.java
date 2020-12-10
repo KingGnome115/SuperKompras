@@ -74,13 +74,13 @@ public class Consultas_Productos extends javax.swing.JFrame
             },
             new String []
             {
-                "Codigo", "Proveedor", "Nombre", "Precio Venta", "Precio Compra", "Cantidad/Peso", "Seleccionar"
+                "Codigo", "Proveedor", "Nombre", "Precio Venta", "Precio Compra", "Perecedero", "Seleccionar"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean []
             {
@@ -204,17 +204,24 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         for (int i = 0; i < prod.size(); i++)
           {
-//         ManipulaBD.ModificarProductos(prod.get(i).getId(), , datos);
-//            ManipulaBD.ModificarPersona(personases.get(i).getId(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
-//            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
-//            ManipulaBD.ModificarPersona(personases.get(i).getId(), "nombre", "'" + TUsuarios.getValueAt(i, 3) + "'");
-//            ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoP", "'" + TUsuarios.getValueAt(i, 4) + "'");
-//            ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoM", "'" + TUsuarios.getValueAt(i, 5) + "'");
-//            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sexo", "'" +"'"+ TUsuarios.getValueAt(i, 6) + "'");        
+
+            boolean cad = (boolean) TProd.getValueAt(i, 5);
+            boolean estatus = (boolean) TProd.getValueAt(i, 6);
+            String estatusC = String.valueOf(cad);
+            String estatusS = String.valueOf(estatus);
+
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 0) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 1) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 3) + "");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 4) + "");
+
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusC + "'");
+            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
+
           }
-      
-      
-      
+
+
     }//GEN-LAST:event_BModificaActionPerformed
 
     /**
