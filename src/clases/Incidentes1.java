@@ -4,31 +4,29 @@ package clases;
  *
  * @author Kevin
  */
-public class Incidentes
+public class Incidentes1
 {
     
     private int id;
     private String descipcion;
     private int hora;
     private int minuto;
-    private int dia;
-    private int mes;
-    private int anio;
+    private String fecha;
 
-    public Incidentes()
+    public Incidentes1()
     {
     }
 
-    public Incidentes(int id, String descipcion, int hora, int minuto, int dia, int mes, int anio)
+    public Incidentes1(int id, String descipcion, int hora, int minuto, String fecha)
     {
         this.id = id;
         this.descipcion = descipcion;
         this.hora = hora;
         this.minuto = minuto;
-        this.dia = dia;
-        this.mes = mes;
-        this.anio = anio;
+        this.fecha = fecha;
     }
+    
+    
 
     /**
      * @return the id
@@ -95,51 +93,20 @@ public class Incidentes
     }
 
     /**
-     * @return the dia
+     * @return the fecha
      */
-    public int getDia()
+    public String getFecha()
     {
-        return dia;
+        return fecha;
     }
 
     /**
-     * @param dia the dia to set
+     * @param fecha the fecha to set
      */
-    public void setDia(int dia)
+    public void setFecha(String fecha)
     {
-        this.dia = dia;
+        this.fecha = fecha;
     }
 
-    /**
-     * @return the mes
-     */
-    public int getMes()
-    {
-        return mes;
-    }
-
-    /**
-     * @param mes the mes to set
-     */
-    public void setMes(int mes)
-    {
-        this.mes = mes;
-    }
-
-    /**
-     * @return the anio
-     */
-    public int getAnio()
-    {
-        return anio;
-    }
-
-    /**
-     * @param anio the anio to set
-     */
-    public void setAnio(int anio)
-    {
-        this.anio = anio;
-    }
     
 }
