@@ -20,6 +20,20 @@ public class Consultas_Usuarios extends javax.swing.JFrame
     public Consultas_Usuarios()
       {
         initComponents();
+
+        String condicion = "-1";
+        us = ManipulaBD.ConsultasPersonas("id!=", condicion);
+        for (int i = 0; i < us.size(); i++)
+          {
+            TUsuarios.setValueAt(us.get(i).getId(), i, 0);
+            TUsuarios.setValueAt(us.get(i).getClasificacion(), i, 1);
+            TUsuarios.setValueAt(us.get(i).getSueldo(), i, 2);
+            TUsuarios.setValueAt(us.get(i).getNombre(), i, 3);
+            TUsuarios.setValueAt(us.get(i).getApellidoP(), i, 4);
+            TUsuarios.setValueAt(us.get(i).getApellidoM(), i, 5);
+            TUsuarios.setValueAt(us.get(i).getSexo(), i, 6);
+
+          }
       }
 
     /**
@@ -29,85 +43,51 @@ public class Consultas_Usuarios extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        jLabel1 = new javax.swing.JLabel();
-        TNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        TSex = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        TSueldo = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        TTUsuario = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        TUsuario = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BRegresar = new javax.swing.JButton();
+        BModificar = new javax.swing.JButton();
+        BDeshabilitar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nombre");
-
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TNombreKeyTyped(evt);
+        BRegresar.setText("Regresar");
+        BRegresar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BRegresarActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Sexo");
-
-        TSex.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TSexKeyTyped(evt);
+        BModificar.setText("Modificar");
+        BModificar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BModificarActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Sueldo");
+        BDeshabilitar.setText("Deshabilitar");
 
-        TSueldo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TSueldoKeyTyped(evt);
+        TUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Id", "Clasificacion", "Sueldo", "Nombre", "ApellidoP", "ApellidoM", "Sexo", "Estado"
             }
-        });
-
-        jLabel4.setText("Tipo de Empleado");
-
-        TTUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TTUsuarioKeyTyped(evt);
-            }
-        });
-
-        jLabel5.setText("Usuario");
-
-        TUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TUsuarioKeyTyped(evt);
-            }
-        });
-
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Anterior");
-
-        jButton3.setText("Siguiente");
-
-        jButton4.setText("Modificar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("Deshabilitar");
+        ));
+        jScrollPane1.setViewportView(TUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,65 +97,26 @@ public class Consultas_Usuarios extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TSex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                            .addComponent(TNombre)
-                            .addComponent(TSueldo)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(74, 74, 74)
-                        .addComponent(TUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(TTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(BRegresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BModificar)
+                        .addGap(98, 98, 98)
+                        .addComponent(BDeshabilitar)
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(TSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(TSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(TTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(TUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(BRegresar)
+                    .addComponent(BModificar)
+                    .addComponent(BDeshabilitar))
                 .addGap(17, 17, 17))
         );
 
@@ -183,74 +124,41 @@ public class Consultas_Usuarios extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void BRegresarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BRegresarActionPerformed
+    {//GEN-HEADEREND:event_BRegresarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BRegresarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
-    {//GEN-HEADEREND:event_jButton4ActionPerformed
-       
-            ManipulaBD.ModificarPersona(us.size(), "nombre", "'"+TNombre.getText()+"'");
+    private void BModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificarActionPerformed
+    {//GEN-HEADEREND:event_BModificarActionPerformed
+        
+
+        for (int i = 0; i < us.size(); i++)
+          {
             
+            int sueldo = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 2)));
+            int nombre = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 3)));
+            int apellidop = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 4)));
+            int apellidom = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 5)));
+            int sexo = Integer.parseInt(String.valueOf(TUsuarios.getValueAt(i, 6)));
+           
+            ManipulaBD.ModificarPersona(us.get(i).getId(), "id", "" + TUsuarios.getValueAt(i, 0) + "");
+            ManipulaBD.ModificarPersona(us.get(i).getClasificacion(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
+              ManipulaBD.ModificarPersona(sueldo, "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
+             ManipulaBD.ModificarPersona(nombre, "nombre", "" + TUsuarios.getValueAt(i, 3) + "");
+            ManipulaBD.ModificarPersona(apellidop, "apellidoP", "" + TUsuarios.getValueAt(i, 4) + "");
+            ManipulaBD.ModificarPersona(apellidom, "apellidoM", "" + TUsuarios.getValueAt(i, 5) + "");
+            ManipulaBD.ModificarPersona(sexo, "sexo", "" + TUsuarios.getValueAt(i, 6) + "");
 
+          }
+//for (int i = 0; i < cal.size(); i++)
+//          {
+//            ManipulaBD.ModificarCalificaciones(cal.get(i).getId(), "Calificacion", "" + TaCali.getValueAt(i, 1) + "");
+//          }
 
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void TNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNombreKeyTyped
-        if (TNombre.getText().length() == 30)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TNombreKeyTyped
-
-    private void TSexKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSexKeyTyped
-        if (TSex.getText().length() == 10)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TSexKeyTyped
-
-    private void TSueldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TSueldoKeyTyped
-        if (TSueldo.getText().length() == 30)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaFlotantes(evt);
-        }
-    }//GEN-LAST:event_TSueldoKeyTyped
-
-    private void TTUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TTUsuarioKeyTyped
-        if (TTUsuario.getText().length() == 12)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TTUsuarioKeyTyped
-
-    private void TUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TUsuarioKeyTyped
-        if (TUsuario.getText().length() == 15)
-        {
-            evt.consume();
-        } else
-        {
-            cjb.ci.Validaciones.validaAlfabeticos(evt);
-        }
-    }//GEN-LAST:event_TUsuarioKeyTyped
-
-
+    }//GEN-LAST:event_BModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,20 +207,10 @@ public class Consultas_Usuarios extends javax.swing.JFrame
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TNombre;
-    private javax.swing.JTextField TSex;
-    private javax.swing.JTextField TSueldo;
-    private javax.swing.JTextField TTUsuario;
-    private javax.swing.JTextField TUsuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton BDeshabilitar;
+    private javax.swing.JButton BModificar;
+    private javax.swing.JButton BRegresar;
+    private javax.swing.JTable TUsuarios;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
   }
