@@ -36,7 +36,6 @@ public class Menu_SubGerente extends javax.swing.JFrame
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,15 +94,6 @@ public class Menu_SubGerente extends javax.swing.JFrame
             }
         });
 
-        jButton4.setText("Agregar Empleados");
-        jButton4.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jButton10.setText("Agregar Productos");
         jButton10.addActionListener(new java.awt.event.ActionListener()
         {
@@ -129,10 +119,9 @@ public class Menu_SubGerente extends javax.swing.JFrame
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton10)
-                            .addComponent(jButton6)
-                            .addComponent(jButton4)))
+                            .addComponent(jButton6)))
                     .addComponent(jButton2))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,11 +133,9 @@ public class Menu_SubGerente extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
                     .addComponent(jButton10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(20, 20, 20)
@@ -195,7 +182,7 @@ public class Menu_SubGerente extends javax.swing.JFrame
 
         // TODO add your handling code here:
         this.setVisible(false);
-        new Agregar_Productos().setVisible(true);
+        new Consultas_Productos().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton6ActionPerformed
@@ -203,13 +190,6 @@ public class Menu_SubGerente extends javax.swing.JFrame
         new Incidentes().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
-    {//GEN-HEADEREND:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new Agregar_U().setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton10ActionPerformed
     {//GEN-HEADEREND:event_jButton10ActionPerformed
@@ -268,7 +248,6 @@ public class Menu_SubGerente extends javax.swing.JFrame
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
