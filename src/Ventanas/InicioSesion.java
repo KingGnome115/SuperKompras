@@ -13,7 +13,7 @@ public class InicioSesion extends javax.swing.JFrame
 {
 
     public static ArrayList<Personas> usuario = null;
-    public static ArrayList<Tipo_Usuario> tmp = null;
+    public ArrayList<Tipo_Usuario> tmp = null;
 
     /**
      * Creates new form InicioSesion

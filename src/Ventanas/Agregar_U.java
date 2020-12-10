@@ -19,15 +19,23 @@ public class Agregar_U extends javax.swing.JFrame
     public Agregar_U()
     {
         initComponents();
-        ArrayList<Personas> tmp = ManipulaBD.ConsultasPersonas("id!=", "-1");
-        System.out.println(tmp.isEmpty());
-        if (!tmp.isEmpty())
+        ArrayList<Personas> tmp = null;
+        tmp = ManipulaBD.ConsultasPersonas("id!=", "-1");
+        try
         {
-            total = tmp.get(tmp.size() - 1).getId();
-        } else
+            System.out.println(tmp.isEmpty());
+            if (!tmp.isEmpty())
+            {
+                total = tmp.get(tmp.size() - 1).getId();
+            } else
+            {
+                total = 0;
+            }
+        } catch (java.lang.NullPointerException e)
         {
             total = 0;
         }
+
     }
 
     /**

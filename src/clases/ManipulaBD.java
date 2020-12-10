@@ -78,8 +78,9 @@ public class ManipulaBD
                 String idS = "";
                 idS = (String) reg.get(i);
                 idS = idS.trim();
-                if (idS != "" && idS != " ")
+                if (idS != "" && idS != " " && idS!=null)
                 {
+                    System.out.println("Inicie creacion de objetos");
                     int id = Integer.parseInt(idS);
                     String clasificacionS = ((String) reg.get(i + 1)).trim();
                     int clasificacion = Integer.parseInt(clasificacionS);
