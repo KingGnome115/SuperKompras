@@ -147,6 +147,21 @@ public class InicioSesion extends javax.swing.JFrame
             {
                 variable = "id=";
                 usuario = ManipulaBD.ConsultasPersonas(variable, "" + tmp.get(0).getId() + "");
+                switch (usuario.get(0).getClasificacion())
+                {
+                    case 1:
+                        new Menu_Gerente().setVisible(true);
+                        this.setVisible(false);
+                        break;
+                    case 2:
+                        new Menu_SubGerente().setVisible(true);
+                        this.setVisible(false);
+                        break;
+                    case 3:
+                        new Menu_Empleado().setVisible(true);
+                        this.setVisible(true);
+                        break;
+                }
             }
         }
 
