@@ -15,27 +15,28 @@ import java.util.ArrayList;
  */
 public class Consultas_Reportes extends javax.swing.JFrame
 {
- public static ArrayList<Incidentes1> inc3;
+
+    public static ArrayList<Incidentes1> inc3;
+
     /**
      * Creates new form Consultas_Reportes
      */
     public Consultas_Reportes()
     {
         initComponents();
-        
+
         String condicion = "-1";
         inc3 = ManipulaBD.ConsultasIncidentes("id!=", condicion);
         for (int i = 0; i < inc3.size(); i++)
-          {
+        {
             TReporte.setValueAt(inc3.get(i).getId(), i, 0);
             TReporte.setValueAt(inc3.get(i).getDescipcion(), i, 1);
             TReporte.setValueAt(inc3.get(i).getHora(), i, 2);
             TReporte.setValueAt(inc3.get(i).getMinuto(), i, 3);
             TReporte.setValueAt(inc3.get(i).getFecha(), i, 4);
-            
-            
-          }
-        
+
+        }
+
     }
 
     /**
@@ -147,9 +148,20 @@ public class Consultas_Reportes extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-            // TODO add your handling code here:
-      new Menu_Gerente().setVisible(true);
-      this.setVisible(false);
+        // TODO add your handling code here:
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
