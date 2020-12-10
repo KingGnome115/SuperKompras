@@ -20,7 +20,7 @@ public class Buscar_Usuario extends javax.swing.JFrame
     public Buscar_Usuario()
       {
         initComponents();
-       
+
       }
 
     /**
@@ -82,18 +82,12 @@ public class Buscar_Usuario extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
 
-      String name = TT.getText();
-      Consultas_Usuarios.us =ManipulaBD.ConsultasPersonas("nombre=", "'"+ TT.getText()+"'");
-//         int id = Integer.parseInt(TT.getText());
+        String name = TT.getText();
+        Consultas_Usuarios.us = ManipulaBD.ConsultasPersonas("nombre=", "'" + TT.getText() + "'");
+
         System.out.println(TT);
-//        Consultas_Usuarios.us = ManipulaBD.ConsultasPersonas("id=", "'" + TT.getText() + "'");
-
-        Consultas_Usuarios obj = new Consultas_Usuarios();
-        obj.setVisible(true);
-       obj.Mostrar();
         this.setVisible(false);
-
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
