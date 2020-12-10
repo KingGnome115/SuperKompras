@@ -81,6 +81,7 @@ public class ManipulaBD
                 if (idS != "" && idS != " " && idS != null)
                 {
                     System.out.println("Inicie creacion de objetos");
+                    System.out.println(reg.size());
                     int id = Integer.parseInt(idS);
                     String clasificacionS = ((String) reg.get(i + 1)).trim();
                     int clasificacion = Integer.parseInt(clasificacionS);
@@ -288,7 +289,7 @@ public class ManipulaBD
         ArrayList<Productos> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 9)
+            for (int i = 0; i < reg.size(); i += 15)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -296,23 +297,35 @@ public class ManipulaBD
                 if (idS != " " && idS != "")
                 {
                     int id = Integer.parseInt(idS);
-                    String codigoS = ((String) reg.get(i + 1)).trim();
-                    int codigo = Integer.parseInt(codigoS);
-                    String id_ProveedorS = ((String) reg.get(i + 2)).trim();
+                    String id_ProveedorS = ((String) reg.get(i + 1)).trim();
                     int id_Proveedor = Integer.parseInt(id_ProveedorS);
-                    String ventasS = ((String) reg.get(i + 3)).trim();
-                    int ventas = Integer.parseInt(ventasS);
-                    String nombre = ((String) reg.get(i + 4)).trim();
-                    String descripcion = ((String) reg.get(i + 5)).trim();
+                    String codigoS = ((String) reg.get(i + 2)).trim();
+                    int codigo = Integer.parseInt(codigoS);
+                    String nombre = ((String) reg.get(i + 3)).trim();
+                    String descripcion = ((String) reg.get(i + 4)).trim();
                     descripcion = descripcion.replace("|", " ");
-                    String precio_VentasS = ((String) reg.get(i + 6)).trim();
+                    String precio_VentasS = ((String) reg.get(i + 5)).trim();
                     float precio_Ventas = Float.parseFloat(precio_VentasS);
-                    String precio_CompraS = ((String) reg.get(i + 7)).trim();
+                    String precio_CompraS = ((String) reg.get(i + 6)).trim();
                     float precio_Compra = Float.parseFloat(precio_CompraS);
-                    String es = ((String) reg.get(i + 8)).trim();
-                    boolean perecedero = Boolean.parseBoolean(es);
-                    Productos obj = new Productos(id, codigo, id_Proveedor, ventas, nombre, descripcion, precio_Ventas,
-                            precio_Compra, perecedero);
+                    String pe = ((String) reg.get(i + 7)).trim();
+                    boolean perecedero = Boolean.parseBoolean(pe);
+                    String cantidadS = ((String) reg.get(i + 8)).trim();
+                    int cantidad = Integer.parseInt(cantidadS);
+                    String pesoS = ((String) reg.get(i + 9)).trim();
+                    float peso = Float.parseFloat(pesoS);
+                    String caducidad = ((String) reg.get(i + 10)).trim();
+                    String marca = ((String) reg.get(i + 11)).trim();
+                    marca = marca.replace("|", " ");
+                    String es = ((String) reg.get(i + 12)).trim();
+                    boolean estatus = Boolean.parseBoolean(es);
+                    String ex = ((String) reg.get(i + 13)).trim();
+                    boolean existencias = Boolean.parseBoolean(ex);
+                    String ventasS = ((String) reg.get(i + 14)).trim();
+                    int ventas = Integer.parseInt(ventasS);
+
+                    Productos obj = new Productos(id, id_Proveedor, codigo, nombre, descripcion, precio_Ventas,
+                            precio_Compra, perecedero, cantidad, peso, caducidad, marca, estatus, existencias, ventas);
                     lista.add(obj);
                 }
             }
@@ -493,7 +506,7 @@ public class ManipulaBD
      * @param usuario tipo String
      * @param contrasenia tipo String
      * @param estatus tipo boolean
-     * @param clasificaciont tipo int
+     * @param clasificacion tipo int
      * @param sueldo tipo float
      * @param nombre tipo String
      * @param apellidoP tipo String
@@ -854,37 +867,53 @@ public class ManipulaBD
     }
 
     /**
-     * Método para dar de altas productos
+     * Método que hace alta de productos en la bd
      *
      * @param id tipo int
-     * @param codigo tipo int
      * @param id_Proveedor tipo int
-     * @param ventas tipo int
-     * @param nombre String nombre
-     * @param descripcion String descripcion
+     * @param codigo tipo int
+     * @param nombre tipo String
+     * @param descripcion tipo String
      * @param precio_Venta tipo float
      * @param precio_Compra tipo float
      * @param perecedero tipo boolean
+     * @param cantidad tipo int
+     * @param peso tipo float
+     * @param caducidad tipo String
+     * @param marca tipo String
+     * @param estatus tipo boolean
+     * @param existencias tipo boolean
+     * @param ventas tipo int
      */
-    public static void AltasProductos(int id, int codigo, int id_Proveedor, int ventas, String nombre, String descripcion,
-            float precio_Venta, float precio_Compra, boolean perecedero)
+    public static void AltasProductos(int id, int id_Proveedor, int codigo, String nombre, String descripcion,
+            float precio_Venta, float precio_Compra, boolean perecedero, int cantidad, float peso, String caducidad,
+            String marca, boolean estatus, boolean existencias, int ventas)
     {
         Connection con = ManipulaBD.conecta();
         String perecederoS = String.valueOf(perecedero);
+        String estatusS = String.valueOf(estatus);
+        String existenciasS = String.valueOf(existencias);
         descripcion = descripcion.replace(" ", "|");
+        marca = marca.replace(" ", "|");
         if (con != null)
         {
             Querys sql = new Querys();
             sql.Insertar(con, "productos",
                     "" + id + ","
-                    + codigo + ","
                     + id_Proveedor + ","
-                    + ventas + ",'"
+                    + codigo + ",'"
                     + nombre + "','"
                     + descripcion + "',"
                     + precio_Venta + ","
                     + precio_Compra + ",'"
-                    + perecederoS + "'"
+                    + perecederoS + "',"
+                    + cantidad + ","
+                    + peso + ",'"
+                    + caducidad + "','"
+                    + marca + "','"
+                    + estatusS + "','"
+                    + existenciasS + "',"
+                    + ventas + ""
             );
             ManipulaBD.desconecta(con);
             System.out.println("Dato insertado");
