@@ -1,11 +1,16 @@
 package Ventanas;
 
+import clases.Personas;
+import java.util.ArrayList;
+
 /**
  *
  * @author REYNO21
  */
 public class Consultas_Usuarios extends javax.swing.JFrame
   {
+
+   public  static ArrayList<Personas> us;
 
     /**
      * Creates new form Consultas
@@ -164,6 +169,26 @@ public class Consultas_Usuarios extends javax.swing.JFrame
       
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    public void Mostrar()
+    {
+//        TaDatosAlumno.setValueAt(objeto.get(0).getFolioAlumno(), 0, 0);
+//        TaDatosAlumno.setValueAt(objeto.get(0).getApellidoP(), 0, 1);
+//        TaDatosAlumno.setValueAt(objeto.get(0).getApellidoM(), 0, 2);
+//        TaDatosAlumno.setValueAt(objeto.get(0).getNombre(), 0, 3);
+//        TaDatosAlumno.setValueAt(objeto.get(0).getGrado(), 0, 4);
+//        TaDatosAlumno.setValueAt(objeto.get(0).getGrupo(), 0, 5);
+//        String condicion = String.valueOf(objeto.get(0).getId());
+//        cal = ManipulaBD.ConsultasCalificaciones("id_Alumno=", condicion);
+//
+//        for (int i = 0; i < cal.size(); i++)
+//          {
+//            condicion = String.valueOf(cal.get(i).getId_Materia());
+//            mat = ManipulaBD.ConsultasMaterias("id=", condicion);
+//            TaCali.setValueAt(mat.get(0).getNombre(), i, 0);
+//            TaCali.setValueAt(cal.get(i).getCalificacion(), i, 1);
+//          }
+    }
+    
     /**
      * @param args the command line arguments
      */
