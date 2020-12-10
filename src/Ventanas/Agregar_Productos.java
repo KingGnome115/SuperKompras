@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Validaciones;
+import clases.ManipulaBD;
+import clases.Productos;
+import clases.Proveedores;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,18 +13,45 @@ import javax.swing.JOptionPane;
  * @author Kevin
  */
 public class Agregar_Productos extends javax.swing.JFrame
-  {
+{
+
+    int total;
+    private ArrayList<Proveedores> nombres = null;
 
     /**
      * Creates new form Agregar_Productos
      */
     public Agregar_Productos()
-      {
+    {
         initComponents();
-        CtrlInterfaz.limpia(TNombre, TCompra, TCad, TFVenta, TMarca, TProveedor, TVenta);
-        CtrlInterfaz.habilita(false, BAceptar, btnBuscar, TVenta, TCompra, TCad, TFVenta, TMarca, TProveedor, jcPerec);
-        jcPerec.setEnabled(false);
-      }
+        CtrlInterfaz.limpia(TNombre, TCompra, TCad, TFVenta, TMarca, TVenta);
+
+        ArrayList<Productos> tmp = null;
+        tmp = ManipulaBD.ConsultasProductos("id!=", "-1");
+        try
+        {
+            System.out.println(tmp.isEmpty());
+            if (!tmp.isEmpty())
+            {
+                total = tmp.get(tmp.size() - 1).getId() + 1;
+                System.out.println(total);
+            } else
+            {
+                total = 0;
+            }
+        } catch (java.lang.NullPointerException e)
+        {
+            total = 0;
+        }
+
+        nombres = ManipulaBD.ConsultasProveedores("id!=", "-1");
+        System.out.println(nombres.size());
+        for (int i = 0; i < nombres.size(); i++)
+        {
+            JCProveedor.addItem(nombres.get(i).getNombre());
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +60,8 @@ public class Agregar_Productos extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,19 +73,17 @@ public class Agregar_Productos extends javax.swing.JFrame
         TMarca = new javax.swing.JTextField();
         TCompra = new javax.swing.JTextField();
         TVenta = new javax.swing.JTextField();
-        TProveedor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         TCad = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        JCTipo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         TFVenta = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         BAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jcExis = new javax.swing.JCheckBox();
-        TExis = new javax.swing.JTextField();
         jLabelDesc = new javax.swing.JLabel();
         TDescripcion = new javax.swing.JTextField();
+        JCProveedor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,54 +98,59 @@ public class Agregar_Productos extends javax.swing.JFrame
         jLabel5.setText("Proveedor");
 
         jcPerec.setText("Perecedero");
-        jcPerec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jcPerec.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jcPerecActionPerformed(evt);
             }
         });
 
-        TNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TNombreKeyTyped(evt);
             }
         });
 
-        TMarca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TMarca.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TMarcaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TMarcaKeyTyped(evt);
             }
         });
 
-        TCompra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TCompra.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TCompraKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TCompraKeyTyped(evt);
             }
         });
 
-        TVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TVenta.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TVentaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TVentaKeyTyped(evt);
-            }
-        });
-
-        TProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TProveedorKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TProveedorKeyTyped(evt);
             }
         });
 
@@ -129,84 +159,79 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         TCad.setText("DD/MM/AAAA");
         TCad.setEnabled(false);
-        TCad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        TCad.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 TCadActionPerformed(evt);
             }
         });
-        TCad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TCad.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TCadKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TCadKeyTyped(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cantidad", "Peso" }));
+        JCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cantidad", "Peso" }));
 
         jLabel7.setText("Forma de venta");
 
-        TFVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TFVenta.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TFVentaKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TFVentaKeyTyped(evt);
-            }
-        });
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
             }
         });
 
         BAceptar.setText("Aceptar");
         BAceptar.setEnabled(false);
-        BAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 BAceptarActionPerformed(evt);
             }
         });
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelarActionPerformed(evt);
             }
         });
 
         jcExis.setText("Existencias");
-        jcExis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jcExis.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jcExisActionPerformed(evt);
-            }
-        });
-
-        TExis.setEnabled(false);
-        TExis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TExisActionPerformed(evt);
-            }
-        });
-        TExis.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TExisKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TExisKeyTyped(evt);
             }
         });
 
         jLabelDesc.setText("Descripcion");
 
-        TDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        TDescripcion.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
                 TDescripcionKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 TDescripcionKeyTyped(evt);
             }
         });
@@ -228,15 +253,12 @@ public class Agregar_Productos extends javax.swing.JFrame
                                 .addComponent(jLabelDesc))
                             .addGap(28, 28, 28)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TVenta)
+                                .addComponent(TVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                                 .addComponent(TNombre)
                                 .addComponent(TMarca)
                                 .addComponent(TCompra)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(TProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnBuscar))
-                                .addComponent(TDescripcion)))
+                                .addComponent(TDescripcion)
+                                .addComponent(JCProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(BAceptar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -246,22 +268,18 @@ public class Agregar_Productos extends javax.swing.JFrame
                                 .addComponent(jcPerec)
                                 .addComponent(jLabel7))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(TFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(TCad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jcExis)
-                            .addGap(18, 18, 18)
-                            .addComponent(TExis, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(TCad))))
+                        .addComponent(jcExis))
                     .addComponent(jLabel5))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,8 +307,7 @@ public class Agregar_Productos extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(TProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(JCProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcPerec)
@@ -298,18 +315,16 @@ public class Agregar_Productos extends javax.swing.JFrame
                     .addComponent(TCad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(TFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcExis, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TExis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jcExis, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BAceptar)
                     .addComponent(btnCancelar))
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
 
         pack();
@@ -324,18 +339,61 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
 
+        int id = total++;
+        String item = (String) JCProveedor.getSelectedItem();
+        int id_Proveedor = 0;
+        for (int i = 0; i < nombres.size(); i++)
+        {
+            if (item.compareTo(nombres.get(i).getNombre()) == 0)
+            {
+                id_Proveedor = nombres.get(i).getId();
+            }
+        }
+        int codigo = id + id_Proveedor + 1 * 3;
         String nombre = TNombre.getText();
+        String descripcion = TDescripcion.getText();
+        float precio_Venta = Float.parseFloat(TVenta.getText());
+        float precio_Compra = Float.parseFloat(TCompra.getText());
+        boolean perecedero;
+        String caducidad = "";
+        if (jcPerec.isSelected())
+        {
+            perecedero = true;
+            caducidad = TCad.getText();
+        } else
+        {
+            perecedero = false;
+        }
+        item = (String) JCTipo.getSelectedItem();
+        int cantidad = 0;
+        float peso = 0;
+        if (item.compareTo("Cantidad") == 0)
+        {
+            cantidad = Integer.parseInt(TFVenta.getText());
+            peso = 0;
+        } else
+        {
+            if (item.compareTo("Peso") == 0)
+            {
+                peso = Float.parseFloat(TFVenta.getText());
+                cantidad = 0;
+            }
+        }
         String marca = TMarca.getText();
-        int compra = Integer.parseInt(String.valueOf(TCompra));
-        int venta = Integer.parseInt(String.valueOf(TVenta));
-        String proveedor = TProveedor.getText();
-        String fVenta = TFVenta.getText();
-        
-        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre,TMarca,TCompra,TVenta,TProveedor, TDescripcion,TFVenta, TExis, TCad);
+        boolean estatus = true;
+        boolean existencias;
+        if (jcExis.isSelected())
+        {
+            existencias = true;
+        } else
+        {
+            existencias = false;
+        }
+        int ventas = 0;
+
+        ManipulaBD.AltasProductos(id, id_Proveedor, codigo, nombre, descripcion, precio_Venta, precio_Compra,
+                perecedero, cantidad, peso, caducidad, marca, estatus, existencias, ventas);
         JOptionPane.showMessageDialog(null, "Producto agregado");
-
-
     }//GEN-LAST:event_BAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
@@ -347,9 +405,9 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void TNombreKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TNombreKeyPressed
     {//GEN-HEADEREND:event_TNombreKeyPressed
         if (TNombre.getText().isEmpty() != true)
-          {
+        {
             Validaciones.enter(this, evt, TMarca);
-          }
+        }
     }//GEN-LAST:event_TNombreKeyPressed
 
     private void TNombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TNombreKeyTyped
@@ -360,9 +418,9 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void TMarcaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TMarcaKeyPressed
     {//GEN-HEADEREND:event_TMarcaKeyPressed
         if (TMarca.getText().isEmpty() != true)
-          {
+        {
             Validaciones.enter(this, evt, TDescripcion);
-          }
+        }
     }//GEN-LAST:event_TMarcaKeyPressed
 
     private void TMarcaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TMarcaKeyTyped
@@ -373,9 +431,9 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void TCompraKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCompraKeyPressed
     {//GEN-HEADEREND:event_TCompraKeyPressed
         if (TCompra.getText().isEmpty() != true)
-          {
+        {
             Validaciones.enter(this, evt, TVenta);
-          }
+        }
     }//GEN-LAST:event_TCompraKeyPressed
 
     private void TCompraKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCompraKeyTyped
@@ -386,9 +444,9 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void TVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TVentaKeyPressed
     {//GEN-HEADEREND:event_TVentaKeyPressed
         if (TVenta.getText().isEmpty() != true)
-          {
-            Validaciones.enter(this, evt, TProveedor);
-          }
+        {
+            Validaciones.enter(this, evt, JCProveedor);
+        }
     }//GEN-LAST:event_TVentaKeyPressed
 
     private void TVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TVentaKeyTyped
@@ -396,28 +454,13 @@ public class Agregar_Productos extends javax.swing.JFrame
         Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_TVentaKeyTyped
 
-    private void TProveedorKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TProveedorKeyPressed
-    {//GEN-HEADEREND:event_TProveedorKeyPressed
-        if (TProveedor.getText().isEmpty() != true)
-          {
-            Validaciones.enter(this, evt, TFVenta);
-            jcPerec.setEnabled(true);
-            CtrlInterfaz.habilita(true, btnBuscar);
-          }
-    }//GEN-LAST:event_TProveedorKeyPressed
-
-    private void TProveedorKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TProveedorKeyTyped
-    {//GEN-HEADEREND:event_TProveedorKeyTyped
-        Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_TProveedorKeyTyped
-
     private void TFVentaKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TFVentaKeyPressed
     {//GEN-HEADEREND:event_TFVentaKeyPressed
         if (TFVenta.getText().isEmpty() != true)
-          {
+        {
             Validaciones.enter(this, evt, evt);
             CtrlInterfaz.habilita(true, BAceptar);
-          }
+        }
     }//GEN-LAST:event_TFVentaKeyPressed
 
     private void TFVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TFVentaKeyTyped
@@ -425,49 +468,40 @@ public class Agregar_Productos extends javax.swing.JFrame
         Validaciones.validaFlotantes(evt);
     }//GEN-LAST:event_TFVentaKeyTyped
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBuscarActionPerformed
-    {//GEN-HEADEREND:event_btnBuscarActionPerformed
-        /**
-         * Aqui va el metodo para buscar al proveedor
-         */
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void jcPerecActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jcPerecActionPerformed
     {//GEN-HEADEREND:event_jcPerecActionPerformed
-        // TODO add your handling code here:
+        if (jcPerec.isSelected())
+        {
+            TCad.setEnabled(true);
+            jLabel6.setEnabled(true);
+        } else
+        {
+            TCad.setEnabled(false);
+            jLabel6.setEnabled(false);
+        }
     }//GEN-LAST:event_jcPerecActionPerformed
 
     private void TCadKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCadKeyPressed
     {//GEN-HEADEREND:event_TCadKeyPressed
-
+        
+        
     }//GEN-LAST:event_TCadKeyPressed
 
     private void TCadKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCadKeyTyped
     {//GEN-HEADEREND:event_TCadKeyTyped
-        Validaciones.validaFlotantes(evt); // Checar que si sea esta la validacion necesaria para la fecha de caducidad
+
+
     }//GEN-LAST:event_TCadKeyTyped
 
     private void jcExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcExisActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jcExisActionPerformed
-
-    private void TExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TExisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TExisActionPerformed
-
-    private void TExisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TExisKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TExisKeyPressed
-
-    private void TExisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TExisKeyTyped
-      Validaciones.validaFlotantes(evt);
-    }//GEN-LAST:event_TExisKeyTyped
 
     private void TDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDescripcionKeyPressed
         if (TDescripcion.getText().isEmpty() != true)
-          {
+        {
             Validaciones.enter(this, evt, TCompra);
-          }
+        }
     }//GEN-LAST:event_TDescripcionKeyPressed
 
     private void TDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDescripcionKeyTyped
@@ -478,61 +512,59 @@ public class Agregar_Productos extends javax.swing.JFrame
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Agregar_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Agregar_Productos().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAceptar;
+    private javax.swing.JComboBox<String> JCProveedor;
+    private javax.swing.JComboBox<String> JCTipo;
     private javax.swing.JTextField TCad;
     private javax.swing.JTextField TCompra;
     private javax.swing.JTextField TDescripcion;
-    private javax.swing.JTextField TExis;
     private javax.swing.JTextField TFVenta;
     private javax.swing.JTextField TMarca;
     private javax.swing.JTextField TNombre;
-    private javax.swing.JTextField TProveedor;
     private javax.swing.JTextField TVenta;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
