@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import cjb.ci.CtrlInterfaz;
 import clases.Entidades;
 import clases.ManipulaBD;
 import clases.Pais;
@@ -160,9 +161,11 @@ public class Agregar_Entidades extends javax.swing.JFrame
         String nombres = TEntidad.getText();
         boolean estatus = true;
         ManipulaBD.AltasEntidades(id_Pais, id, nombres, estatus);
-        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TEntidad);
+        
         JOptionPane.showMessageDialog(null, "Entidad agregada");
+       
+        cjb.ci.CtrlInterfaz.habilita(false, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TEntidad);
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -173,6 +176,7 @@ public class Agregar_Entidades extends javax.swing.JFrame
         } else
         {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
+            CtrlInterfaz.habilita(true, BAceptar);
         }
     }//GEN-LAST:event_TEntidadKeyTyped
 

@@ -131,9 +131,10 @@ public class Agregar_Pais extends javax.swing.JFrame
         String nombre = TNombre.getText();
         boolean estatus = true;
         ManipulaBD.AltasPais(id, nombre, estatus);
-        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre);
+        
         JOptionPane.showMessageDialog(null, "Pais agregado");
+        cjb.ci.CtrlInterfaz.habilita(false, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre);
         
         
         
@@ -146,6 +147,7 @@ public class Agregar_Pais extends javax.swing.JFrame
         } else
         {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
+            cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
         }
     }//GEN-LAST:event_TNombreKeyTyped
 
