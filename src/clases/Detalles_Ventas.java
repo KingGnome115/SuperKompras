@@ -86,6 +86,4 @@ public class Detalles_Ventas
     {
         this.precio_Total = precio_Total;
     }
-    
-    
 }
