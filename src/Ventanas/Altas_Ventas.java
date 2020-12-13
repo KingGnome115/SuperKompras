@@ -41,13 +41,13 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
             TCProductos.addItem(nombres.get(i).getNombre());
         }
 
-        ArrayList<Ventas> tmp = null;
-        tmp = ManipulaBD.ConsultasVentas("id!=", "-1");
+        ArrayList<Ventas> tmp1 = null;
+        tmp1 = ManipulaBD.ConsultasVentas("id!=", "-1");
         try
         {
-            if (!tmp.isEmpty())
+            if (!tmp1.isEmpty())
             {
-                totalV = tmp.get(tmp.size() - 1).getId() + 1;
+                totalV = tmp1.get(tmp1.size() - 1).getId() + 1;
             } else
             {
                 totalV = 0;
@@ -63,7 +63,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
         {
             if (!tmp2.isEmpty())
             {
-                totalDV = tmp2.get(tmp.size() - 1).getId() + 1;
+                totalDV = tmp2.get(tmp2.size() - 1).getId() + 1;
             } else
             {
                 totalDV = 0;
@@ -94,7 +94,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
             THora.setText(hora + ":" + minuto);
         }
     }
-    
+
     public static String Fecha()
     {
         Date Fecha = new Date();
@@ -226,26 +226,25 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BCancelar)
+                        .addComponent(TFecha)
+                        .addGap(46, 46, 46)
+                        .addComponent(THora)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BAceptar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(BEliminar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(BAgregar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TFecha)
-                                .addGap(46, 46, 46)
-                                .addComponent(THora)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BEliminar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(BAgregar))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                                .addComponent(BCancelar)
+                                .addGap(297, 297, 297)
+                                .addComponent(BAceptar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,8 +327,23 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
 
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
-
+        
         int id = totalV++;
+        String fecha = TFecha.getText();
+        String Hora = THora.getText();
+        ManipulaBD.AltasVentas(id, fecha, Hora, (float) 0.0);
+        float total = (float) 0.0;
+
+        for (int i = 0; i < tmp.size(); i++)
+        {
+            int id2 = totalDV++;
+            int id_Producto = tmp.get(i).getId();
+            int cantidad = Integer.parseInt("" + TDV.getValueAt(i, 2) + "");
+            float precio_Total = tmp.get(i).getPrecio_Venta() * cantidad;
+            total+=precio_Total;
+            ManipulaBD.AltasDetalles_Ventas(id2, id, id_Producto, cantidad, precio_Total);
+        }
+        ManipulaBD.ModificarVentas(id, total);
 
 
     }//GEN-LAST:event_BAceptarActionPerformed

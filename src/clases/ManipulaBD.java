@@ -846,6 +846,30 @@ public class ManipulaBD
     }
 
     /**
+     * Método para modificar datos en la bd de un usuario
+     *
+     * @param id tipo int
+     * @param campos los campos que seran cambiados ejemplo "Nombre,sueldo"
+     * @param datos los datos nuevos que seran replazados en la bd ejemplos:
+     * "'pedro',12.50" los string con comillas simples y los numeros sin ellas
+     */
+    public static void ModificarVentas(int id, float costos)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            ArrayList<Ventas> ap = ManipulaBD.CargarVentas(sql.Seleccion(con, "*", "ventas", "id=" + id + ""));
+            if (ap != null)
+            {
+                sql.Modificar(con, "ventas", "Costos", "" + costos + "", "id='" + id + "'");
+                ManipulaBD.desconecta(con);
+                System.out.println("Modificados");
+            }
+        }
+    }
+
+    /**
      * Método que hace alta de productos en la bd
      *
      * @param id tipo int
