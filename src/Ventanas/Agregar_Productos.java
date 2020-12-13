@@ -5,6 +5,8 @@ import cjb.ci.Validaciones;
 import clases.ManipulaBD;
 import clases.Productos;
 import clases.Proveedores;
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,7 +26,7 @@ public class Agregar_Productos extends javax.swing.JFrame
     public Agregar_Productos()
     {
         initComponents();
-        CtrlInterfaz.limpia(TNombre, TCompra, TCad, TFVenta, TMarca, TVenta,TCad);
+        CtrlInterfaz.limpia(TNombre, TCompra, TFVenta, TMarca, TVenta);
 
         ArrayList<Productos> tmp = null;
         tmp = ManipulaBD.ConsultasProductos("id!=", "-1");
@@ -53,6 +55,19 @@ public class Agregar_Productos extends javax.swing.JFrame
 
     }
 
+    private SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+
+    public String ObtenerFecha(JDateChooser jd)
+    {
+        if (jd.getDate() != null)
+        {
+            return formato.format(jd.getDate());
+        } else
+        {
+            return null;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +78,7 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void initComponents()
     {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,16 +90,15 @@ public class Agregar_Productos extends javax.swing.JFrame
         TCompra = new javax.swing.JTextField();
         TVenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        TCad = new javax.swing.JTextField();
         JCTipo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         TFVenta = new javax.swing.JTextField();
         BAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jcExis = new javax.swing.JCheckBox();
         jLabelDesc = new javax.swing.JLabel();
         TDescripcion = new javax.swing.JTextField();
         JCProveedor = new javax.swing.JComboBox<>();
+        TCad = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,27 +172,6 @@ public class Agregar_Productos extends javax.swing.JFrame
         jLabel6.setText("Fecha de Caducidad");
         jLabel6.setEnabled(false);
 
-        TCad.setText("DD/MM/AAAA");
-        TCad.setEnabled(false);
-        TCad.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                TCadActionPerformed(evt);
-            }
-        });
-        TCad.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                TCadKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                TCadKeyTyped(evt);
-            }
-        });
-
         JCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cantidad", "Peso" }));
 
         jLabel7.setText("Forma de venta");
@@ -213,15 +207,6 @@ public class Agregar_Productos extends javax.swing.JFrame
             }
         });
 
-        jcExis.setText("Existencias");
-        jcExis.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jcExisActionPerformed(evt);
-            }
-        });
-
         jLabelDesc.setText("Descripcion");
 
         TDescripcion.addKeyListener(new java.awt.event.KeyAdapter()
@@ -236,6 +221,8 @@ public class Agregar_Productos extends javax.swing.JFrame
             }
         });
 
+        TCad.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,44 +231,42 @@ public class Agregar_Productos extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BAceptar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabelDesc))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                            .addComponent(TNombre)
+                            .addComponent(TMarca)
+                            .addComponent(TCompra)
+                            .addComponent(TDescripcion)
+                            .addComponent(JCProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcPerec)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabelDesc))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                                    .addComponent(TNombre)
-                                    .addComponent(TMarca)
-                                    .addComponent(TCompra)
-                                    .addComponent(TDescripcion)
-                                    .addComponent(JCProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcPerec)
-                                    .addComponent(jLabel7))
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(TCad))))
-                            .addComponent(jcExis)
-                            .addComponent(jLabel5))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(TCad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TFVenta))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BAceptar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,32 +296,26 @@ public class Agregar_Productos extends javax.swing.JFrame
                     .addComponent(jLabel5)
                     .addComponent(JCProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcPerec)
-                    .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcPerec)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(TFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(TCad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(TFVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jcExis, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar)
-                    .addComponent(BAceptar))
-                .addContainerGap())
+                    .addComponent(BAceptar)))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TCadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_TCadActionPerformed
-    {//GEN-HEADEREND:event_TCadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TCadActionPerformed
 
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
@@ -361,7 +340,13 @@ public class Agregar_Productos extends javax.swing.JFrame
         if (jcPerec.isSelected())
         {
             perecedero = true;
-            caducidad = TCad.getText();
+            String cadu = ObtenerFecha(TCad);
+
+            if (cadu != null)
+            {
+                caducidad = cadu;
+            }
+
         } else
         {
             perecedero = false;
@@ -384,7 +369,7 @@ public class Agregar_Productos extends javax.swing.JFrame
         String marca = TMarca.getText();
         boolean estatus = true;
         boolean existencias;
-        if (jcExis.isSelected())
+        if (cantidad > 0 || peso > 0)
         {
             existencias = true;
         } else
@@ -395,13 +380,15 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         ManipulaBD.AltasProductos(id, id_Proveedor, codigo, nombre, descripcion, precio_Venta, precio_Compra,
                 perecedero, cantidad, peso, caducidad, marca, estatus, existencias, ventas);
+        btnCancelarActionPerformed(evt);
+        
         
         JOptionPane.showMessageDialog(null, "Producto agregado");
     }//GEN-LAST:event_BAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
-switch (InicioSesion.usuario.get(0).getClasificacion())
+        switch (InicioSesion.usuario.get(0).getClasificacion())
         {
             case 1:
                 new Menu_Gerente().setVisible(true);
@@ -495,34 +482,6 @@ switch (InicioSesion.usuario.get(0).getClasificacion())
         }
     }//GEN-LAST:event_jcPerecActionPerformed
 
-    private void TCadKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCadKeyPressed
-    {//GEN-HEADEREND:event_TCadKeyPressed
-        
-        
-    }//GEN-LAST:event_TCadKeyPressed
-
-    private void TCadKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TCadKeyTyped
-    {//GEN-HEADEREND:event_TCadKeyTyped
-
-
-    }//GEN-LAST:event_TCadKeyTyped
-
-    private void jcExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcExisActionPerformed
-        switch (InicioSesion.usuario.get(0).getClasificacion())
-        {
-            case 1:
-                new Menu_Gerente().setVisible(true);
-                break;
-            case 2:
-                new Menu_SubGerente().setVisible(true);
-                break;
-            case 3:
-                new Menu_Empleado().setVisible(true);
-                break;
-        }
-        this.setVisible(false);
-    }//GEN-LAST:event_jcExisActionPerformed
-
     private void TDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDescripcionKeyPressed
         if (TDescripcion.getText().isEmpty() != true)
         {
@@ -583,7 +542,7 @@ switch (InicioSesion.usuario.get(0).getClasificacion())
     private javax.swing.JButton BAceptar;
     private javax.swing.JComboBox<String> JCProveedor;
     private javax.swing.JComboBox<String> JCTipo;
-    private javax.swing.JTextField TCad;
+    private com.toedter.calendar.JDateChooser TCad;
     private javax.swing.JTextField TCompra;
     private javax.swing.JTextField TDescripcion;
     private javax.swing.JTextField TFVenta;
@@ -599,7 +558,7 @@ switch (InicioSesion.usuario.get(0).getClasificacion())
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelDesc;
-    private javax.swing.JCheckBox jcExis;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JCheckBox jcPerec;
     // End of variables declaration//GEN-END:variables
 }
