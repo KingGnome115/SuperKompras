@@ -1,24 +1,68 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
+
+import clases.Detalles_Ventas;
+import clases.ManipulaBD;
+import clases.Productos;
+import clases.Ventas;
+import java.util.ArrayList;
 
 /**
  *
  * @author REYNO21
  */
 public class Altas_Ventas extends javax.swing.JFrame
-  {
+{
+
+    private ArrayList<Productos> nombres = null;
+    private int totalDV = 0;
+    private int totalV = 0;
+    private int cont = 0;
 
     /**
      * Creates new form Ventas
      */
     public Altas_Ventas()
-      {
+    {
         initComponents();
-      }
+        nombres = ManipulaBD.ConsultasProductos("id!=", "-1");
+        for (int i = 0; i < nombres.size(); i++)
+        {
+            TCProductos.addItem(nombres.get(i).getNombre());
+        }
+
+        ArrayList<Ventas> tmp = null;
+        tmp = ManipulaBD.ConsultasVentas("id!=", "-1");
+        try
+        {
+            if (!tmp.isEmpty())
+            {
+                totalV = tmp.get(tmp.size() - 1).getId() + 1;
+            } else
+            {
+                totalV = 0;
+            }
+        } catch (java.lang.NullPointerException e)
+        {
+            totalV = 0;
+        }
+
+        ArrayList<Detalles_Ventas> tmp2 = null;
+        tmp2 = ManipulaBD.ConsultasDetalles_Ventas("id!=", "-1");
+        try
+        {
+            if (!tmp2.isEmpty())
+            {
+                totalDV = tmp2.get(tmp.size() - 1).getId() + 1;
+            } else
+            {
+                totalDV = 0;
+            }
+        } catch (java.lang.NullPointerException e)
+        {
+            totalDV = 0;
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,22 +74,49 @@ public class Altas_Ventas extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        BAgregar = new javax.swing.JButton();
+        TCProductos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        TDV = new javax.swing.JTable();
+        BCancelar = new javax.swing.JButton();
+        BAceptar = new javax.swing.JButton();
+        BEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Agregar");
+        BAgregar.setText("Agregar");
+        BAgregar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BAgregarActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TDV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,25 +124,50 @@ public class Altas_Ventas extends javax.swing.JFrame
             },
             new String []
             {
-                "Id Producto", "Cantidad", "Producto", "Precio"
+                "Producto", "Id Producto", "Cantidad", "Precio"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex)
             {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TDV);
 
-        jButton2.setText("Cancelar");
+        BCancelar.setText("Cancelar");
+        BCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BCancelarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Aceptar");
+        BAceptar.setText("Aceptar");
+
+        BEliminar.setText("Eliminar");
+        BEliminar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,31 +177,35 @@ public class Altas_Ventas extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jButton1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(18, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(BCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))))
+                        .addComponent(BAceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BEliminar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(BAgregar))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(BAgregar)
+                    .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(BCancelar)
+                    .addComponent(BAceptar))
                 .addContainerGap())
         );
 
@@ -113,58 +213,102 @@ public class Altas_Ventas extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BCancelarActionPerformed
+    {//GEN-HEADEREND:event_BCancelarActionPerformed
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+        {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_BCancelarActionPerformed
+
+    private void BAgregarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAgregarActionPerformed
+    {//GEN-HEADEREND:event_BAgregarActionPerformed
+
+        String productoActual = (String) TCProductos.getSelectedItem();
+        for (int i = 0; i < nombres.size(); i++)
+        {
+            if (productoActual.compareTo(nombres.get(i).getNombre()) == 0)
+            {
+                TDV.setValueAt(nombres.get(i).getNombre(), i, 0);
+                TDV.setValueAt(nombres.get(i).getId(), i, 1);
+                TDV.setValueAt(nombres.get(i).getPrecio_Venta(), i, 3);
+                cont++;
+            }
+        }
+
+    }//GEN-LAST:event_BAgregarActionPerformed
+
+    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BEliminarActionPerformed
+    {//GEN-HEADEREND:event_BEliminarActionPerformed
+        TDV.setValueAt("", cont-1, 0);
+        TDV.setValueAt("", cont-1, 1);
+        TDV.setValueAt("", cont-1, 2);
+        TDV.setValueAt("", cont-1, 3);
+        cont--;
+    }//GEN-LAST:event_BEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Altas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Altas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Altas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Altas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Altas_Ventas().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton BAceptar;
+    private javax.swing.JButton BAgregar;
+    private javax.swing.JButton BCancelar;
+    private javax.swing.JButton BEliminar;
+    private javax.swing.JComboBox<String> TCProductos;
+    private javax.swing.JTable TDV;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-  }
+}

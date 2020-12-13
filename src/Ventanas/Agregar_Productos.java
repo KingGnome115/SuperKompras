@@ -47,7 +47,6 @@ public class Agregar_Productos extends javax.swing.JFrame
         }
 
         nombres = ManipulaBD.ConsultasProveedores("id!=", "-1");
-        System.out.println(nombres.size());
         for (int i = 0; i < nombres.size(); i++)
         {
             JCProveedor.addItem(nombres.get(i).getNombre());
