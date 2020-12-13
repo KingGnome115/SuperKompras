@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import clases.ManipulaBD;
@@ -30,12 +25,7 @@ public class Consultas_Ventas extends javax.swing.JFrame
         for (int i = 0; i < venta.size(); i++)
           {
 
-            Tventas.setValueAt(venta.get(i).getId(), i, 0);
-            Tventas.setValueAt(venta.get(i).getProducto(), i, 1);
-            Tventas.setValueAt(venta.get(i).getId_DV(), i, 2);
-            Tventas.setValueAt(venta.get(i).getFecha(), i, 3);
-            Tventas.setValueAt(venta.get(i).getHora(), i, 4);
-            Tventas.setValueAt(venta.get(i).getCantidadV(), i, 5);
+            
 
           }
 

@@ -8,20 +8,18 @@ public class Detalles_Ventas
 {
     private int id;
     private int id_Productos;
-    private int id_Personas;
-    private int id_CantidadV;
+    private int CantidadV;
     private float precio_Total;
 
     public Detalles_Ventas()
     {
     }
 
-    public Detalles_Ventas(int id, int id_Productos, int id_Personas, int id_CantidadV, float precio_Total)
+    public Detalles_Ventas(int id, int id_Productos, int CantidadV, float precio_Total)
     {
         this.id = id;
         this.id_Productos = id_Productos;
-        this.id_Personas = id_Personas;
-        this.id_CantidadV = id_CantidadV;
+        this.CantidadV = CantidadV;
         this.precio_Total = precio_Total;
     }
 
@@ -58,35 +56,19 @@ public class Detalles_Ventas
     }
 
     /**
-     * @return the id_Personas
+     * @return the CantidadV
      */
-    public int getId_Personas()
+    public int getCantidadV()
     {
-        return id_Personas;
+        return CantidadV;
     }
 
     /**
-     * @param id_Personas the id_Personas to set
+     * @param CantidadV the CantidadV to set
      */
-    public void setId_Personas(int id_Personas)
+    public void setCantidadV(int CantidadV)
     {
-        this.id_Personas = id_Personas;
-    }
-
-    /**
-     * @return the id_CantidadV
-     */
-    public int getId_CantidadV()
-    {
-        return id_CantidadV;
-    }
-
-    /**
-     * @param id_CantidadV the id_CantidadV to set
-     */
-    public void setId_CantidadV(int id_CantidadV)
-    {
-        this.id_CantidadV = id_CantidadV;
+        this.CantidadV = CantidadV;
     }
 
     /**
@@ -104,7 +86,4 @@ public class Detalles_Ventas
     {
         this.precio_Total = precio_Total;
     }
-    
-    
-    
 }

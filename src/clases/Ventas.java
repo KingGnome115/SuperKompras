@@ -9,25 +9,21 @@ public class Ventas
 
     private int id;
     private int id_DV;
-    private int producto;
     private String fecha;
     private int hora;
-    private int cantidadV;
     private float Costos;
-
-    public Ventas(int id, int id_DV, int producto, String fecha, int hora, int cantidadV, float Costos)
-    {
-        this.id = id;
-        this.id_DV = id_DV;
-        this.producto = producto;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.cantidadV = cantidadV;
-        this.Costos = Costos;
-    }
 
     public Ventas()
     {
+    }
+
+    public Ventas(int id, int id_DV, String fecha, int hora, float Costos)
+    {
+        this.id = id;
+        this.id_DV = id_DV;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.Costos = Costos;
     }
 
     /**
@@ -63,22 +59,6 @@ public class Ventas
     }
 
     /**
-     * @return the producto
-     */
-    public int getProducto()
-    {
-        return producto;
-    }
-
-    /**
-     * @param producto the producto to set
-     */
-    public void setProducto(int producto)
-    {
-        this.producto = producto;
-    }
-
-    /**
      * @return the fecha
      */
     public String getFecha()
@@ -111,22 +91,6 @@ public class Ventas
     }
 
     /**
-     * @return the cantidadV
-     */
-    public int getCantidadV()
-    {
-        return cantidadV;
-    }
-
-    /**
-     * @param cantidadV the cantidadV to set
-     */
-    public void setCantidadV(int cantidadV)
-    {
-        this.cantidadV = cantidadV;
-    }
-
-    /**
      * @return the Costos
      */
     public float getCostos()
@@ -141,5 +105,4 @@ public class Ventas
     {
         this.Costos = Costos;
     }
-
 }
