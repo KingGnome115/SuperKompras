@@ -1,5 +1,6 @@
 package Ventanas;
 
+import cjb.ci.CtrlInterfaz;
 import cjb.ci.Validaciones;
 import clases.ManipulaBD;
 import clases.Municipio;
@@ -25,6 +26,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
     public Agregar_Proveedor()
     {
         initComponents();
+        CtrlInterfaz.habilita(false, BAceptar);
 
         ArrayList<Proveedores> tmp = null;
         tmp = ManipulaBD.ConsultasProveedores("id!=", "-1");
@@ -50,6 +52,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         {
             JCMunicipio.addItem(nombres.get(i).getNombre());
         }
+        
 
     }
 
@@ -427,6 +430,7 @@ public class Agregar_Proveedor extends javax.swing.JFrame
         if (!((TEmail.getText().isEmpty()) || (!(validaEmail(TEmail.getText())))))
         {
             Validaciones.enter(this, evt, BAceptar);
+            CtrlInterfaz.habilita(true, BAceptar);
         }
     }//GEN-LAST:event_TEmailKeyPressed
 
@@ -463,9 +467,10 @@ public class Agregar_Proveedor extends javax.swing.JFrame
 
         ManipulaBD.AltasProveedores(id, id_Municio, nombre, apellidoP, apellidoM, rfc, razon_Social,
                 direccion, cp, telefono, email, estatus);
-        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail, TDireccion, TRazon);
+        
         JOptionPane.showMessageDialog(null, "Proveedor agregado");
+        cjb.ci.CtrlInterfaz.habilita(false, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre, TApellidoP, TApellidoM, TRFC, TCP, TTelefono, TEmail, TDireccion, TRazon);
 
 
     }//GEN-LAST:event_BAceptarActionPerformed

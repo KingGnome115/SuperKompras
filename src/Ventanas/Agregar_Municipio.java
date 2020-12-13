@@ -158,9 +158,10 @@ public class Agregar_Municipio extends javax.swing.JFrame
         boolean estatus = true;
         String nombre = TNombre.getText();
         ManipulaBD.AltasMunicipio(id, id_Entidad, estatus, nombre);
-        cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
-        cjb.ci.CtrlInterfaz.limpia(TNombre);
+        
         JOptionPane.showMessageDialog(null, "Municipio agregado");
+        cjb.ci.CtrlInterfaz.habilita(false, BAceptar);
+        cjb.ci.CtrlInterfaz.limpia(TNombre);
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -171,6 +172,7 @@ public class Agregar_Municipio extends javax.swing.JFrame
         } else
         {
             cjb.ci.Validaciones.validaAlfabeticos(evt);
+            cjb.ci.CtrlInterfaz.habilita(true, BAceptar);
         }
     }//GEN-LAST:event_TNombreKeyTyped
 

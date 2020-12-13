@@ -384,6 +384,8 @@ public class Agregar_Productos extends javax.swing.JFrame
         
         
         JOptionPane.showMessageDialog(null, "Producto agregado");
+        CtrlInterfaz.limpia(TNombre,TCad, TCompra,TDescripcion, TFVenta, TMarca, TVenta);
+        CtrlInterfaz.habilita(false, BAceptar);
     }//GEN-LAST:event_BAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
@@ -459,7 +461,7 @@ public class Agregar_Productos extends javax.swing.JFrame
     {//GEN-HEADEREND:event_TFVentaKeyPressed
         if (TFVenta.getText().isEmpty() != true)
         {
-            Validaciones.enter(this, evt, evt);
+            Validaciones.enter(this, evt, evt); 
             CtrlInterfaz.habilita(true, BAceptar);
         }
     }//GEN-LAST:event_TFVentaKeyPressed
@@ -467,6 +469,7 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void TFVentaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_TFVentaKeyTyped
     {//GEN-HEADEREND:event_TFVentaKeyTyped
         Validaciones.validaFlotantes(evt);
+        
     }//GEN-LAST:event_TFVentaKeyTyped
 
     private void jcPerecActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jcPerecActionPerformed
