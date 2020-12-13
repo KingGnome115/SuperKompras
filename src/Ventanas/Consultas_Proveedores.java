@@ -60,7 +60,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         TProveedores = new javax.swing.JTable();
         Bregresar = new javax.swing.JButton();
-        BOrdena = new javax.swing.JButton();
         BModifica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,8 +105,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
             }
         });
 
-        BOrdena.setText("Ordenar Alafabeticamente");
-
         BModifica.setText("Modificar");
         BModifica.addActionListener(new java.awt.event.ActionListener()
         {
@@ -128,9 +125,7 @@ public class Consultas_Proveedores extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Bregresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BModifica)
-                        .addGap(97, 97, 97)
-                        .addComponent(BOrdena)))
+                        .addComponent(BModifica)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,7 +136,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Bregresar)
-                    .addComponent(BOrdena)
                     .addComponent(BModifica))
                 .addContainerGap())
         );
@@ -236,7 +230,6 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BModifica;
-    private javax.swing.JButton BOrdena;
     private javax.swing.JButton Bregresar;
     private javax.swing.JTable TProveedores;
     private javax.swing.JScrollPane jScrollPane1;
