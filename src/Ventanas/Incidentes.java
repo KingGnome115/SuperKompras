@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 public class Incidentes extends javax.swing.JFrame implements Runnable
 {
 
-    String hora, minuto;
-    Thread hilo;
+    private String hora, minuto;
+    private Thread hilo;
     int total;
 
     /**
