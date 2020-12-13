@@ -176,6 +176,13 @@ public class Agregar_Productos extends javax.swing.JFrame
 
         jLabel7.setText("Forma de venta");
 
+        TFVenta.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                TFVentaActionPerformed(evt);
+            }
+        });
         TFVenta.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyPressed(java.awt.event.KeyEvent evt)
@@ -384,7 +391,7 @@ public class Agregar_Productos extends javax.swing.JFrame
         
         
         JOptionPane.showMessageDialog(null, "Producto agregado");
-        CtrlInterfaz.limpia(TNombre,TCad, TCompra,TDescripcion, TFVenta, TMarca, TVenta);
+        CtrlInterfaz.limpia(TNombre,TCompra,TDescripcion, TFVenta, TMarca, TVenta);
         CtrlInterfaz.habilita(false, BAceptar);
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -495,6 +502,11 @@ public class Agregar_Productos extends javax.swing.JFrame
     private void TDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDescripcionKeyTyped
         Validaciones.validaAlfanumerico(evt);
     }//GEN-LAST:event_TDescripcionKeyTyped
+
+    private void TFVentaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_TFVentaActionPerformed
+    {//GEN-HEADEREND:event_TFVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFVentaActionPerformed
 
     /**
      * @param args the command line arguments
