@@ -31,8 +31,6 @@
                       <Component id="Bregresar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="BModifica" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                      <Component id="BOrdena" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -47,7 +45,6 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Bregresar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BOrdena" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BModifica" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -66,7 +63,7 @@
         <Component class="javax.swing.JTable" name="TProveedores">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="10">
+              <Table columnCount="10" rowCount="28">
                 <Column editable="true" title="Nombre" type="java.lang.String"/>
                 <Column editable="true" title="Apellido P" type="java.lang.String"/>
                 <Column editable="true" title="Apellido M" type="java.lang.String"/>
@@ -147,11 +144,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BregresarActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BOrdena">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ordenar Alafabeticamente"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BModifica">
       <Properties>
