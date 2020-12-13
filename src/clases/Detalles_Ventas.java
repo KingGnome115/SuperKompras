@@ -7,6 +7,7 @@ package clases;
 public class Detalles_Ventas
 {
     private int id;
+    private int id_Ventas;
     private int id_Productos;
     private int CantidadV;
     private float precio_Total;
@@ -15,13 +16,16 @@ public class Detalles_Ventas
     {
     }
 
-    public Detalles_Ventas(int id, int id_Productos, int CantidadV, float precio_Total)
+    public Detalles_Ventas(int id, int id_Ventas, int id_Productos, int CantidadV, float precio_Total)
     {
         this.id = id;
+        this.id_Ventas = id_Ventas;
         this.id_Productos = id_Productos;
         this.CantidadV = CantidadV;
         this.precio_Total = precio_Total;
     }
+
+    
 
     /**
      * @return the id
@@ -85,5 +89,21 @@ public class Detalles_Ventas
     public void setPrecio_Total(float precio_Total)
     {
         this.precio_Total = precio_Total;
+    }
+
+    /**
+     * @return the id_Ventas
+     */
+    public int getId_Ventas()
+    {
+        return id_Ventas;
+    }
+
+    /**
+     * @param id_Ventas the id_Ventas to set
+     */
+    public void setId_Ventas(int id_Ventas)
+    {
+        this.id_Ventas = id_Ventas;
     }
 }

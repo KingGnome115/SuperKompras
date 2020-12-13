@@ -201,7 +201,7 @@ public class ManipulaBD
         ArrayList<Ventas> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 5)
+            for (int i = 0; i < reg.size(); i += 4)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -209,14 +209,11 @@ public class ManipulaBD
                 if (idS != "" && idS != " ")
                 {
                     int id = Integer.parseInt(idS);
-                    String id_DVS = ((String) reg.get(i + 1)).trim();
-                    int id_DV = Integer.parseInt(id_DVS);
                     String fecha = ((String) reg.get(i + 3)).trim();
-                    String horaS = ((String) reg.get(i + 4)).trim();
-                    int hora = Integer.parseInt(horaS);
+                    String hora = ((String) reg.get(i + 4)).trim();
                     String CostosS = ((String) reg.get(i + 6)).trim();
                     int Costos = Integer.parseInt(CostosS);
-                    Ventas obj = new Ventas(id, id_DV, fecha, hora, Costos);
+                    Ventas obj = new Ventas(id, fecha, hora, Costos);
                     lista.add(obj);
                 }
             }
@@ -240,7 +237,7 @@ public class ManipulaBD
         ArrayList<Detalles_Ventas> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 4)
+            for (int i = 0; i < reg.size(); i += 5)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -248,13 +245,16 @@ public class ManipulaBD
                 if (idS != " " && idS != "")
                 {
                     int id = Integer.parseInt(idS);
-                    String id_ProductosS = ((String) reg.get(i + 1)).trim();
+                    String id_ventasS = ((String) reg.get(i + 1)).trim();
+                    int id_Ventas = Integer.parseInt(id_ventasS);
+                    String id_ProductosS = ((String) reg.get(i + 2)).trim();
                     int id_productos = Integer.parseInt(id_ProductosS);
-                    String CantidadS = ((String) reg.get(i + 2)).trim();
+                    String CantidadS = ((String) reg.get(i + 3)).trim();
                     int Cantidad = Integer.parseInt(CantidadS);
-                    String precio_TotalS = ((String) reg.get(i + 3)).trim();
+                    String precio_TotalS = ((String) reg.get(i + 4)).trim();
                     float precio_Total = Float.parseFloat(precio_TotalS);
-                    Detalles_Ventas obj = new Detalles_Ventas(id, id_productos, Cantidad, precio_Total);
+                    Detalles_Ventas obj = new Detalles_Ventas(id, id_Ventas, id_productos, Cantidad,
+                            precio_Total);
                     lista.add(obj);
                 }
             }
@@ -763,7 +763,7 @@ public class ManipulaBD
      * @param CantidadV tipo int
      * @param precio_Total tipo float
      */
-    public static void AltasDetalles_Ventas(int id, int id_Productos, int CantidadV, float precio_Total)
+    public static void AltasDetalles_Ventas(int id, int id_Ventas, int id_Productos, int CantidadV, float precio_Total)
     {
         Connection con = ManipulaBD.conecta();
         if (con != null)
@@ -771,6 +771,7 @@ public class ManipulaBD
             Querys sql = new Querys();
             sql.Insertar(con, "detalles_ventas",
                     "" + id + ","
+                    + id_Ventas + ","
                     + id_Productos + ","
                     + CantidadV + ","
                     + precio_Total + ""
@@ -809,17 +810,16 @@ public class ManipulaBD
      * @param hora tipo int
      * @param Costos tipo float
      */
-    public static void AltasVentas(int id, int id_DV, String fecha, int hora, float Costos)
+    public static void AltasVentas(int id, String fecha, String hora, float Costos)
     {
         Connection con = ManipulaBD.conecta();
         if (con != null)
         {
             Querys sql = new Querys();
             sql.Insertar(con, "ventas",
-                    "" + id + ","
-                    + id_DV + ","
-                    + fecha + "',"
-                    + hora + ","
+                    "" + id + ",'"
+                    + fecha + "','"
+                    + hora + "',"
                     + Costos + ""
             );
         }

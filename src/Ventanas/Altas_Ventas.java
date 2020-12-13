@@ -4,19 +4,27 @@ import clases.Detalles_Ventas;
 import clases.ManipulaBD;
 import clases.Productos;
 import clases.Ventas;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  *
  * @author REYNO21
  */
-public class Altas_Ventas extends javax.swing.JFrame
+public class Altas_Ventas extends javax.swing.JFrame implements Runnable
 {
 
     private ArrayList<Productos> nombres = null;
+    private ArrayList<Productos> tmp = new ArrayList<>();
+
     private int totalDV = 0;
     private int totalV = 0;
-    private int cont = 0;
+
+    private String hora, minuto;
+    private Thread hilo;
 
     /**
      * Creates new form Ventas
@@ -24,6 +32,9 @@ public class Altas_Ventas extends javax.swing.JFrame
     public Altas_Ventas()
     {
         initComponents();
+        TFecha.setText(Fecha());
+        hilo = new Thread(this);
+        hilo.start();
         nombres = ManipulaBD.ConsultasProductos("id!=", "-1");
         for (int i = 0; i < nombres.size(); i++)
         {
@@ -61,7 +72,34 @@ public class Altas_Ventas extends javax.swing.JFrame
         {
             totalDV = 0;
         }
+    }
 
+    public void hora()
+    {
+        Calendar calendario = new GregorianCalendar();
+        Date horaactual = new Date();
+        calendario.setTime(horaactual);
+        hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
+        minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+    }
+
+    @Override
+    public void run()
+    {
+        Thread current = Thread.currentThread();
+
+        while (current == hilo)
+        {
+            hora();
+            THora.setText(hora + ":" + minuto);
+        }
+    }
+    
+    public static String Fecha()
+    {
+        Date Fecha = new Date();
+        SimpleDateFormat fomatofecha = new SimpleDateFormat("dd/MM/yyyy");
+        return fomatofecha.format(Fecha);
     }
 
     /**
@@ -81,6 +119,8 @@ public class Altas_Ventas extends javax.swing.JFrame
         BCancelar = new javax.swing.JButton();
         BAceptar = new javax.swing.JButton();
         BEliminar = new javax.swing.JButton();
+        TFecha = new javax.swing.JLabel();
+        THora = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,6 +199,13 @@ public class Altas_Ventas extends javax.swing.JFrame
         });
 
         BAceptar.setText("Aceptar");
+        BAceptar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BAceptarActionPerformed(evt);
+            }
+        });
 
         BEliminar.setText("Eliminar");
         BEliminar.addActionListener(new java.awt.event.ActionListener()
@@ -168,6 +215,10 @@ public class Altas_Ventas extends javax.swing.JFrame
                 BEliminarActionPerformed(evt);
             }
         });
+
+        TFecha.setText("dd/MM/YYYY");
+
+        THora.setText("HH:MM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,8 +232,13 @@ public class Altas_Ventas extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BAceptar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BEliminar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TFecha)
+                                .addGap(46, 46, 46)
+                                .addComponent(THora)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BEliminar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +255,10 @@ public class Altas_Ventas extends javax.swing.JFrame
                     .addComponent(BAgregar)
                     .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BEliminar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BEliminar)
+                    .addComponent(TFecha)
+                    .addComponent(THora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -234,27 +293,46 @@ public class Altas_Ventas extends javax.swing.JFrame
     {//GEN-HEADEREND:event_BAgregarActionPerformed
 
         String productoActual = (String) TCProductos.getSelectedItem();
+
         for (int i = 0; i < nombres.size(); i++)
         {
             if (productoActual.compareTo(nombres.get(i).getNombre()) == 0)
             {
-                TDV.setValueAt(nombres.get(i).getNombre(), i, 0);
-                TDV.setValueAt(nombres.get(i).getId(), i, 1);
-                TDV.setValueAt(nombres.get(i).getPrecio_Venta(), i, 3);
-                cont++;
+                if (!tmp.contains(nombres.get(i)))
+                {
+                    tmp.add(nombres.get(i));
+                }
             }
         }
+
+        for (int i = 0; i < tmp.size(); i++)
+        {
+            TDV.setValueAt(tmp.get(i).getNombre(), i, 0);
+            TDV.setValueAt(tmp.get(i).getId(), i, 1);
+            TDV.setValueAt(1, i, 2);
+            TDV.setValueAt(tmp.get(i).getPrecio_Venta(), i, 3);
+        }
+        System.out.println("Productos detectados; " + tmp.size());
 
     }//GEN-LAST:event_BAgregarActionPerformed
 
     private void BEliminarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BEliminarActionPerformed
     {//GEN-HEADEREND:event_BEliminarActionPerformed
-        TDV.setValueAt("", cont-1, 0);
-        TDV.setValueAt("", cont-1, 1);
-        TDV.setValueAt("", cont-1, 2);
-        TDV.setValueAt("", cont-1, 3);
-        cont--;
+        System.out.println(tmp.get(tmp.size() - 1).getNombre());
+        TDV.setValueAt("", tmp.size() - 1, 0);
+        TDV.setValueAt("", tmp.size() - 1, 1);
+        TDV.setValueAt("", tmp.size() - 1, 2);
+        TDV.setValueAt("", tmp.size() - 1, 3);
+        tmp.remove(tmp.size() - 1);
     }//GEN-LAST:event_BEliminarActionPerformed
+
+    private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
+    {//GEN-HEADEREND:event_BAceptarActionPerformed
+
+        int id = totalV++;
+
+
+    }//GEN-LAST:event_BAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,6 +387,8 @@ public class Altas_Ventas extends javax.swing.JFrame
     private javax.swing.JButton BEliminar;
     private javax.swing.JComboBox<String> TCProductos;
     private javax.swing.JTable TDV;
+    private javax.swing.JLabel TFecha;
+    private javax.swing.JLabel THora;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
