@@ -201,7 +201,7 @@ public class ManipulaBD
         ArrayList<Ventas> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 7)
+            for (int i = 0; i < reg.size(); i += 5)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -211,18 +211,13 @@ public class ManipulaBD
                     int id = Integer.parseInt(idS);
                     String id_DVS = ((String) reg.get(i + 1)).trim();
                     int id_DV = Integer.parseInt(id_DVS);
-                    String productoS = ((String) reg.get(i + 2)).trim();
-                    int producto = Integer.parseInt(productoS);
                     String fecha = ((String) reg.get(i + 3)).trim();
                     String horaS = ((String) reg.get(i + 4)).trim();
                     int hora = Integer.parseInt(horaS);
-                    String cantidadVS = ((String) reg.get(i + 5)).trim();
-                    int cantidadV = Integer.parseInt(cantidadVS);
                     String CostosS = ((String) reg.get(i + 6)).trim();
                     int Costos = Integer.parseInt(CostosS);
-                    Ventas obj = new Ventas(id, id_DV, producto, fecha, hora, cantidadV, Costos);
+                    Ventas obj = new Ventas(id, id_DV, fecha, hora, Costos);
                     lista.add(obj);
-
                 }
             }
 
@@ -245,7 +240,7 @@ public class ManipulaBD
         ArrayList<Detalles_Ventas> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 5)
+            for (int i = 0; i < reg.size(); i += 4)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -255,13 +250,11 @@ public class ManipulaBD
                     int id = Integer.parseInt(idS);
                     String id_ProductosS = ((String) reg.get(i + 1)).trim();
                     int id_productos = Integer.parseInt(id_ProductosS);
-                    String id_personasS = ((String) reg.get(i + 2)).trim();
-                    int id_personas = Integer.parseInt(id_personasS);
-                    String id_CantidadS = ((String) reg.get(i + 3)).trim();
-                    int id_Cantidad = Integer.parseInt(id_CantidadS);
-                    String precio_TotalS = ((String) reg.get(i + 4)).trim();
+                    String CantidadS = ((String) reg.get(i + 2)).trim();
+                    int Cantidad = Integer.parseInt(CantidadS);
+                    String precio_TotalS = ((String) reg.get(i + 3)).trim();
                     float precio_Total = Float.parseFloat(precio_TotalS);
-                    Detalles_Ventas obj = new Detalles_Ventas(id, id_productos, id_personas, id_Cantidad, precio_Total);
+                    Detalles_Ventas obj = new Detalles_Ventas(id, id_productos, Cantidad, precio_Total);
                     lista.add(obj);
                 }
             }
@@ -767,11 +760,10 @@ public class ManipulaBD
      *
      * @param id tipo int
      * @param id_Productos tipo int
-     * @param id_Personas tipo int
-     * @param id_CantidadV tipo int
+     * @param CantidadV tipo int
      * @param precio_Total tipo float
      */
-    public static void AltasDetalles_Ventas(int id, int id_Productos, int id_Personas, int id_CantidadV, float precio_Total)
+    public static void AltasDetalles_Ventas(int id, int id_Productos, int CantidadV, float precio_Total)
     {
         Connection con = ManipulaBD.conecta();
         if (con != null)
@@ -780,8 +772,7 @@ public class ManipulaBD
             sql.Insertar(con, "detalles_ventas",
                     "" + id + ","
                     + id_Productos + ","
-                    + id_Personas + ","
-                    + id_CantidadV + ","
+                    + CantidadV + ","
                     + precio_Total + ""
             );
             ManipulaBD.desconecta(con);
@@ -814,13 +805,11 @@ public class ManipulaBD
      *
      * @param id tipo int
      * @param id_DV tipo int
-     * @param producto tipo int
      * @param fecha tipo String
      * @param hora tipo int
-     * @param cantidadV tipo int
      * @param Costos tipo float
      */
-    public static void AltasVentas(int id, int id_DV, int producto, String fecha, int hora, int cantidadV, float Costos)
+    public static void AltasVentas(int id, int id_DV, String fecha, int hora, float Costos)
     {
         Connection con = ManipulaBD.conecta();
         if (con != null)
@@ -829,10 +818,8 @@ public class ManipulaBD
             sql.Insertar(con, "ventas",
                     "" + id + ","
                     + id_DV + ","
-                    + producto + ",'"
                     + fecha + "',"
                     + hora + ","
-                    + cantidadV + ","
                     + Costos + ""
             );
         }
