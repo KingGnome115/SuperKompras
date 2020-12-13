@@ -8,6 +8,7 @@ package Ventanas;
 import clases.ManipulaBD;
 import clases.Productos;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -206,26 +207,32 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         for (int i = 0; i < prod.size(); i++)
         {
-
-            boolean perecedero = (boolean) TProd.getValueAt(i, 6);
-            boolean estatus = (boolean) TProd.getValueAt(i, 11);
-            boolean existecias = (boolean) TProd.getValueAt(i, 12);
-            String estatusP = String.valueOf(perecedero);
-            String estatusS = String.valueOf(estatus);
-            String estatusE = String.valueOf(existecias);
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 0) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 1) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion", "'" + TProd.getValueAt(i, 3) + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 4) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 5) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad", "" + TProd.getValueAt(i, 7) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso", "" + TProd.getValueAt(i, 8) + "");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad", "'" + TProd.getValueAt(i, 9) + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca", "'" + TProd.getValueAt(i, 10) + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
-            ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
+            if (TProd.getValueAt(i, 9).toString().matches("^([0-2][0-9]|3[0-1])(\\/|-)(0[1-9]|1[0-2])\\2(\\d{4})$"))
+            {
+                boolean perecedero = (boolean) TProd.getValueAt(i, 6);
+                boolean estatus = (boolean) TProd.getValueAt(i, 11);
+                boolean existecias = (boolean) TProd.getValueAt(i, 12);
+                String estatusP = String.valueOf(perecedero);
+                String estatusS = String.valueOf(estatus);
+                String estatusE = String.valueOf(existecias);
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 0) + "");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 1) + "");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion", "'" + TProd.getValueAt(i, 3) + "'");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 4) + "");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 5) + "");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad", "" + TProd.getValueAt(i, 7) + "");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso", "" + TProd.getValueAt(i, 8) + "");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad", "'" + TProd.getValueAt(i, 9) + "'");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca", "'" + TProd.getValueAt(i, 10) + "'");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
+                ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, "Error en la fecha");
+                break;
+            }
 
         }
 
