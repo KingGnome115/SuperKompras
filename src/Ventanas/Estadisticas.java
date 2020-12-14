@@ -15,13 +15,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author REYNO21
  */
 public class Estadisticas extends javax.swing.JFrame
-{
-
+  {
+    
     JFreeChart Grafica;
     DefaultCategoryDataset datos = new DefaultCategoryDataset();
-
+    
     ArrayList<Productos> Prod = ManipulaBD.ConsultasProductos("id!=", "-1");
-
+    
     Productos mas;
     Productos menos;
 
@@ -29,55 +29,46 @@ public class Estadisticas extends javax.swing.JFrame
      * Creates new form Estadisticas
      */
     public Estadisticas()
-    {
+      {
         initComponents();
         MasV();
         MenosV();
         for (int i = 0; i < Prod.size(); i++)
-        {
+          {
             datos.addValue(Prod.get(i).getVentas(), "Ventas", Prod.get(i).getNombre());
-        }
-
+          }
+        
         Grafica = ChartFactory.createBarChart("Estadisticas",
                 "Productos", "Ventas", datos,
                 PlotOrientation.HORIZONTAL, true, true, false);
-
-        ChartPanel Panel = new ChartPanel(Grafica);
-        JFrame Ventana = new JFrame("JFreeChart");
-        Ventana.getContentPane().add(Panel);
-        Ventana.pack();
-        Ventana.setVisible(true);
-        Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-
-    }
-
+      }
+    
     private void MasV()
-    {
+      {
         mas = Prod.get(0);
         for (int i = 0; i < Prod.size(); i++)
-        {
+          {
             if (mas.getVentas() < Prod.get(i).getVentas())
-            {
+              {
                 mas = Prod.get(i);
-            }
-        }
+              }
+          }
         System.out.println("El producto más vendido es: " + mas.getNombre());
-    }
-
+      }
+    
     private void MenosV()
-    {
+      {
         menos = Prod.get(0);
         for (int i = 0; i < Prod.size(); i++)
-        {
+          {
             if (menos.getVentas() > Prod.get(i).getVentas())
-            {
+              {
                 menos = Prod.get(i);
-            }
-        }
+              }
+          }
         System.out.println("El producto más vendido es: " + menos.getNombre());
-    }
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +81,7 @@ public class Estadisticas extends javax.swing.JFrame
     {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,19 +94,35 @@ public class Estadisticas extends javax.swing.JFrame
             }
         });
 
+        jButton2.setText("Grafica");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(375, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -126,54 +134,81 @@ public class Estadisticas extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+          {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+          }
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        
+        ChartPanel Panel = new ChartPanel(Grafica);
+        JFrame Ventana = new JFrame("JFreeChart");
+        Ventana.getContentPane().add(Panel);
+        Ventana.pack();
+        Ventana.setVisible(true);
+        Ventana.setLocationRelativeTo(null);
+        
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
-    {
+      {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-        {
+          {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
+              {
                 if ("Nimbus".equals(info.getName()))
-                {
+                  {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
+                  }
+              }
+          } catch (ClassNotFoundException ex)
+          {
             java.util.logging.Logger.getLogger(Estadisticas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+          } catch (InstantiationException ex)
+          {
             java.util.logging.Logger.getLogger(Estadisticas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+          } catch (IllegalAccessException ex)
+          {
             java.util.logging.Logger.getLogger(Estadisticas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+          } catch (javax.swing.UnsupportedLookAndFeelException ex)
+          {
             java.util.logging.Logger.getLogger(Estadisticas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+          }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-        {
+          {
             public void run()
-            {
+              {
                 new Estadisticas().setVisible(true);
-            }
-        });
-    }
+              }
+          });
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }

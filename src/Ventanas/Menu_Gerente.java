@@ -44,6 +44,8 @@ public class Menu_Gerente extends javax.swing.JFrame
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         BVentas = new javax.swing.JButton();
+        BCVentas = new javax.swing.JButton();
+        BEstadisticas = new javax.swing.JButton();
 
         jButton9.setText("jButton9");
 
@@ -167,6 +169,24 @@ public class Menu_Gerente extends javax.swing.JFrame
             }
         });
 
+        BCVentas.setText("Consultar Ventas");
+        BCVentas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BCVentasActionPerformed(evt);
+            }
+        });
+
+        BEstadisticas.setText("Estadisticas");
+        BEstadisticas.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BEstadisticasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,25 +199,23 @@ public class Menu_Gerente extends javax.swing.JFrame
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2)
                             .addComponent(jButton1)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton10)
-                                .addGap(45, 45, 45)
-                                .addComponent(BVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton7)
-                                    .addComponent(jButton6)
-                                    .addComponent(jButton4))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton13)
-                                    .addComponent(jButton12)
-                                    .addComponent(jButton11)))))
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton7)
+                            .addComponent(jButton6)
+                            .addComponent(jButton4)
+                            .addComponent(jButton10)))
+                    .addComponent(BCVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton12)
+                    .addComponent(jButton11)
+                    .addComponent(BEstadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,13 +236,18 @@ public class Menu_Gerente extends javax.swing.JFrame
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3)
+                        .addComponent(jButton10))
+                    .addComponent(BVentas, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton10)
-                    .addComponent(BVentas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(BCVentas)
+                    .addComponent(BEstadisticas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jButton8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -319,6 +342,18 @@ public class Menu_Gerente extends javax.swing.JFrame
         this.setVisible(false);
     }//GEN-LAST:event_BVentasActionPerformed
 
+    private void BCVentasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BCVentasActionPerformed
+    {//GEN-HEADEREND:event_BCVentasActionPerformed
+          new Consultas_Ventas().setVisible(true);
+          this.setVisible(false);
+    }//GEN-LAST:event_BCVentasActionPerformed
+
+    private void BEstadisticasActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BEstadisticasActionPerformed
+    {//GEN-HEADEREND:event_BEstadisticasActionPerformed
+         new Estadisticas().setVisible(true);
+         this.setVisible(false);
+    }//GEN-LAST:event_BEstadisticasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +400,8 @@ public class Menu_Gerente extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BCVentas;
+    private javax.swing.JButton BEstadisticas;
     private javax.swing.JButton BVentas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
