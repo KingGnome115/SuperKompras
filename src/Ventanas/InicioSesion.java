@@ -152,36 +152,45 @@ public class InicioSesion extends javax.swing.JFrame
         String variable = "";
         variable = "usuario=";
         tmp = ManipulaBD.ConsultasTipo_Usuario(variable, "'" + TUsuario.getText() + "'");
-        if (!tmp.isEmpty())
+        try
           {
-            if (tmp.get(0).getContrasenia().compareTo(TPass.getText()) == 0)
+            if (!tmp.isEmpty())
               {
-                variable = "id=";
-                usuario = ManipulaBD.ConsultasPersonas(variable, "" + tmp.get(0).getId() + "");
-                switch (usuario.get(0).getClasificacion())
+                if (tmp.get(0).getContrasenia().compareTo(TPass.getText()) == 0)
                   {
-                    case 1:
-                        new Menu_Gerente().setVisible(true);
-                        this.setVisible(false);
-                        break;
-                    case 2:
-                        new Menu_SubGerente().setVisible(true);
-                        this.setVisible(false);
-                        break;
-                    case 3:
-                        new Menu_Empleado().setVisible(true);
-                        this.setVisible(false);
-                        break;
+                    variable = "id=";
+                    usuario = ManipulaBD.ConsultasPersonas(variable, "" + tmp.get(0).getId() + "");
+                    switch (usuario.get(0).getClasificacion())
+                      {
+                        case 1:
+                            new Menu_Gerente().setVisible(true);
+                            this.setVisible(false);
+                            break;
+                        case 2:
+                            new Menu_SubGerente().setVisible(true);
+                            this.setVisible(false);
+                            break;
+                        case 3:
+                            new Menu_Empleado().setVisible(true);
+                            this.setVisible(false);
+                            break;
+                      }
+                  } else
+                  {
+                    JOptionPane.showMessageDialog(rootPane, "La Contraseña es incorrecta");
+                    CtrlInterfaz.limpia(TUsuario, TPass);
                   }
-              }else{
-                JOptionPane.showMessageDialog(rootPane, "La Contraseña es incorrecta");
-                        CtrlInterfaz.limpia(TUsuario, TPass);
-            }
-          }else
+              } else
               {
                 JOptionPane.showMessageDialog(rootPane, "Usuario no valido");
-                        CtrlInterfaz.limpia(TUsuario, TPass);
+                CtrlInterfaz.limpia(TUsuario, TPass);
+              }
+          } catch (java.lang.NullPointerException e)
+          {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese un usuario valido");
+            CtrlInterfaz.limpia(TUsuario, TPass);
           }
+
     }//GEN-LAST:event_BAceptarActionPerformed
 
     /**
