@@ -2,7 +2,6 @@ package Ventanas;
 
 import clases.Detalles_Ventas;
 import clases.ManipulaBD;
-import clases.Productos;
 import clases.Ventas;
 import java.util.ArrayList;
 
@@ -11,42 +10,34 @@ import java.util.ArrayList;
  * @author Kevin
  */
 public class Consultas_Ventas extends javax.swing.JFrame
-  {
+{
 
-    //public static ArrayList<Ventas> venta;
     public static ArrayList<Detalles_Ventas> conVent;
-        //public static ArrayList<Productos> product;
+    public static ArrayList<Ventas> Vent;
 
     /**
      * Creates new form Consultas_Ventas
      */
     public Consultas_Ventas()
-      {
+    {
         initComponents();
 
         String condicion = "-1";
         conVent = ManipulaBD.ConsultasDetalles_Ventas("id!=", condicion);
-        for (int i = 0; i < conVent.size(); i++)
-          {
-            
-            Tbventas.setValueAt(conVent.get(i).getId(), i, 0);
-            Tbventas.setValueAt(conVent.get(i).getId_Productos(), i, 1);
-            Tbventas.setValueAt(conVent.get(i).getCantidadV(), i, 4);
-            Tbventas.setValueAt(conVent.get(i).getPesoV(), i, 5);
-            Tbventas.setValueAt(conVent.get(i).getPrecio_Total(), i, 6);
-                                              
-                            
-            //            Tbventas.setValueAt(conVent.get(i).getId(), i, 0);
-//           Tbventas.setValueAt(product.get(i).getNombre(), i, 1);   //NOMBRE DEL PRODUCTO
-//            Tbventas.setValueAt(venta.get(i).getFecha(), i, 2);
-//            Tbventas.setValueAt(venta.get(i).getHora(), i, 3);
-//            Tbventas.setValueAt(product.get(i).getPrecio_Venta(), i, 4);
-//             Tbventas.setValueAt(conVent.get(i).getPesoV(), i, 5);            //Cantidad de la venta
-//             Tbventas.setValueAt(conVent.get(i).getPrecio_Total(), i, 6); // TOTAL DE LA VENTA
-             
-          }
 
-      }
+        for (int j = 0; j < conVent.size(); j++)
+        {
+            Vent = ManipulaBD.ConsultasVentas("id=", "" + conVent.get(j).getId_Ventas() + "");
+            Tbventas.setValueAt(conVent.get(j).getId(), j, 0);
+            Tbventas.setValueAt(conVent.get(j).getId_Productos(), j, 1);
+            Tbventas.setValueAt(Vent.get(0).getFecha(), j, 2);
+            Tbventas.setValueAt(Vent.get(0).getHora(), j, 3);
+            Tbventas.setValueAt(conVent.get(j).getCantidadV(), j, 4);
+            Tbventas.setValueAt(conVent.get(j).getPesoV(), j, 5);
+            Tbventas.setValueAt(conVent.get(j).getPrecio_Total(), j, 6);
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,7 +99,7 @@ public class Consultas_Ventas extends javax.swing.JFrame
             };
             boolean[] canEdit = new boolean []
             {
-                true, false, false, false, false, true, true
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex)
@@ -162,7 +153,7 @@ public class Consultas_Ventas extends javax.swing.JFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         switch (InicioSesion.usuario.get(0).getClasificacion())
-          {
+        {
             case 1:
                 new Menu_Gerente().setVisible(true);
                 break;
@@ -172,7 +163,7 @@ public class Consultas_Ventas extends javax.swing.JFrame
             case 3:
                 new Menu_Empleado().setVisible(true);
                 break;
-          }
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -180,46 +171,46 @@ public class Consultas_Ventas extends javax.swing.JFrame
      * @param args the command line arguments
      */
     public static void main(String args[])
-      {
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try
-          {
+        {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-              {
+            {
                 if ("Nimbus".equals(info.getName()))
-                  {
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                  }
-              }
-          } catch (ClassNotFoundException ex)
-          {
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (InstantiationException ex)
-          {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (IllegalAccessException ex)
-          {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          } catch (javax.swing.UnsupportedLookAndFeelException ex)
-          {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Consultas_Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-          }
+        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
-          {
+        {
             public void run()
-              {
+            {
                 new Consultas_Ventas().setVisible(true);
-              }
-          });
-      }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TVentas;
