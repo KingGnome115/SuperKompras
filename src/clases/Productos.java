@@ -30,8 +30,8 @@ public class Productos
     {
     }
 
-    public Productos(int id, int id_Proveedor, int codigo, String nombre, String descripcion, float precio_Venta, 
-            float precio_Compra, boolean perecedero, int cantidad, float peso, String caducidad, String marca, 
+    public Productos(int id, int id_Proveedor, int codigo, String nombre, String descripcion, float precio_Venta,
+            float precio_Compra, boolean perecedero, int cantidad, float peso, String caducidad, String marca,
             boolean estatus, boolean existencias, int ventas)
     {
         this.id = id;
@@ -289,6 +289,17 @@ public class Productos
     public void setVentas(int ventas)
     {
         this.ventas = ventas;
+    }
+
+    public boolean isCantidad()
+    {
+        if (cantidad != 0)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
 }

@@ -237,7 +237,7 @@ public class ManipulaBD
         ArrayList<Detalles_Ventas> lista = new ArrayList<>();
         try
         {
-            for (int i = 0; i < reg.size(); i += 5)
+            for (int i = 0; i < reg.size(); i += 6)
             {
                 String idS = "";
                 idS = (String) reg.get(i);
@@ -251,10 +251,12 @@ public class ManipulaBD
                     int id_productos = Integer.parseInt(id_ProductosS);
                     String CantidadS = ((String) reg.get(i + 3)).trim();
                     int Cantidad = Integer.parseInt(CantidadS);
-                    String precio_TotalS = ((String) reg.get(i + 4)).trim();
+                    String pesoS = ((String) reg.get(i + 4)).trim();
+                    float peso = Integer.parseInt(pesoS);
+                    String precio_TotalS = ((String) reg.get(i + 5)).trim();
                     float precio_Total = Float.parseFloat(precio_TotalS);
                     Detalles_Ventas obj = new Detalles_Ventas(id, id_Ventas, id_productos, Cantidad,
-                            precio_Total);
+                            peso, precio_Total);
                     lista.add(obj);
                 }
             }
@@ -624,7 +626,7 @@ public class ManipulaBD
             ArrayList<Tipo_Usuario> ap = ManipulaBD.CargarTipo_Usuario(sql.Seleccion(con, "*", "tipo_usuario", "id=" + id + ""));
             if (ap != null)
             {
-                sql.Modificar(con, "personas", campos, datos, "id='" + id + "'");
+                sql.Modificar(con, "personas", campos, datos, "id=" + id + "");
                 ManipulaBD.desconecta(con);
                 System.out.println("Modificados");
             }
@@ -773,7 +775,33 @@ public class ManipulaBD
                     "" + id + ","
                     + id_Ventas + ","
                     + id_Productos + ","
-                    + CantidadV + ","
+                    + CantidadV + ",0,"
+                    + precio_Total + ""
+            );
+            ManipulaBD.desconecta(con);
+            System.out.println("Dato insertado");
+        }
+    }
+
+    /**
+     * Método para dar de alta los detalles_Ventas
+     *
+     * @param id tipo int
+     * @param id_Productos tipo int
+     * @param pesoV  tipo String
+     * @param precio_Total tipo float
+     */
+    public static void AltasDetalles_Ventas(int id, int id_Ventas, int id_Productos, float pesoV, float precio_Total)
+    {
+        Connection con = ManipulaBD.conecta();
+        if (con != null)
+        {
+            Querys sql = new Querys();
+            sql.Insertar(con, "detalles_ventas",
+                    "" + id + ","
+                    + id_Ventas + ","
+                    + id_Productos + ",0,"
+                    + pesoV + ","
                     + precio_Total + ""
             );
             ManipulaBD.desconecta(con);
@@ -862,7 +890,7 @@ public class ManipulaBD
             ArrayList<Ventas> ap = ManipulaBD.CargarVentas(sql.Seleccion(con, "*", "ventas", "id=" + id + ""));
             if (ap != null)
             {
-                sql.Modificar(con, "ventas", "Costos", "" + costos + "", "id='" + id + "'");
+                sql.Modificar(con, "ventas", "Costos", "" + costos + "", "id=" + id + "");
                 ManipulaBD.desconecta(con);
                 System.out.println("Modificados");
             }

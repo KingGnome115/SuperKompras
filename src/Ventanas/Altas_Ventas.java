@@ -121,6 +121,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
         BEliminar = new javax.swing.JButton();
         TFecha = new javax.swing.JLabel();
         THora = new javax.swing.JLabel();
+        TTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,19 +169,10 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
             }
         )
         {
-            Class[] types = new Class []
-            {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean []
             {
                 false, false, true, false
             };
-
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
             {
@@ -220,20 +212,22 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
 
         THora.setText("HH:MM");
 
+        TTotal.setText("0.0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TFecha)
-                        .addGap(46, 46, 46)
+                        .addGap(47, 47, 47)
                         .addComponent(THora)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BEliminar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
@@ -243,7 +237,8 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
                                 .addComponent(BCancelar)
                                 .addGap(297, 297, 297)
                                 .addComponent(BAceptar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -253,14 +248,16 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BAgregar)
                     .addComponent(TCProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BEliminar)
-                    .addComponent(TFecha)
-                    .addComponent(THora))
+                    .addComponent(THora)
+                    .addComponent(TFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(TTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BCancelar)
                     .addComponent(BAceptar))
@@ -327,7 +324,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
 
     private void BAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BAceptarActionPerformed
     {//GEN-HEADEREND:event_BAceptarActionPerformed
-        
+
         int id = totalV++;
         String fecha = TFecha.getText();
         String Hora = THora.getText();
@@ -338,13 +335,41 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
         {
             int id2 = totalDV++;
             int id_Producto = tmp.get(i).getId();
-            int cantidad = Integer.parseInt("" + TDV.getValueAt(i, 2) + "");
-            float precio_Total = tmp.get(i).getPrecio_Venta() * cantidad;
-            total+=precio_Total;
-            ManipulaBD.AltasDetalles_Ventas(id2, id, id_Producto, cantidad, precio_Total);
+            int cantidad = 0;
+            float peso = 0;
+            float precio_Total = 0;
+            if (!tmp.get(i).isCantidad())
+            {
+                peso = Float.parseFloat(("" + TDV.getValueAt(i, 2) + ""));
+                tmp.get(i).setPeso(tmp.get(i).getPeso() - peso);
+                if (tmp.get(i).getPeso() < 1)
+                {
+                    ManipulaBD.ModificarProductos(tmp.get(i).getId(), "peso,estatus,ventas", "0.0,'false'," + (tmp.get(i).getVentas() + peso) + "");
+                } else
+                {
+                    ManipulaBD.ModificarProductos(tmp.get(i).getId(), "peso,ventas", "" + tmp.get(i).getPeso() + "," + (tmp.get(i).getVentas() + peso) + "");
+                }
+                precio_Total = tmp.get(i).getPrecio_Venta() * peso;
+                ManipulaBD.AltasDetalles_Ventas(id2, id, id_Producto, peso, precio_Total);
+            } else
+            {
+                cantidad = Integer.parseInt("" + TDV.getValueAt(i, 2) + "");
+                tmp.get(i).setCantidad(tmp.get(i).getCantidad() - cantidad);
+                if (tmp.get(i).getCantidad() < 1)
+                {
+                    ManipulaBD.ModificarProductos(tmp.get(i).getId(), "cantidad,estatus,ventas", "0,'false'," + (tmp.get(i).getVentas() + cantidad) + "");
+                } else
+                {
+                    ManipulaBD.ModificarProductos(tmp.get(i).getId(), "cantidad,ventas", "" + tmp.get(i).getCantidad() + "," + (tmp.get(i).getVentas() + cantidad) + "");
+                }
+                precio_Total = tmp.get(i).getPrecio_Venta() * cantidad;
+                ManipulaBD.AltasDetalles_Ventas(id2, id, id_Producto, cantidad, precio_Total);
+            }
+            total += precio_Total;
         }
         ManipulaBD.ModificarVentas(id, total);
-
+        
+        BCancelarActionPerformed(evt);
 
     }//GEN-LAST:event_BAceptarActionPerformed
 
@@ -403,6 +428,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
     private javax.swing.JTable TDV;
     private javax.swing.JLabel TFecha;
     private javax.swing.JLabel THora;
+    private javax.swing.JLabel TTotal;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
