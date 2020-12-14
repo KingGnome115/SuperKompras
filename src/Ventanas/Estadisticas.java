@@ -17,31 +17,28 @@ public class Estadisticas extends javax.swing.JFrame
   {
 
     public ArrayList<Informes> info;
-    
+
     /**
      * Creates new form Estadisticas
      */
     public Estadisticas()
       {
         initComponents();
-        
-        String condicion = "-1";
+
+        String condicion = "*";
         info = ManipulaBD.ConsultasInformes("id!=", condicion);
         for (int i = 0; i < info.size(); i++)
           {
-            
+
             TInfo.setValueAt(info.get(i).getProducto_Mas(), i, 0);
-            TInfo.setValueAt(info.get(i).getMarca_Menos(), i+1, 0);
-            TInfo.setValueAt(info.get(i).getMarca_Mas(), i, 1 );
-            TInfo.setValueAt(info.get(i).getMarca_Menos(), i+1, 1 );
-           TInfo.setValueAt(info.get(i).getGanancias(), i, 2);
-           TInfo.setValueAt(info.get(i).getPerdidas(), i+1, 2);
-           
-             
+            //TInfo.setValueAt(info.get(i).getMarca_Menos(), i + 1, 0);
+            TInfo.setValueAt(info.get(i).getMarca_Mas(), i, 1);
+            //TInfo.setValueAt(info.get(i).getMarca_Menos(), i + 1, 1);
+            TInfo.setValueAt(info.get(i).getGanancias(), i, 2);
+            //TInfo.setValueAt(info.get(i).getPerdidas(), i + 1, 2);
 
           }
-        
-        
+
       }
 
     /**
@@ -74,7 +71,7 @@ public class Estadisticas extends javax.swing.JFrame
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
@@ -106,7 +103,7 @@ public class Estadisticas extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
