@@ -1,5 +1,6 @@
 package Ventanas;
 
+import clases.Detalles_Ventas;
 import clases.ManipulaBD;
 import clases.Productos;
 import clases.Ventas;
@@ -12,8 +13,9 @@ import java.util.ArrayList;
 public class Consultas_Ventas extends javax.swing.JFrame
   {
 
-    public static ArrayList<Ventas> venta;
-    public static ArrayList<Productos> product;
+    //public static ArrayList<Ventas> venta;
+    public static ArrayList<Detalles_Ventas> conVent;
+        //public static ArrayList<Productos> product;
 
     /**
      * Creates new form Consultas_Ventas
@@ -23,18 +25,25 @@ public class Consultas_Ventas extends javax.swing.JFrame
         initComponents();
 
         String condicion = "-1";
-        venta = ManipulaBD.ConsultasVentas("id!=", condicion);
-        for (int i = 0; i < venta.size(); i++)
+        conVent = ManipulaBD.ConsultasDetalles_Ventas("id!=", condicion);
+        for (int i = 0; i < conVent.size(); i++)
           {
-            Tbventas.setValueAt(venta.get(i).getId(), i, 0);
-            Tbventas.setValueAt(product.get(i).getNombre(), i, 1);   //NOMBRE DEL PRODUCTO
-            Tbventas.setValueAt(venta.get(i).getFecha(), i, 2);
-            Tbventas.setValueAt(venta.get(i).getHora(), i, 3);
-            Tbventas.setValueAt(product.get(i).getPrecio_Venta(), i, 4);
-             Tbventas.setValueAt(product.get(i).getCantidad(), i, 4);            //Cantidad de la venta
-             Tbventas.setValueAt(venta.get(i).getCostos(), i, 5); // TOTAL DE LA VENTA
+            
+            Tbventas.setValueAt(conVent.get(i).getId(), i, 0);
+            Tbventas.setValueAt(conVent.get(i).getId_Productos(), i, 1);
+            Tbventas.setValueAt(conVent.get(i).getCantidadV(), i, 4);
+            Tbventas.setValueAt(conVent.get(i).getPesoV(), i, 5);
+            Tbventas.setValueAt(conVent.get(i).getPrecio_Total(), i, 6);
+                                              
+                            
+            //            Tbventas.setValueAt(conVent.get(i).getId(), i, 0);
+//           Tbventas.setValueAt(product.get(i).getNombre(), i, 1);   //NOMBRE DEL PRODUCTO
+//            Tbventas.setValueAt(venta.get(i).getFecha(), i, 2);
+//            Tbventas.setValueAt(venta.get(i).getHora(), i, 3);
+//            Tbventas.setValueAt(product.get(i).getPrecio_Venta(), i, 4);
+//             Tbventas.setValueAt(conVent.get(i).getPesoV(), i, 5);            //Cantidad de la venta
+//             Tbventas.setValueAt(conVent.get(i).getPrecio_Total(), i, 6); // TOTAL DE LA VENTA
              
-
           }
 
       }
@@ -89,17 +98,17 @@ public class Consultas_Ventas extends javax.swing.JFrame
             },
             new String []
             {
-                "ID", "Producto", "Fecha", "Hora", "Cantidad", "Costo del producto", "Total"
+                "ID Venta", "Producto", "Fecha", "Hora", "Cantidad Vendida", "Peso Vendido", "Total"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                true, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex)
