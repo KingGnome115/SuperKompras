@@ -151,51 +151,6 @@ public class ManipulaBD
         }
     }
 
-    public static ArrayList<Informes> CargarInformes(ArrayList<Object> reg)
-    {
-        ArrayList<Informes> lista = new ArrayList<>();
-        try
-        {
-            for (int i = 0; i < reg.size(); i += 9)
-            {
-                String idS = "";
-                idS = (String) reg.get(i);
-                idS = idS.trim();
-                if (idS != " " && idS != "")
-                {
-                    int folio = Integer.parseInt(idS);
-                    String id_VentasS = ((String) reg.get(i + 1)).trim();
-                    int id_Ventas = Integer.parseInt(id_VentasS);
-                    String dia = ((String) reg.get(i + 2)).trim();
-                    String producto_masS = ((String) reg.get(i + 3)).trim();
-                    int producto_Mas = Integer.parseInt(producto_masS);
-                    String producto_menosS = ((String) reg.get(i + 4)).trim();
-                    int producto_Menos = Integer.parseInt(producto_menosS);
-                    String marca_mas = ((String) reg.get(i + 5)).trim();
-                    String marca_menos = ((String) reg.get(i + 6)).trim();
-                    String gananciasS = ((String) reg.get(i + 7)).trim();
-                    float ganancias = Float.parseFloat(gananciasS);
-                    String perdidasS = ((String) reg.get(i + 8)).trim();
-                    float perdidas = Float.parseFloat(perdidasS);
-                    Informes obj = new Informes(folio, id_Ventas, dia, producto_Mas, producto_Menos, marca_mas,
-                            marca_menos, ganancias, perdidas);
-                    lista.add(obj);
-                }
-            }
-            return lista;
-        } catch (Exception e)
-        {
-            System.out.println("Error al crear objeto");
-            if (!lista.isEmpty())
-            {
-                return lista;
-            } else
-            {
-                return null;
-            }
-        }
-    }
-
     public static ArrayList<Ventas> CargarVentas(ArrayList<Object> reg)
     {
         ArrayList<Ventas> lista = new ArrayList<>();
@@ -728,35 +683,6 @@ public class ManipulaBD
     }
 
     /**
-     * Métodos para la consulta en la base de datos de la tabla incidentes y
-     * retorna el o los objetos enforma de arraylist
-     *
-     * @param variable a traves de la cual se buscara el objeto ejemplo "id="
-     * @param condicion con el cual se comparara el dato ejemplo "0" Si quiere
-     * traer todos los datos variable debe ser "id!=" y la condicion "-1"
-     * @return ArrayList de incidentes
-     */
-    public static ArrayList<Informes> ConsultasInformes(String variable, String condicion)
-    {
-        Connection con = ManipulaBD.conecta();
-        ArrayList<Informes> ap = null;
-        if (con != null)
-        {
-            Querys sql = new Querys();
-            ap = ManipulaBD.CargarInformes(sql.Seleccion(con, "*", "incidentes", variable + condicion));
-            ManipulaBD.desconecta(con);
-            if (ap != null)
-            {
-                System.out.println("Dato encontrado");
-            } else
-            {
-                System.out.println("Dato no encontrado");
-            }
-        }
-        return ap;
-    }
-
-    /**
      * Método para dar de alta los detalles_Ventas
      *
      * @param id tipo int
@@ -787,7 +713,7 @@ public class ManipulaBD
      *
      * @param id tipo int
      * @param id_Productos tipo int
-     * @param pesoV  tipo String
+     * @param pesoV tipo String
      * @param precio_Total tipo float
      */
     public static void AltasDetalles_Ventas(int id, int id_Ventas, int id_Productos, float pesoV, float precio_Total)
