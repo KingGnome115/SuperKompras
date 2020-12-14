@@ -20,8 +20,8 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
     private ArrayList<Productos> nombres = null;
     private ArrayList<Productos> tmp = new ArrayList<>();
 
-    private int totalDV = 0;
-    private int totalV = 0;
+    private int totalDV;
+    private int totalV;
 
     private String hora, minuto;
     private Thread hilo;
@@ -41,13 +41,15 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
             TCProductos.addItem(nombres.get(i).getNombre());
         }
 
-        ArrayList<Ventas> tmp1 = null;
-        tmp1 = ManipulaBD.ConsultasVentas("id!=", "-1");
+        ArrayList<Ventas> ven = null;
+        ven = ManipulaBD.ConsultasVentas("id!=", "-1");
         try
         {
-            if (!tmp1.isEmpty())
+            System.out.println(ven.isEmpty());
+            if (!ven.isEmpty())
             {
-                totalV = tmp1.get(tmp1.size() - 1).getId() + 1;
+                totalV = ven.get(ven.size() - 1).getId() + 1;
+                System.out.println(totalV);
             } else
             {
                 totalV = 0;
@@ -270,6 +272,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
 
     private void BCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BCancelarActionPerformed
     {//GEN-HEADEREND:event_BCancelarActionPerformed
+        tmp.clear();
         switch (InicioSesion.usuario.get(0).getClasificacion())
         {
             case 1:
@@ -326,6 +329,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
     {//GEN-HEADEREND:event_BAceptarActionPerformed
 
         int id = totalV++;
+        System.out.println("ESTE ES MI PUTO ID VENTAS: "+id);
         String fecha = TFecha.getText();
         String Hora = THora.getText();
         ManipulaBD.AltasVentas(id, fecha, Hora, (float) 0.0);
@@ -334,6 +338,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
         for (int i = 0; i < tmp.size(); i++)
         {
             int id2 = totalDV++;
+            System.out.println("ESTE ES MI PUTO ID DETALLES VENTAS: "+id2);
             int id_Producto = tmp.get(i).getId();
             int cantidad = 0;
             float peso = 0;

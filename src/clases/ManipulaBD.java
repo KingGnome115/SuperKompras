@@ -57,7 +57,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -141,7 +141,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -186,7 +186,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -209,20 +209,19 @@ public class ManipulaBD
                 if (idS != "" && idS != " ")
                 {
                     int id = Integer.parseInt(idS);
-                    String fecha = ((String) reg.get(i + 3)).trim();
-                    String hora = ((String) reg.get(i + 4)).trim();
-                    String CostosS = ((String) reg.get(i + 6)).trim();
-                    int Costos = Integer.parseInt(CostosS);
+                    String fecha = ((String) reg.get(i + 1)).trim();
+                    String hora = ((String) reg.get(i + 2)).trim();
+                    String CostosS = ((String) reg.get(i + 3)).trim();
+                    float Costos = Float.parseFloat(CostosS);
                     Ventas obj = new Ventas(id, fecha, hora, Costos);
                     lista.add(obj);
                 }
             }
-
             return lista;
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -252,7 +251,7 @@ public class ManipulaBD
                     String CantidadS = ((String) reg.get(i + 3)).trim();
                     int Cantidad = Integer.parseInt(CantidadS);
                     String pesoS = ((String) reg.get(i + 4)).trim();
-                    float peso = Integer.parseInt(pesoS);
+                    float peso = Float.parseFloat(pesoS);
                     String precio_TotalS = ((String) reg.get(i + 5)).trim();
                     float precio_Total = Float.parseFloat(precio_TotalS);
                     Detalles_Ventas obj = new Detalles_Ventas(id, id_Ventas, id_productos, Cantidad,
@@ -264,7 +263,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -323,7 +322,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -371,7 +370,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -407,7 +406,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -444,7 +443,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -478,7 +477,7 @@ public class ManipulaBD
         } catch (Exception e)
         {
             System.out.println("Error al crear objeto");
-            if (lista != null)
+            if (!lista.isEmpty())
             {
                 return lista;
             } else
@@ -888,10 +887,10 @@ public class ManipulaBD
         {
             Querys sql = new Querys();
             ArrayList<Ventas> ap = ManipulaBD.CargarVentas(sql.Seleccion(con, "*", "ventas", "id=" + id + ""));
+            ManipulaBD.desconecta(con);
             if (ap != null)
             {
                 sql.Modificar(con, "ventas", "Costos", "" + costos + "", "id=" + id + "");
-                ManipulaBD.desconecta(con);
                 System.out.println("Modificados");
             }
         }
