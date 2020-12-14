@@ -367,6 +367,7 @@ public class Altas_Ventas extends javax.swing.JFrame implements Runnable
             }
             total += precio_Total;
         }
+        TTotal.setText(total+"");
         ManipulaBD.ModificarVentas(id, total);
         
         BCancelarActionPerformed(evt);
