@@ -11,6 +11,7 @@ public class Ventas
     private String fecha;
     private String hora;
     private float Costos;
+    
 
     public Ventas()
     {

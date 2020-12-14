@@ -1,6 +1,7 @@
 package Ventanas;
 
 import clases.ManipulaBD;
+import clases.Productos;
 import clases.Ventas;
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ public class Consultas_Ventas extends javax.swing.JFrame
   {
 
     public static ArrayList<Ventas> venta;
+    public static ArrayList<Productos> product;
 
     /**
      * Creates new form Consultas_Ventas
@@ -24,8 +26,14 @@ public class Consultas_Ventas extends javax.swing.JFrame
         venta = ManipulaBD.ConsultasVentas("id!=", condicion);
         for (int i = 0; i < venta.size(); i++)
           {
-
-            
+            Tbventas.setValueAt(venta.get(i).getId(), i, 0);
+            Tbventas.setValueAt(product.get(i).getNombre(), i, 1);   //NOMBRE DEL PRODUCTO
+            Tbventas.setValueAt(venta.get(i).getFecha(), i, 2);
+            Tbventas.setValueAt(venta.get(i).getHora(), i, 3);
+            Tbventas.setValueAt(product.get(i).getPrecio_Venta(), i, 4);
+             Tbventas.setValueAt(product.get(i).getCantidad(), i, 4);            //Cantidad de la venta
+             Tbventas.setValueAt(venta.get(i).getCostos(), i, 5); // TOTAL DE LA VENTA
+             
 
           }
 
@@ -41,15 +49,23 @@ public class Consultas_Ventas extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Tventas = new javax.swing.JTable();
+        TVentas = new javax.swing.JScrollPane();
+        Tbventas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Tventas.setModel(new javax.swing.table.DefaultTableModel(
+        Tbventas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -73,23 +89,39 @@ public class Consultas_Ventas extends javax.swing.JFrame
             },
             new String []
             {
-                "ID", "Producto", "Vendedor", "Fecha", "Hora", "Cantidad", "Total"
+                "ID", "Producto", "Fecha", "Hora", "Cantidad", "Costo del producto", "Total"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex)
             {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(Tventas);
+        TVentas.setViewportView(Tbventas);
 
         jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,23 +130,42 @@ public class Consultas_Ventas extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        switch (InicioSesion.usuario.get(0).getClasificacion())
+          {
+            case 1:
+                new Menu_Gerente().setVisible(true);
+                break;
+            case 2:
+                new Menu_SubGerente().setVisible(true);
+                break;
+            case 3:
+                new Menu_Empleado().setVisible(true);
+                break;
+          }
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,8 +213,8 @@ public class Consultas_Ventas extends javax.swing.JFrame
       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Tventas;
+    private javax.swing.JScrollPane TVentas;
+    private javax.swing.JTable Tbventas;
     private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
