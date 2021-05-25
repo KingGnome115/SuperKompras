@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="1" pref="1666" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" pref="1218" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="Bregresar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -47,7 +47,7 @@
                   <Component id="Bregresar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BModifica" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,21 +63,7 @@
         <Component class="javax.swing.JTable" name="TProd">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="13" rowCount="33">
-                <Column editable="false" title="Provedor" type="java.lang.Integer"/>
-                <Column editable="true" title="Codigo" type="java.lang.Integer"/>
-                <Column editable="true" title="Nombre" type="java.lang.String"/>
-                <Column editable="true" title="Descripcion" type="java.lang.String"/>
-                <Column editable="false" title="Precio Venta" type="java.lang.Float"/>
-                <Column editable="true" title="Precio Compra" type="java.lang.Float"/>
-                <Column editable="true" title="Perecedero" type="java.lang.Boolean"/>
-                <Column editable="true" title="Cantidad" type="java.lang.Integer"/>
-                <Column editable="true" title="Peso" type="java.lang.Float"/>
-                <Column editable="true" title="Caducidad" type="java.lang.String"/>
-                <Column editable="true" title="Marca" type="java.lang.String"/>
-                <Column editable="true" title="Estatus" type="java.lang.Boolean"/>
-                <Column editable="true" title="Existencias" type="java.lang.Boolean"/>
-              </Table>
+              <Table columnCount="0" rowCount="0"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">

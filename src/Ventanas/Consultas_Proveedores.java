@@ -30,20 +30,64 @@ public class Consultas_Proveedores extends javax.swing.JFrame
 
         String condicion = "-1";
         provedor = ManipulaBD.ConsultasProveedores("id!=", condicion);
+        Actualizar();
+
+    }
+
+    public void Actualizar()
+    {
+        Object[][] matriz = new Object[provedor.size()][10];
+
         for (int i = 0; i < provedor.size(); i++)
         {
-            TProveedores.setValueAt(provedor.get(i).getNombre(), i, 0);
-            TProveedores.setValueAt(provedor.get(i).getApellidoP(), i, 1);
-            TProveedores.setValueAt(provedor.get(i).getApellidoM(), i, 2);
-            TProveedores.setValueAt(provedor.get(i).getRfc(), i, 3);
-            TProveedores.setValueAt(provedor.get(i).getRazon_Social(), i, 4);
-            TProveedores.setValueAt(provedor.get(i).getDireccion(), i, 5);
-            TProveedores.setValueAt(provedor.get(i).getCp(), i, 6);
-            TProveedores.setValueAt(provedor.get(i).getTelefono(), i, 7);
-            TProveedores.setValueAt(provedor.get(i).getEmail(), i, 8);
-            TProveedores.setValueAt(provedor.get(i).isEstatus(), i, 9);
-
+            matriz[i][0] = provedor.get(i).getNombre();
+            matriz[i][1] = provedor.get(i).getApellidoP();
+            matriz[i][2] = provedor.get(i).getApellidoM();
+            matriz[i][3] = provedor.get(i).getRfc();
+            matriz[i][4] = provedor.get(i).getRazon_Social();
+            matriz[i][5] = provedor.get(i).getDireccion();
+            matriz[i][6] = provedor.get(i).getCp();
+            matriz[i][7] = provedor.get(i).getTelefono();
+            matriz[i][8] = provedor.get(i).getEmail();
+            matriz[i][9] = provedor.get(i).isEstatus();
         }
+
+        TProveedores.setModel(new javax.swing.table.DefaultTableModel(matriz, new String[]
+        {
+            "Nombre", "ApellidoP", "ApellidoM", "RFC", "Razón Social", "Direccion", "CP", "Telefono", "Email", "Estatus"
+        })
+        {
+            Class[] types = new Class[]
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class,
+                java.lang.String.class, java.lang.String.class, java.lang.String.class,
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,
+                java.lang.Boolean.class
+            };
+
+            /*
+            Cuales columnas pueden ser modificadas
+             */
+            boolean[] canEdit = new boolean[]
+            {
+                true, true, true,
+                true, true, true,
+                true
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex)
+            {
+                return types[columnIndex];
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit[columnIndex];
+            }
+        }
+        );
 
     }
 
@@ -67,51 +111,13 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         TProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String []
             {
-                "Nombre", "Apellido P", "Apellido M", "RFC", "Razón Social", "Direccion", "Codigo Postal", "Telefono", "Email", "Estatus"
-            }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
-            };
 
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(TProveedores);
 
         Bregresar.setText("Regresar");
@@ -186,19 +192,23 @@ public class Consultas_Proveedores extends javax.swing.JFrame
         {
 
             boolean estatus = (boolean) TProveedores.getValueAt(i, 9);
-            String estatusS = String.valueOf(estatus);
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "nombre", "'" + TProveedores.getValueAt(i, 0) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "apellidoP", "'" + TProveedores.getValueAt(i, 1) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "apellidoM", "'" + TProveedores.getValueAt(i, 2) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "rfc", "'" + TProveedores.getValueAt(i, 3) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "razon_Social", "'" + TProveedores.getValueAt(i, 4) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "direccion", "'" + TProveedores.getValueAt(i, 5) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "cp", "'" + TProveedores.getValueAt(i, 6) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "telefono", "'" + TProveedores.getValueAt(i, 7) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "email", "'" + TProveedores.getValueAt(i, 8) + "'");
-            ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "estatus", "'" + estatusS + "'");
-
+            if (!estatus)
+            {
+                ManipulaBD.BajasProveedore(provedor.get(i).getId());
+            } else
+            {
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "nombre", "'" + TProveedores.getValueAt(i, 0) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "apellidoP", "'" + TProveedores.getValueAt(i, 1) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "apellidoM", "'" + TProveedores.getValueAt(i, 2) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "rfc", "'" + TProveedores.getValueAt(i, 3) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "razon_Social", "'" + TProveedores.getValueAt(i, 4) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "direccion", "'" + TProveedores.getValueAt(i, 5) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "cp", "'" + TProveedores.getValueAt(i, 6) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "telefono", "'" + TProveedores.getValueAt(i, 7) + "'");
+                ManipulaBD.ModificarProveedores(provedor.get(i).getId(), "email", "'" + TProveedores.getValueAt(i, 8) + "'");
+            }
         }
+        Actualizar();
     }//GEN-LAST:event_BModificaActionPerformed
 
     /**

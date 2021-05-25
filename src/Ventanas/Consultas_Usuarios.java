@@ -3,7 +3,6 @@ package Ventanas;
 import clases.ManipulaBD;
 import clases.Personas;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class Consultas_Usuarios extends javax.swing.JFrame
 {
-
+    
     public static ArrayList<Personas> personases;
     //public static ArrayList<Personas> usid;
 
@@ -21,21 +20,64 @@ public class Consultas_Usuarios extends javax.swing.JFrame
     public Consultas_Usuarios()
     {
         initComponents();
-
+        
         String condicion = "-1";
         personases = ManipulaBD.ConsultasPersonas("id!=", condicion);
+        Actualizar();
+    }
+    
+    public void Actualizar()
+    {
+        Object[][] matriz = new Object[personases.size()][8];
         for (int i = 0; i < personases.size(); i++)
         {
-            TUsuarios.setValueAt(personases.get(i).getId(), i, 0);
-            TUsuarios.setValueAt(personases.get(i).getClasificacion(), i, 1);
-            TUsuarios.setValueAt(personases.get(i).getSueldo(), i, 2);
-            TUsuarios.setValueAt(personases.get(i).getNombre(), i, 3);
-            TUsuarios.setValueAt(personases.get(i).getApellidoP(), i, 4);
-            TUsuarios.setValueAt(personases.get(i).getApellidoM(), i, 5);
-            TUsuarios.setValueAt(personases.get(i).getSexo(), i, 6);
-            TUsuarios.setValueAt(personases.get(i).isEstatus(), i, 7);
-
+            matriz[i][0] = personases.get(i).getId();
+            matriz[i][1] = personases.get(i).getClasificacion();
+            matriz[i][2] = personases.get(i).getSueldo();
+            matriz[i][3] = personases.get(i).getNombre();
+            matriz[i][4] = personases.get(i).getApellidoP();
+            matriz[i][5] = personases.get(i).getApellidoM();
+            matriz[i][6] = personases.get(i).getSexo();
+            matriz[i][7] = personases.get(i).isEstatus();
         }
+        
+        TUsuarios.setModel(new javax.swing.table.DefaultTableModel(matriz, new String[]
+        {
+            "ID", "Clasificacion", "Sueldo",
+            "Nombre", "ApellidoP", "ApellidoM",
+            "Sexo", "Estatus"
+        })
+        {
+            Class[] types = new Class[]
+            {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class,
+                java.lang.String.class, java.lang.String.class, java.lang.String.class,
+                java.lang.String.class, java.lang.Boolean.class
+            };
+
+            /*
+            Cuales columnas pueden ser modificadas
+             */
+            boolean[] canEdit = new boolean[]
+            {
+                false, true, true,
+                true, true, true,
+                true, true
+            };
+            
+            @Override
+            public Class getColumnClass(int columnIndex)
+            {
+                return types[columnIndex];
+            }
+            
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit[columnIndex];
+            }
+        }
+        );
     }
 
     /**
@@ -76,50 +118,13 @@ public class Consultas_Usuarios extends javax.swing.JFrame
         TUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String []
             {
-                "Id", "Clasificacion", "Sueldo", "Nombre", "ApellidoP", "ApellidoM", "Sexo", "Estado"
-            }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean []
-            {
-                false, true, true, true, true, true, true, true
-            };
 
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(TUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,22 +177,26 @@ public class Consultas_Usuarios extends javax.swing.JFrame
 
     private void BModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BModificarActionPerformed
     {//GEN-HEADEREND:event_BModificarActionPerformed
-
+        
         for (int i = 0; i < personases.size(); i++)
         {
-
+            
             boolean estatus = (boolean) TUsuarios.getValueAt(i, 7);
-            String estatusS = String.valueOf(estatus);
-
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "nombre", "'" + TUsuarios.getValueAt(i, 3) + "'");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoP", "'" + TUsuarios.getValueAt(i, 4) + "'");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoM", "'" + TUsuarios.getValueAt(i, 5) + "'");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "sexo", "'" + "'" + TUsuarios.getValueAt(i, 6) + "'");
-            ManipulaBD.ModificarPersona(personases.get(i).getId(), "estatus", "'" + estatusS + "'");
-
+            
+            if (!estatus)
+            {
+                ManipulaBD.BajasPersonas(personases.get(i).getId());
+            } else
+            {
+                ManipulaBD.ModificarPersona(personases.get(i).getId(), "clasificacion", "" + TUsuarios.getValueAt(i, 1) + "");
+                ManipulaBD.ModificarPersona(personases.get(i).getId(), "sueldo", "" + TUsuarios.getValueAt(i, 2) + "");
+                ManipulaBD.ModificarPersona(personases.get(i).getId(), "nombre", "'" + TUsuarios.getValueAt(i, 3) + "'");
+                ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoP", "'" + TUsuarios.getValueAt(i, 4) + "'");
+                ManipulaBD.ModificarPersona(personases.get(i).getId(), "apellidoM", "'" + TUsuarios.getValueAt(i, 5) + "'");
+                ManipulaBD.ModificarPersona(personases.get(i).getId(), "sexo", "'" + "'" + TUsuarios.getValueAt(i, 6) + "'");
+            }
         }
+        Actualizar();
 
     }//GEN-LAST:event_BModificarActionPerformed
 

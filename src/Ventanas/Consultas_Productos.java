@@ -36,24 +36,74 @@ public class Consultas_Productos extends javax.swing.JFrame
 
         String condicion = "-1";
         prod = ManipulaBD.ConsultasProductos("id!=", condicion);
+        Actualizar();
+    }
 
+    public void Actualizar()
+    {
+        Object matriz[][] = new Object[prod.size()][13];
         for (int i = 0; i < prod.size(); i++)
         {
-            TProd.setValueAt(prod.get(i).getId_Proveedor(), i, 0);
-            TProd.setValueAt(prod.get(i).getCodigo(), i, 1);
-            TProd.setValueAt(prod.get(i).getNombre(), i, 2);
-            TProd.setValueAt(prod.get(i).getDescripcion(), i, 3);
-            TProd.setValueAt(prod.get(i).getPrecio_Venta(), i, 4);
-            TProd.setValueAt(prod.get(i).getPrecio_Compra(), i, 5);
-            TProd.setValueAt(prod.get(i).isPerecedero(), i, 6);
-            TProd.setValueAt(prod.get(i).getCantidad(), i, 7);
-            TProd.setValueAt(prod.get(i).getPeso(), i, 8);
-            TProd.setValueAt(prod.get(i).getCaducidad(), i, 9);
-            TProd.setValueAt(prod.get(i).getMarca(), i, 10);
-
-            TProd.setValueAt(prod.get(i).isEstatus(), i, 11);
-            TProd.setValueAt(prod.get(i).isExistencias(), i, 12);
+            matriz[i][0] = prod.get(i).getId_Proveedor();
+            matriz[i][1] = prod.get(i).getCodigo();
+            matriz[i][2] = prod.get(i).getNombre();
+            matriz[i][3] = prod.get(i).getDescripcion();
+            matriz[i][4] = prod.get(i).getPrecio_Venta();
+            matriz[i][5] = prod.get(i).getPrecio_Compra();
+            matriz[i][6] = prod.get(i).isPerecedero();
+            matriz[i][7] = prod.get(i).getCantidad();
+            matriz[i][8] = prod.get(i).getPeso();
+            matriz[i][9] = prod.get(i).getCaducidad();
+            matriz[i][10] = prod.get(i).getMarca();
+            matriz[i][11] = prod.get(i).isEstatus();
+            matriz[i][12] = prod.get(i).isExistencias();
         }
+
+        TProd.setModel(new javax.swing.table.DefaultTableModel(matriz, new String[]
+        {
+            "Proveedor", "Codigo", "Nombre",
+            "Descripcion", "Venta", "Compra",
+            "Perecedero", "Cantidad", "Peso",
+            "Caducidad", "Marca", "Estatus",
+            "Existencia"
+        })
+        {
+            /*
+            Las clases de cada propiedad para tener un nivel de validación
+             */
+            Class[] types = new Class[]
+            {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class,
+                java.lang.String.class, java.lang.Float.class, java.lang.Float.class,
+                java.lang.Boolean.class, java.lang.Integer.class, java.lang.Float.class,
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class,
+                java.lang.Boolean.class
+            };
+
+            /*
+            Cuales columnas pueden ser modificadas
+             */
+            boolean[] canEdit = new boolean[]
+            {
+                false, true, true,
+                true, false, true,
+                true, true, true,
+                true, true, true,
+                true
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex)
+            {
+                return types[columnIndex];
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit[columnIndex];
+            }
+        });
     }
 
     /**
@@ -76,65 +126,13 @@ public class Consultas_Productos extends javax.swing.JFrame
         TProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String []
             {
-                "Provedor", "Codigo", "Nombre", "Descripcion", "Precio Venta", "Precio Compra", "Perecedero", "Cantidad", "Peso", "Caducidad", "Marca", "Estatus", "Existencias"
-            }
-        )
-        {
-            Class[] types = new Class []
-            {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean []
-            {
-                false, true, true, true, false, true, true, true, true, true, true, true, true
-            };
 
-            public Class getColumnClass(int columnIndex)
-            {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(TProd);
 
         Bregresar.setText("Regresar");
@@ -162,7 +160,7 @@ public class Consultas_Productos extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1666, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1218, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Bregresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,7 +176,7 @@ public class Consultas_Productos extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Bregresar)
                     .addComponent(BModifica))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,31 +209,35 @@ public class Consultas_Productos extends javax.swing.JFrame
             {
                 boolean perecedero = (boolean) TProd.getValueAt(i, 6);
                 boolean estatus = (boolean) TProd.getValueAt(i, 11);
-                boolean existecias = (boolean) TProd.getValueAt(i, 12);
-                String estatusP = String.valueOf(perecedero);
-                String estatusS = String.valueOf(estatus);
-                String estatusE = String.valueOf(existecias);
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 0) + "");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 1) + "");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion", "'" + TProd.getValueAt(i, 3) + "'");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 4) + "");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 5) + "");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad", "" + TProd.getValueAt(i, 7) + "");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso", "" + TProd.getValueAt(i, 8) + "");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad", "'" + TProd.getValueAt(i, 9) + "'");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca", "'" + TProd.getValueAt(i, 10) + "'");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "estatus", "'" + estatusS + "'");
-                ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
+
+                if (!estatus)
+                {
+                    ManipulaBD.BajasProductos(prod.get(i).getId());
+                } else
+                {
+                    boolean existecias = (boolean) TProd.getValueAt(i, 12);
+                    String estatusP = String.valueOf(perecedero);
+                    String estatusE = String.valueOf(existecias);
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "id_Proveedor", "" + TProd.getValueAt(i, 0) + "");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "codigo", "" + TProd.getValueAt(i, 1) + "");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "nombre", "'" + TProd.getValueAt(i, 2) + "'");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "descripcion", "'" + TProd.getValueAt(i, 3) + "'");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Venta", "" + TProd.getValueAt(i, 4) + "");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "precio_Compra", "" + TProd.getValueAt(i, 5) + "");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "perecedero", "'" + estatusP + "'");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "cantidad", "" + TProd.getValueAt(i, 7) + "");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "peso", "" + TProd.getValueAt(i, 8) + "");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "caducidad", "'" + TProd.getValueAt(i, 9) + "'");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "marca", "'" + TProd.getValueAt(i, 10) + "'");
+                    ManipulaBD.ModificarProductos(prod.get(i).getId(), "existencias", "'" + estatusE + "'");
+                }
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, "Error en la fecha");
                 break;
             }
-
         }
-
+        Actualizar();
 
     }//GEN-LAST:event_BModificaActionPerformed
 
